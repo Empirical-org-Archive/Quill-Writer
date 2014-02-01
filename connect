@@ -1,0 +1,1 @@
+ssh -i ~/.ssh/startupnyc.pem ubuntu@54.201.231.48
