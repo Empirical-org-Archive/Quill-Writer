@@ -82,7 +82,16 @@ console.log('Sockets defaulting to xhr-polling due to aws/nginx config issue');
 
 if (!DEBUG || !VERBOSE) io.set('log level', 1); // reduce logging
 
+
+///////
+
 //var party = require('./party.js').init(app, io, sendMandrill, db);
+
+var matches = require('./match.js').init(app, io);
+
+
+
+
 
 ///////
 
@@ -113,7 +122,7 @@ process.on('exit', function () {
 
 function shutdown (cb) {
 	console.log('shutdown main');
-	cb();
+	matches.shutdown(cb);
 }
 
 process.on('uncaughtException', function (err) {

@@ -1,1 +1,1 @@
-ssh -i ~/.ssh/startupnyc.pem ubuntu@54.201.231.48
+ssh -i ~/.ssh/startupnyc.pem ubuntu@54.200.145.109
