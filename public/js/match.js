@@ -137,6 +137,40 @@ function rerender (changedEntry) {
 }
 
 $(function () {
+
+  var words = [
+    ['Tangent', 'going off the main subject'],
+	['Abasement', 'humiliation; degradation'],
+	['Billowing', 'swelling; fluttering; waving'],
+	['Cower', 'recoil in fear or servility; shrink away from'],
+	['Enhance', 'improve; make better or clearer'],
+	['Harangue', 'noisy, attacking speech'],
+	['Labyrinth', 'a maze'],
+	['Nullify', 'to counter; make unimportant'],
+	['Plaintiff', 'petitioner (in court of law)'],
+	['Replete', 'full'],
+	['Tangible', 'can be touched'],
+	['Absolution', 'forgiveness; pardon; release'],
+	['Blatant', 'obvious'],
+	['Creditable', 'praiseworthy'],
+	['Ensconce', 'establish firmly in a position'],
+	['Hasten', 'hurry; accelerate; rush'],
+	['Laceration', 'a cut'],
+	['Obdurate', 'stubborn'],
+	['Plausible', 'can be believed; reasonable'],
+	['Reprieve', 'a respite; postponement of a sentence'],
+	['Tawdry', 'of little value; gaudy']];
+
+  var wordsD = words.map(function (pair) {    
+    return $('<div></div>').addClass('vocab-pair').append(
+            $('<span></span>').addClass('word').text(pair[0])
+            .append($('<span></span>').addClass('des').text(pair[1])));
+  });
+  
+  wordsD.forEach(function (w) { $('#vocab').append(w); });
+  
+
+
   $('#append').click(function (evt) {
     var msg = {playerID: state.playerID, matchID: state.matchID, text: $('#txt').val()};
     console.log('msg', msg);

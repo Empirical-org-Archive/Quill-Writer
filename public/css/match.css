@@ -6,3 +6,25 @@
   background-color: #fff;
   color: #000;
 }
+
+.vocab-pair {
+  display: inline;
+}
+
+.vocab-pair .word {
+  padding: 0.5em;
+}
+
+.vocab-pair .des {
+  display: none;
+}
+
+.vocab-pair:hover .des {
+  display: inline;
+  position: absolute;
+  z-index: 5;
+  background-color: white;
+  padding: 0.5em;
+  margin: 0.5em;
+  border: 1px solid;
+}
