@@ -88,19 +88,28 @@ function startGame () {
   
   if (state.messages.length) 
     rerender();      
+  
+  checkMessages(state.messages);
     
   $('#txt').addClass('btn-' + playerNumberToPanel(state.playerNumber));
     
   console.log('started game');
 }
 
+function checkMessages (messages) {
+  messages.forEach(function (o) {
+    $('.word').map(function (i, d) {
+      if ($(d).hasClass('used')) return;
+      if (o.text.toLowerCase().indexOf($(d).text().toLowerCase()) != -1) { 
+        $(d).addClass('used');
+        console.log('hit', d, $(d).hasClass('word'));
+      }
+    });
+  });
+}
 function rerender (changedEntry) {
 
   function renderEntry (entry, i) {
-    entry.text.toLowerCase().split(/\s+/).forEach(function (word) {
-      $('.word')
-      console.log('zzz', word);
-    });
   
     var img = $('<img />')
           .addClass(entry.playerNumber == 0 ? 'p0' : 'p1')

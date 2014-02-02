@@ -27,6 +27,12 @@ h1 {
 .vocab-pair .word {
   padding: 0.5em;
   cursor: pointer;
+  font-weight: bold;
+}
+
+#vocab  .word.used {
+  color: #999;
+  font-weight: normal;
 }
 
 .vocab-pair .des {

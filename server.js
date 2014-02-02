@@ -78,15 +78,13 @@ var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 
 io.enable('browser client gzip');
-//io.set('transports', ['xhr-polling']);
+io.set('transports', ['xhr-polling']);
 console.log('Sockets defaulting to xhr-polling due to aws/nginx config issue');
 
 if (!DEBUG || !VERBOSE) io.set('log level', 1); // reduce logging
 
 
 ///////
-
-//var party = require('./party.js').init(app, io, sendMandrill, db);
 
 var matches = require('./match.js').init(app, io);
 var lobby = require('./lobby.js').init(app, io);
