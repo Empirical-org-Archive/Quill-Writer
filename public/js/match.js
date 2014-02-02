@@ -160,29 +160,16 @@ function rerender (changedEntry) {
 
 $(function () {
 
-
-   var words = [
-		['Replete', 'Full'],
-		['Labyrinth', 'A maze'],
-		['Hasten', 'Hurry; accelerate; rush'],
-		['Tangent', 'Going off the main subject'],
-        ['Abasement', 'Humiliation; degradation'],
-        ['Billowing', 'Swelling; fluttering; waving'],
-        ['Cower', 'Recoil in fear or servility; shrink away from'],
-        ['Enhance', 'Improve; make better or clearer'],
-        ['Harangue', 'Noisy, attacking speech'],
-        ['Nullify', 'To counter; make unimportant'],
-        ['Plaintiff', 'Petitioner (in court of law)'],
+ var words = [
+    ['Placid', 'calm; peaceful'],
+        ['Labyrinth', 'A maze'],
+        ['Replete', 'Full'],
         ['Tangible', 'Can be touched'],
-        ['Absolution', 'Forgiveness; pardon; release'],
-        ['Blatant', 'Obvious'],
-        ['Creditable', 'Praiseworthy'],
-        ['Ensconce', 'Establish firmly in a position'],
-        ['Laceration', 'A cut'],
-        ['Obdurate', 'Stubborn'],
-        ['Plausible', 'Can be believed; reasonable'],
-        ['Reprieve', 'A respite; postponement of a sentence'],
-        ['Tawdry', 'Of little value; gaudy']];
+        ['Hasten', 'Hurry; accelerate; rush'],
+    ['Nuance', 'something subtle; a fine shade of meaning'],
+    ['Tangent', 'going off the main subject'],
+    ['Enhance', 'improve; make better or clearer'],
+    ['Renown', 'fame']];
         
   var wordsD = words.map(function (pair) {    
     return $('<div></div>').addClass('vocab-pair')
