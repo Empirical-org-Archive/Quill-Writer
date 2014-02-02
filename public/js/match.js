@@ -117,16 +117,16 @@ function rerender (changedEntry) {
     console.log('img', img);
   
     console.log('making', entry, entry.text);
-    return $('<div></div>')
+    return $('<span></span>')
       .attr('id', 'story' + i)
       .attr('num', i)      
       .addClass(entry.self ? 'self' : 'other')
       .addClass('player' + entry.playerNumber)
-      .addClass('panel-' + playerNumberToPanel(entry.playerNumber))
+//      .addClass('panel-' + playerNumberToPanel(entry.playerNumber))
       //.addClass('panel').addClass('panel-default')
       .addClass('story')
-      .append(img)
-      .append($('<div></div>').addClass('panel-body')
+//      .append(img)
+      .append($('<span></span>')
         .text(entry.text))  
   }
   
@@ -172,7 +172,6 @@ $(function () {
         ['Harangue', 'Noisy, attacking speech'],
         ['Nullify', 'To counter; make unimportant'],
         ['Plaintiff', 'Petitioner (in court of law)'],
-        ['Replete', 'Full'],
         ['Tangible', 'Can be touched'],
         ['Absolution', 'Forgiveness; pardon; release'],
         ['Blatant', 'Obvious'],

@@ -33,6 +33,7 @@ h1 {
 #vocab  .word.used {
   color: #999;
   font-weight: normal;
+  text-decoration: line-through;
 }
 
 .vocab-pair .des {
@@ -80,16 +81,13 @@ h1 {
   color: rgb(16, 119, 49);
 }
 
-img.p0, img.p1 { 
-  float: left; 
-  margin: 0.75em; 
-  width: 40px;
-}
-
-
 .player0 { 
   color: green;
 }
 .player1 {
   color: blue;
 }
+
+#stories img { width: 20px; margin: 0.5em; }
+#stories { line-height: 2.0em; }
+#stores > span { margin: 0.5em; }
