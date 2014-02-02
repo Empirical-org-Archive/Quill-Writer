@@ -78,7 +78,8 @@ $(function () {
       state.messages.push(entry);
       state.messages.sort(function (a, b) { return a.i - b.i; });
     }
-    rerender(entry);    
+    rerender(entry);
+    checkMessages([entry]);    
   });
   
 });
