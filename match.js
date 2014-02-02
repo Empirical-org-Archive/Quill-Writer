@@ -66,11 +66,11 @@ function init(app, io, sendMandrill, db) {
       socket.once('getPID', function (msg, fn) {
         if (msg.playerID) {
           console.log('connecting', 'existing PID', msg);
+          console.log('match');
           socket.playerID = msg.playerID;
           playerSockets[msg.playerID] = socket;
           
           //init game
-          console.log('e1');
           var game = getGame(msg.matchID, msg.playerID);
           
           return fn({playerID: msg.playerID, messages: game.messages, playerNumber: game.players.indexOf(msg.playerID)});
@@ -82,7 +82,6 @@ function init(app, io, sendMandrill, db) {
             playerSockets[slug] = socket;            
 
             //init game
-            console.log('e2');
             var game = getGame(msg.matchID, slug);
 
             fn({playerID: slug, messages: game.messages, playerNumber: game.players.indexOf(slug)});
@@ -126,26 +125,23 @@ function shutdown (cb) {
   console.log('shutdown party');
   STORE.flush(function (err) {
     if (err) console.log('failure storing game state (match.js)', err);
-    console.log('saved game state');
+    else console.log('saved game state');
     cb();  
   });
 }
 
 ///////////////
 function getGame(matchID, playerID) {
-  console.log('zz', matchID, playerID);
   if (!matchID || !playerID) throw 'getGame missing args';
   
   console.log('gaming', matchID, playerID);
   
   var game = games[matchID];
   if (!game) {
-    console.log('aa');
     console.log('creating game', {matchID: matchID, playerID: playerID});
     game = {players: [playerID], messages: []};
     games[matchID] = game;
   }
-  console.log('bb');
   if (game.players.indexOf(playerID) == -1) 
     game.players.push(playerID);
   return game;

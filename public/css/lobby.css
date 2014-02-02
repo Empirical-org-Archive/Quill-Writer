@@ -1,0 +1,11 @@
+h1 {
+margin-left: 1em;
+}
+
+.off {
+  display: none;
+}
+
+.game-counter {
+    margin-right: 1.0em;
+}

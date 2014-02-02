@@ -1,0 +1,186 @@
+<html>
+
+
+  <head>
+    <meta charset="utf-8">
+    <title>Stories with Friends</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <style>
+    @import url("//fonts.googleapis.com/css?family=Lobster|Cabin:400,700");
+    body h1 {
+      font-family: Lobster;
+    }
+    </style>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
+    <link href="css/lobby.css" rel="stylesheet">
+  
+  	<script src="js/p.js"></script>
+	<script src="js/pc.js"></script>	
+<script>
+var Z = P();
+VERBOSE = false;
+THROTTLE = (1.0/9) * 1000; //min delay between XHRs
+</script>
+	<script src="js/d.js"></script>
+	<script src="js/lobby.js"></script>	
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+  </head>
+<body>
+
+
+<div class="page-header">
+  <h1>Stories with Friends <small>The Storytelling Game for Learning Vocabulary</small></h1>
+</div>
+
+<div class="container">
+
+
+	 <div class="bs-docs-section" id="loadingStage" class="stage on">	 
+        <div class="page-header" id="stages">
+        
+        <div>
+        	<h2>Connecting to server...</h2>
+        	<pre style="color:blue; font-size: 0.75em">
+
+             .-=-==--==--.
+       ..-=="  ,'o`)      `.
+     ,'         `"'         \
+    :  (                     `.__...._
+    |                  )    /         `-=-.
+    :       ,vv.-._   /    /               `---==-._
+     \/\/\/VV ^ d88`;'    /                         `.
+         ``  ^/d88P!'    /             ,              `._
+            ^/    !'   ,.      ,      /                  "-,,__,,--'""""-.
+           ^/    !'  ,'  \ . .(      (         _           )  ) ) ) ))_,-.\
+          ^(__ ,!',"'   ;:+.:%:a.     \:.. . ,'          )  )  ) ) ,"'    '
+          ',,,'','     /o:::":%:%a.    \:.:.:         .    )  ) _,'
+           """'       ;':::'' `+%%%a._  \%:%|         ;.). _,-""
+                  ,-='_.-'      ``:%::)  )%:|        /:._,"
+                 (/(/"           ," ,'_,'%%%:       (_,'
+                                (  (//(`.___;        \
+                                 \     \    `         `
+                                  `.    `.   `.        :
+                                    \. . .\    : . . . :
+                                     \. . .:    `.. . .:
+                                      `..:.:\     \:...\
+                                       ;:.:.;      ::...:
+                                       ):%::       :::::;
+                                   __,::%:(        :::::
+                                ,;:%%%%%%%:        ;:%::
+                                  ;,--""-.`\  ,=--':%:%:\
+                                 /"       "| /-".:%%%%%%%\
+                                                 ;,-"'`)%%)   (CJ)
+                                                /"      "|        	
+        	</pre>
+        	<div style="text-align: right">
+        		-- <a href="http://www.retrojunkie.com/asciiart/animals/dinos.htm">ascii dinos</a>
+        	</div>
+        </div>
+    </div>
+</div>
+
+<div id="stage2async" class="stage off">
+	<p id="asyncOption" style="margin: 1em; border: 2px dotted silver: padding: 1em">
+		Checking async player lobby...</p>		
+			
+	<ol class="list-group">
+		<li class="list-group-item" id="batched" style="opacity: 0.4">			
+				<h2>Option 1: Join a Live Story</h2>
+
+				<div id="legend" class="panel panel-default">
+				  <div class="panel-heading" style="text-align: center">
+						<h4>Current</h4>
+				  </div>
+				  <ul id="games" class="panel-body list-group">
+						<li class="list-group-item"></li>
+				  </ul>
+				  <div class="panel-heading" style="text-align: center">
+				  <h4>Recent</h4>
+				  </div>
+				  <ul id="oldGames" class="panel-body list-group">
+						<li class="list-group-item"></li>
+				  </ul>
+				</div>				
+				
+		</li>
+		<li class="list-group-item" id="makeBatch" style="display: none">
+				<h2>Option 2: Start a New Story</h2>
+				<p id="lookAbove" style="display: none" class="lead">
+					<!-- Paste your text below. The lobby advertises the first line, so write the description and instructions there. 				 -->
+				</p>
+
+				<div class="row" style="display:none">
+				<div class="form-group col-sm-12" id="asyncTextField">
+					<textarea 
+							rows=10
+							id=asyncText
+							type="text" 
+							class="form-control" 
+							placeholder="Paste the text that you want edited: aim for 500 words."
+					/></textarea>
+					<span id="asyncWordCount">&nbsp;</span>
+				</div>	
+				</div>
+				
+				<div style="text-align: center">
+					<input id="createAsyncGame" type="submit" class="btn btn-primary btn-lg btn-success" value="Start new story"/>					 
+
+					<div style="text-align: center; display: none" class="lead">
+						Notify me when someone swaps with my text or edits it
+						<input id="emailGameLinkRedux" type="checkbox" checked>
+					</div>
+
+				</div>
+
+
+				
+
+		</li>
+		<li class="list-group-item" style="display:none">
+
+
+				<h2>Provide Your Name &amp; Email</h2>
+				<p class="lead">We need some information for pairing, turn notifications, and feedback:</p>
+			
+			
+				<div class="row">
+				<div class="form-group col-sm-6 col-sm-offset-3">
+					<div class="input-group margin-bottom-sm">
+					  <span class="input-group-addon"><i class="fa fa-user fa-fw"></i> name</span>
+					  <input class="form-control" type="text" placeholder="" id="nameAsync" value="player">
+					</div>
+				</div>
+				</div>
+
+				
+				<div class="row">
+				<div class="form-group col-sm-6 col-sm-offset-3">
+					<div class="input-group margin-bottom-sm">
+					  <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i> email</span>
+					  <input class="form-control" type="text" placeholder="" id="emailAsync" value="fake@email">
+					</div>
+				</div>
+				</div>
+
+
+				<div style="text-align: center" class="lead">
+					Notify me when someone swaps with my text or edits it
+					<input id="emailGameLink" type="checkbox">
+				</div>
+
+		
+		</li>
+		
+	</ol>
+			
+	</div>		
+		
+</div> 
+
+</body>
+</html>

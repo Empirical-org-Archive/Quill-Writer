@@ -1,3 +1,7 @@
+h1 {
+  margin-left: 1em;
+}
+
 .off {
   display: none;
 }
@@ -16,7 +20,7 @@
 }
 
 .vocab-pair .word:hover {
-  color: blue;
+  color: rgb(16, 119, 49);
 }
 
 
@@ -31,7 +35,9 @@
 
 
 .vocab-pair:hover .des {
-  color: blue;
+  color: rgb(16, 119, 49);
+  font-weight: bold;
+  font-size: 1.5em;
   display: inline;
   position: absolute;
   z-index: 5;
@@ -60,4 +66,24 @@
 }
 .storytellers-cont {
   margin-bottom: 1em;
+}
+
+.storytellers-cont { color: rgb(111, 150, 250); }
+
+#vocab-title, #vocab .word {
+  color: rgb(16, 119, 49);
+}
+
+img.p0, img.p1 { 
+  float: left; 
+  margin: 0.75em; 
+  width: 40px;
+}
+
+
+.player0 { 
+  color: green;
+}
+.player1 {
+  color: blue;
 }

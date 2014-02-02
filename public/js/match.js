@@ -102,14 +102,21 @@ function rerender (changedEntry) {
       console.log('zzz', word);
     });
   
+    var img = $('<img />')
+          .addClass(entry.playerNumber == 0 ? 'p0' : 'p1')
+          .attr('src', entry.playerNumber == 0 ? 'img/alien1.png' : 'img/alien2.png');
+    console.log('img', img);
+  
     console.log('making', entry, entry.text);
     return $('<div></div>')
       .attr('id', 'story' + i)
-      .attr('num', i)
+      .attr('num', i)      
       .addClass(entry.self ? 'self' : 'other')
       .addClass('player' + entry.playerNumber)
       .addClass('panel-' + playerNumberToPanel(entry.playerNumber))
-      .addClass('panel').addClass('panel-default').addClass('story')
+      //.addClass('panel').addClass('panel-default')
+      .addClass('story')
+      .append(img)
       .append($('<div></div>').addClass('panel-body')
         .text(entry.text))  
   }
