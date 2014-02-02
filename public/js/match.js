@@ -13,11 +13,11 @@ function getQueryParams () {
 }
 
 function playerNumberToPanel (i) {
-  return i == 0 ? 'primary' 
-    : i == 1 ? 'danger'
+  return i == 0 ? 'info' 
+    : i == 1 ? 'success'
     : i == 2 ? 'warning'
     : i == 3 ? 'info'
-    : i == 4 ? 'success' 
+    : i == 4 ? 'error' 
     : 'default';
 }
 
@@ -97,6 +97,11 @@ function startGame () {
 function rerender (changedEntry) {
 
   function renderEntry (entry, i) {
+    entry.text.toLowerCase().split(/\s+/).forEach(function (word) {
+      $('.word')
+      console.log('zzz', word);
+    });
+  
     console.log('making', entry, entry.text);
     return $('<div></div>')
       .attr('id', 'story' + i)
@@ -138,33 +143,35 @@ function rerender (changedEntry) {
 
 $(function () {
 
-  var words = [
-    ['Tangent', 'going off the main subject'],
-	['Abasement', 'humiliation; degradation'],
-	['Billowing', 'swelling; fluttering; waving'],
-	['Cower', 'recoil in fear or servility; shrink away from'],
-	['Enhance', 'improve; make better or clearer'],
-	['Harangue', 'noisy, attacking speech'],
-	['Labyrinth', 'a maze'],
-	['Nullify', 'to counter; make unimportant'],
-	['Plaintiff', 'petitioner (in court of law)'],
-	['Replete', 'full'],
-	['Tangible', 'can be touched'],
-	['Absolution', 'forgiveness; pardon; release'],
-	['Blatant', 'obvious'],
-	['Creditable', 'praiseworthy'],
-	['Ensconce', 'establish firmly in a position'],
-	['Hasten', 'hurry; accelerate; rush'],
-	['Laceration', 'a cut'],
-	['Obdurate', 'stubborn'],
-	['Plausible', 'can be believed; reasonable'],
-	['Reprieve', 'a respite; postponement of a sentence'],
-	['Tawdry', 'of little value; gaudy']];
 
+   var words = [
+		['Replete', 'Full'],
+		['Labyrinth', 'A maze'],
+		['Hasten', 'Hurry; accelerate; rush'],
+		['Tangent', 'Going off the main subject'],
+        ['Abasement', 'Humiliation; degradation'],
+        ['Billowing', 'Swelling; fluttering; waving'],
+        ['Cower', 'Recoil in fear or servility; shrink away from'],
+        ['Enhance', 'Improve; make better or clearer'],
+        ['Harangue', 'Noisy, attacking speech'],
+        ['Nullify', 'To counter; make unimportant'],
+        ['Plaintiff', 'Petitioner (in court of law)'],
+        ['Replete', 'Full'],
+        ['Tangible', 'Can be touched'],
+        ['Absolution', 'Forgiveness; pardon; release'],
+        ['Blatant', 'Obvious'],
+        ['Creditable', 'Praiseworthy'],
+        ['Ensconce', 'Establish firmly in a position'],
+        ['Laceration', 'A cut'],
+        ['Obdurate', 'Stubborn'],
+        ['Plausible', 'Can be believed; reasonable'],
+        ['Reprieve', 'A respite; postponement of a sentence'],
+        ['Tawdry', 'Of little value; gaudy']];
+        
   var wordsD = words.map(function (pair) {    
-    return $('<div></div>').addClass('vocab-pair').append(
-            $('<span></span>').addClass('word').text(pair[0])
-            .append($('<span></span>').addClass('des').text(pair[1])));
+    return $('<div></div>').addClass('vocab-pair')
+      .append($('<span></span>').addClass('word').text(pair[0]))
+      .append($('<span></span>').addClass('des').text(pair[1]));
   });
   
   wordsD.forEach(function (w) { $('#vocab').append(w); });

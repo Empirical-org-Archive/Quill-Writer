@@ -3,12 +3,18 @@
   
   <head>
     <meta charset="utf-8">
-    <title>Stories with Students</title>
+    <title>Stories with Friends</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <style>
+    @import url("//fonts.googleapis.com/css?family=Lobster|Cabin:400,700");
+    body h1 {
+      font-family: Lobster;
+    }
+    </style>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="js/jquery-1.10.2.min.js"></script>
 	<script src="js/match.js"></script>
@@ -17,6 +23,10 @@
   
   <body>
   
+  
+<div class="page-header">
+  <h1>Stories with Friends <small>A Storytelling Game for Learning Vocabulary</small></h1>
+</div>
   
 	<div id="connecting">
 		<h2>Connecting to server...</h2>
@@ -58,83 +68,62 @@
 	</div>
 
   
-  
     <div class="container" id="game" class="off">
-      <div class="row">
-        <div class="col-md-2">
-          <h3>
-          </h3>
-          <p>
-          </p>
+    
+      <div class="rows">
+        <div class="col-sm-3">
+
+			<div class="storytellers-cont">            
+				<h3>Partners</h3>
+				<ul id="storytellers">
+				  <li><img src="img/alien1.png" width="25"></img>Sagarika</li>
+				  <li><img src="img/alien2.png" width="20"></img>Josie</li>
+				</ul>
+			</div>
+          <div class="panel">
+			<h3 style="margin:0">Words</h3>
+          	<div id="vocab"></div>          
+          </div>
+        
         </div>
-        <div class="col-md8 col-md-8" style="display: block;">
-          <h1>
-            Stories with Friends
-          </h1>
-          <h3>
-            <br>
-          </h3>
-          <h3>
-            Vocabulary Terms
-          </h3>
-          
-          <div id="vocab"></div>          
-          
-          <div class="well">
-            <h3>
-              Word Bank
-            </h3>
-            <p>
-              Word 1, Word 2, Word 3, Word 4, Word 5, Word 6.&nbsp;
-            </p>
-          </div>
-          
-          
-          <div id="stories">
-          </div>
-          
-                    
-          
-          <div class="form-group">
-            <label>
-              Enter my passage:
-            </label>
-            <textarea id="txt" class="form-control" rows=5></textarea>
-          </div>
-          <a id="append" href="#" class="btn btn-default pull-right">Submit</a>
-          <div class="alert">
-            <span class="badge"></span>
-            <span class="badge">It's Your Turn. Write a sentence with one of the vocab words.&nbsp;</span>
-          </div>
-          <div class="alert">
-            <p>
-              Instructions:
-              <div>
-                - Select a word from the word bank, and write a sentence with that word.&nbsp;
-              </div>
-              <div>
-                - Each word should be used.&nbsp;
-              </div>
-              <div>
-                - If you think the word is being used incorrectly, flag it by clicking
-                on it.&nbsp;
-              </div>
-              <div>
-                -&nbsp;
-              </div>
-            </p>
-          </div>
-        </div>
-        <div class="col-md2 col-md-2" style="display: block;">
-          <h3>
-          </h3>
-          <p>
-          </p>
-        </div>
-      </div>
-      <td>
-      </td>
-    </div>
+        
+        <div class="col-sm-8">
+        
+          <div class="panel">
+        	<div class="rows">
+        	  <div class="col-sm-3">
+        	      <img src="img/dog.jpeg" style="width:100%;"></img>
+			  </div>
+        	  <div class="col-sm-8">
+				  <h2>Continue this story:</h2>
+				  <div class="lead">
+					&quot;Milo was thinking about bones. He hadn't had one in 3 whole days! ...&quot;
+				  </div>
+
+			  </div>
+			</div><!-- end panel -->
+			<div style="clear:both"></div>
+	
+			<div id="stories"></div>
+	      </div>
+        
+		  <div class="form-group">
+			 <div class="directions">         
+				<b>Continue the story:</b><br>
+				 <ul>
+					 <li>Write 1-2 sentences using an assigned word.</li>
+					 <li>Take turns with your online partner!</li>
+				</ul>
+			</div>
+			<textarea id="txt" class="form-control" rows=5></textarea>
+		  </div>          
+		  <a id="append" href="#" class="btn btn-default pull-right">Submit</a>        
+		</div>   
+		       
+      </div><!-- end col -->
+    </div><!-- end row  -->
+      
+    </div><!-- end cont -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
   </body>

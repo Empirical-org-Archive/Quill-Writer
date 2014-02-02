@@ -7,19 +7,31 @@
   color: #000;
 }
 
-.vocab-pair {
-  display: inline;
+#vocab {
+  max-width: 400px;
 }
+
+.vocab-pair {
+  display: block;
+}
+
+.vocab-pair .word:hover {
+  color: blue;
+}
+
 
 .vocab-pair .word {
   padding: 0.5em;
+  cursor: pointer;
 }
 
 .vocab-pair .des {
   display: none;
 }
 
+
 .vocab-pair:hover .des {
+  color: blue;
   display: inline;
   position: absolute;
   z-index: 5;
@@ -27,4 +39,25 @@
   padding: 0.5em;
   margin: 0.5em;
   border: 1px solid;
+  left: 7em;
+}
+
+.vocab-pair:hover .des:before {
+  content: '"';
+}
+
+.vocab-pair:hover .des:after {
+  content: '"';
+}
+
+#storytellers { 
+  margin: 0;
+  padding: 0;
+  list-style-type: none; 
+}
+#storytellers img {
+  margin: 0.5em;
+}
+.storytellers-cont {
+  margin-bottom: 1em;
 }
