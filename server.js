@@ -15,7 +15,7 @@ var CFG =
 	}
 	var props = ['baseUrl', 'webkey'];
 	props.map(function (p) {
-		if (!data.hasOwnProperty(p)) 
+		if (!data.hasOwnProperty(p))
 			throw 'Missing server.js config field "' + p + '"';
 	});
 	return data;
@@ -31,7 +31,7 @@ app.enable('trust proxy'); //for nginix etc..
 
 var qs = require('querystring');
 var zerorpc = require("zerorpc");
- 
+
 app.use(express.compress());
 var minify = require('express-minify');
 app.use(minify());
@@ -95,9 +95,9 @@ app.get('/api/exit', function (req, res) {
 	console.log('api/exit', req.query);
 	if (req.query.k == CFG.webkey) {
 		res.send({msg: 'closing in 5s'});
-		setTimeout(function () { 
+		setTimeout(function () {
 			console.log('api exit now');
-			process.exit(1); 
+			process.exit(1);
 		}, 5 * 1000);
 	} else {
 		res.send({msg: 'unknown'});
@@ -106,7 +106,7 @@ app.get('/api/exit', function (req, res) {
 
 process.on('SIGINT', function () {
   console.log('sigint, exiting');
-  process.exit(); 
+  process.exit();
 });
 
 process.on('exit', function () {
