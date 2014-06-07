@@ -6,6 +6,7 @@ ADD . /app
 RUN cd /app; npm install
 
 ENV PORT 80
+EXPOSE 80
 
 WORKDIR /app
 CMD /app/launch.sh
