@@ -53,6 +53,7 @@ h1 {
   margin: 0.5em;
   border: 1px solid;
   left: 7em;
+  width: 400px;
 }
 
 .vocab-pair:hover .des:before {
@@ -88,8 +89,8 @@ h1 {
   color: blue;
 }
 
-#stories img { width: 20px; margin: 0.5em; }
-#stories { line-height: 2.0em; }
+#stories img { width: 20px; margin: 0.5em;}
+#stories { line-height: 2.0em; padding: 10px; }
 #stores > span { margin: 0.5em; }
 
 body {
