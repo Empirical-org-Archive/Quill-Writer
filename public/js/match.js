@@ -202,13 +202,14 @@ $(function () {
 $(function(){
 var strikeThrough = 0; //strikeThrough refers to the number of words that have been used in the story.
 
- $("a.btn").click(function() {
-$( "span.word" ).each(function( index, element ) {
-    if($('span.word').hasClass("used")){
-     strikeThrough++;
-        if (strikeThrough == 9) {
-           $("#buttonTeacher").fadeIn('5000');
-            $("a#append").attr("disabled", true);
+ $("a#append").click(function() {                  //when the submit button is clicked
+$( "span.word" ).each(function( index, element ) { //for each word of the list
+    if($('span.word').hasClass("used")){           //that is stricken through
+     strikeThrough++;                              //add to a counter
+        if (strikeThrough == 9) { //9 will have to be changed into a variable depending on the list of words the teacher chooses
+                                //words.size ??
+           $("#buttonTeacher").fadeIn('5000'); //releases submit to teacher button
+            $("a#append").attr("disabled", true); //locks submit button (needs to check whether it affects both users)
         }
     }
   }); //each
