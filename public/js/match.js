@@ -198,3 +198,18 @@ $(function () {
     
   });
 });
+
+$(function(){
+var strikeThrough = 0; //strikeThrough refers to the number of words that have been used in the story.
+
+ $("a.btn").click(function() {
+$( "span.word" ).each(function( index, element ) {
+    if($('span.word').hasClass("used")){
+     strikeThrough++;
+        if (strikeThrough == 9) {
+           $("#buttonTeacher").fadeIn('5000');
+        }
+    }
+  }); //each
+}); //button click
+}); //document ready
