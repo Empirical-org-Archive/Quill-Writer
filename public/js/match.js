@@ -208,6 +208,7 @@ $( "span.word" ).each(function( index, element ) {
      strikeThrough++;
         if (strikeThrough == 9) {
            $("#buttonTeacher").fadeIn('5000');
+            $("a#append").attr("disabled", true);
         }
     }
   }); //each
