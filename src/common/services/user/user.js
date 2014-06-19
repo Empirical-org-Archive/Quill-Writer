@@ -1,4 +1,4 @@
-angular.module('app.services.user', [])
+angular.module('sf.services.user', [])
 
   .service('User', function() {
     var user = this;

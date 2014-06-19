@@ -1,11 +1,11 @@
-angular.module('app.users', [
-    'app.user',
+angular.module('sf.users', [
+    'sf.user',
     'ui.router'
   ])
 
   .config(function($stateProvider) {
     $stateProvider
-      .state('app.users', {
+      .state('sf.users', {
         url: '/users',
         views: {
           'content@': {

@@ -1,10 +1,10 @@
-angular.module('app.home', [
+angular.module('sf.home', [
     'ui.router'
   ])
 
   .config(function($stateProvider) {
     $stateProvider
-      .state('app.home', {
+      .state('sf.home', {
         url: '/',
         views: {
           'content@': {

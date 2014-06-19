@@ -1,6 +1,6 @@
-angular.module('app.common', [
-    'app.common.components',
-    'app.common.services'
+angular.module('sf.common', [
+    'sf.common.components',
+    'sf.common.services'
   ])
 
 ;

@@ -1,5 +1,5 @@
-angular.module("app.constants", [])
+angular.module("sf.constants", [])
 
-  .constant("appName", "App Name")
+  .constant("appName", "Stories with Friends")
 
 ;

@@ -1,10 +1,10 @@
-angular.module('app.user', [
+angular.module('sf.user', [
     'ui.router'
   ])
 
   .config(function($stateProvider) {
     $stateProvider
-      .state('app.users.user', {
+      .state('sf.users.user', {
         url: '/:id',
         views: {
           'content@': {

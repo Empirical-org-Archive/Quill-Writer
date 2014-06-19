@@ -1,4 +1,4 @@
-angular.module('app.common.services', [
-    'app.services.user'
+angular.module('sf.common.services', [
+    'sf.services.user'
   ])
 ;

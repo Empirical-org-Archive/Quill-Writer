@@ -1,12 +1,12 @@
-angular.module('app', [
+angular.module('stories-with-friends', [
 
     // features
-    'app.home',
-    'app.users',
+    'sf.home',
+    'sf.users',
 
     // common, including components and services
-    'app.common',
-    'app.constants',
+    'sf.common',
+    'sf.constants',
 
     // template modules
     // templates-app
@@ -24,11 +24,11 @@ angular.module('app', [
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
-      .state('app', {
+      .state('sf', {
         abstract: true,
         views: {
           'header': {
-            template: '<app-header></app-header>'
+            template: '<sf-header></sf-header>'
           },
           'sidebar': {
             template: '<div class="well">Sidebar can go here, with lots of cool things in it.</div>'
@@ -37,7 +37,7 @@ angular.module('app', [
             template: '<div>Main Content</div>'
           },
           'footer': {
-            template: '<app-footer></app-footer>'
+            template: '<sf-footer></sf-footer>'
           }
         }
       });

@@ -1,6 +1,6 @@
-angular.module('app.common.components', [
-    'app.components.header',
-    'app.components.footer'
+angular.module('sf.common.components', [
+    'sf.components.header',
+    'sf.components.footer'
   ])
 
 ;

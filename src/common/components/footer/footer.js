@@ -1,18 +1,18 @@
-angular.module('app.components.footer', [
-    'app.constants'
+angular.module('sf.components.footer', [
+    'sf.constants'
   ])
 
-    .directive('appFooter', function() {
+    .directive('sfFooter', function() {
       return {
         restrict: 'E',
 
         // TODO - use html2js template cache
         templateUrl: 'common/components/footer/footer.tpl.html',
-        controller: 'AppFooterCtrl as footer'
+        controller: 'SfFooterCtrl as footer'
       };
     })
 
-    .controller('AppFooterCtrl', function(appName) {
+    .controller('SfFooterCtrl', function(appName) {
       var footer = this;
 
       footer.appName = appName;

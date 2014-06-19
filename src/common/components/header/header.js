@@ -1,18 +1,18 @@
-angular.module('app.components.header', [
-    'app.constants'
+angular.module('sf.components.header', [
+    'sf.constants'
   ])
 
-    .directive('appHeader', function() {
+    .directive('sfHeader', function() {
       return {
         restrict: 'E',
 
         // TODO - use html2js template cache
         templateUrl: 'common/components/header/header.tpl.html',
-        controller: 'AppHeaderCtrl as header'
+        controller: 'SfHeaderCtrl as header'
       };
     })
 
-    .controller('AppHeaderCtrl', function($rootScope, $state, appName) {
+    .controller('SfHeaderCtrl', function($rootScope, $state, appName) {
       var header = this;
 
       header.appName = appName;
