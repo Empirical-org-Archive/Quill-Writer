@@ -14,7 +14,7 @@ Stories with Friends - Learn vocabulary by writing stories.
 
 ## Best Practices
 
-Most of this skeleton application focuses on scalable best practices.
+(should potentially be in a project style-guide wiki)
 
 * Use 'controller as' syntax. Alias controllers: `SomethingCoolCtrl as somethingCool`
 * Use `ui-router` for routing/states.
@@ -31,3 +31,11 @@ In addition to the current issues.
 
 * Utilize a build tool (Grunt or Gulp)
 * Use template-cache for templates
+
+## Contributing
+
+1. Fork it ( http://github.com/<my-github-username>/git_iam/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
