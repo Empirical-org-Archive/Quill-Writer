@@ -1,9 +1,21 @@
 <h1>Users</h1>
 
-<div>
-  <ul>
-    <li ng-repeat='user in users.users'>
-      <a href ui-sref="app.users.user({id: user.id})">{{user.name}}</a>
-    </li>
-  </ul>
+<div class="row">
+  <div class="col-md-6">
+    <div class='list-group'>
+      <a class="list-group-item" ng-repeat='user in users.users' href ui-sref="app.users.user({id: user.id})">
+        {{user.name}}
+      </a>
+    </div>
+  </div>
+
+
+  <div class="col-md-6">
+    <form class="form-inline" role="form">
+      <div class="form-group">
+        <input type="text" ng-model='users.newUser.name' class="form-control" placeholder="User name">
+      </div>
+      <button type="submit" class="btn btn-default" ng-click='users.createUser(users.newUser)'>Create user</button>
+    </form>
+  </div>
 </div>

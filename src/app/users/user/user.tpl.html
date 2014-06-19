@@ -1,6 +1,13 @@
+<ol class="breadcrumb">
+  <li><a href ui-sref='app.users'>Users</a></li>
+  <li class="active">User {{user.user.id}}</li>
+</ol>
+
 <h1>{{user.user.name}}</h1>
 
 <p>Here is your user page.</p>
 <p>Now do something cool with it.</p>
 
-<p><a href ui-sref='app.users'>Back</a></p>
+<ul class="pager">
+  <li class="previous"><a href ui-sref='app.users'>&larr; Back</a></li>
+</ul>

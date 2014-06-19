@@ -4,19 +4,28 @@
 <head>
   <meta charset="utf-8">
   <title>Stories With Friends</title>
-  <!-- <link rel="stylesheet" href="/src//launchpad.css"> -->
+  <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css">
 </head>
 
 <body>
 
-  <div ui-view='header'></div>
-  <div ui-view='content'></div>
-  <div ui-view='footer'></div>
+  <div class="container">
+    <div class="row">
+      <div ui-view="header"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-2" ui-view="sidebar"></div>
+      <div class="col-md-10" ui-view="content"></div>
+    </div>
+    <div class="row">
+      <div ui-view="footer"></div>
+    </div>
+  </div>
 
   <!-- vendor scripts -->
-  <script type="text/javascript" src="vendor/angular/angular.min.js"></script>
-  <script type="text/javascript" src="vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
-  <script type="text/javascript" src="vendor/angular-bootstrap/ui-bootstrap.min.js"></script>
+  <script type="text/javascript" src="vendor/angular/angular.js"></script>
+  <script type="text/javascript" src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+  <script type="text/javascript" src="vendor/angular-bootstrap/ui-bootstrap.js"></script>
 
   <!-- src scripts -->
   <!-- TODO - use a build tool for compilation -->
@@ -25,10 +34,12 @@
   <script type="text/javascript" src="app/users/users.js"></script>
   <script type="text/javascript" src="app/users/user/user.js"></script>
   <script type="text/javascript" src="common/common.js"></script>
+  <script type="text/javascript" src="common/constants.js"></script>
   <script type="text/javascript" src="common/services/services.js"></script>
   <script type="text/javascript" src="common/services/user/user.js"></script>
   <script type="text/javascript" src="common/components/components.js"></script>
   <script type="text/javascript" src="common/components/header/header.js"></script>
+  <script type="text/javascript" src="common/components/footer/footer.js"></script>
 </body>
 
 </html>

@@ -6,12 +6,14 @@ angular.module('app', [
 
     // common, including components and services
     'app.common',
+    'app.constants',
 
     // template modules
     // templates-app
     // templates-common
 
     // angular modules
+    // ngResource // if desired
 
     // third party modules
     'ui.bootstrap',
@@ -28,11 +30,14 @@ angular.module('app', [
           'header': {
             template: '<app-header></app-header>'
           },
+          'sidebar': {
+            template: '<div class="well">Sidebar can go here, with lots of cool things in it.</div>'
+          },
           'content': {
             template: '<div>Main Content</div>'
           },
           'footer': {
-            template: '<hr><p>Footer</p>'
+            template: '<app-footer></app-footer>'
           }
         }
       });

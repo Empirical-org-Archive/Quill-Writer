@@ -3,8 +3,15 @@ angular.module('app.services.user', [])
   .service('User', function() {
     var user = this;
 
-    // fake get method
-    // would normally use $http
+    /*
+     * fake request method
+     * would normally use $http
+     */
+
+    user.query = function() {
+      return usersResource;
+    };
+
     user.get = function(id) {
       for(var i = 0; i < usersResource.length; i++) {
         var user = usersResource[i];
@@ -12,14 +19,15 @@ angular.module('app.services.user', [])
       }
     };
 
-    // fake query method
-    // would normally use $http
-    user.query = function() {
-      return usersResource;
-    };
+    user.create = function(user) {
+      user.id = usersResource.length + 1;
+      usersResource.push(user);
+    }
 
-    // mock resource
-    // would normally be return from an api call
+    /* mock resource
+     * would normally be return from an api call
+     */
+
     var usersResource = [
       {
         id: 1,

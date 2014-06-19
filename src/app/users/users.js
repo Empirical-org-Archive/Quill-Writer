@@ -21,6 +21,10 @@ angular.module('app.users', [
     var users = this;
 
     users.users = User.query();
+
+    users.createUser = function(user) {
+      User.create(user);
+    };
   })
 
 ;
