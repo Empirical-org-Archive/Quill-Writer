@@ -1,0 +1,20 @@
+{
+  "name": "stories-with-friends",
+  "version": "0.0.0",
+  "authors": [
+    "tgolson <tydotg@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.18",
+    "angular-ui-router": "~0.2.10",
+    "angular-bootstrap": "~0.11.0",
+  }
+}

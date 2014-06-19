@@ -1,0 +1,9 @@
+<h1>Users</h1>
+
+<div>
+  <ul>
+    <li ng-repeat='user in users.users'>
+      <a href ui-sref="app.users.user({id: user.id})">{{user.name}}</a>
+    </li>
+  </ul>
+</div>
