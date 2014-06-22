@@ -1,2 +1,9 @@
-// firebase config file
-// can define public folder here
+{
+  "firebase": "storieswithfriends",
+  "public": "src",
+  "ignore": [
+    "firebase.json",
+    ".*",
+    "**/node_modules/**"
+  ]
+}
