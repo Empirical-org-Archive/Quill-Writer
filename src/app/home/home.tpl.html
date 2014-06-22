@@ -1,5 +1,16 @@
 <div class="jumbotron">
-  <h1>{{ home.header }}</h1>
-  <p>Here is where you can do lots of cool things.</p>
-  <p><a class="btn btn-primary btn-lg" role="button" ui-sref='sf.users'>Check out the users</a></p>
+  <h1>Welcome to <strong>Stories with Friends</strong></h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12 text-center">
+      <h4>Please type in your name, and then enter the lobby to join a game.</h4><br>
+    <div class="col-xs-4 col-xs-offset-4">
+      <form name="form" class="css-form" novalidate>
+        <input type="text" class="form-control input-lg" ng-model='home.user.name' placeholer='Username' required>
+        <br>
+        <button class="btn btn-primary btn-lg" role="button" ng-click='home.setUser(home.user)' ng-disabled="form.$invalid">Enter Lobby</button>
+        </form>
+    </div>
+  </div>
 </div>

@@ -12,17 +12,9 @@ angular.module('sf.components.header', [
       };
     })
 
-    .controller('SfHeaderCtrl', function($rootScope, $state, appName) {
+    .controller('SfHeaderCtrl', function(appName) {
       var header = this;
 
       header.appName = appName;
-
-      // grab initial state
-      header.currentState = $state.current.name;
-
-      // update current state with any subsequent state changes
-      $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-        header.currentState = toState.name;
-      });
     })
 ;
