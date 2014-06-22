@@ -2,7 +2,7 @@
 
 Stories with Friends - Learn vocabulary by writing stories.
 
-Check out the [wiki](wiki) for more information about the project and how to contribute.
+Check out the [wiki](https://github.com/empirical-org/Stories-With-Friends/wiki) for more information about the project and how to contribute.
 
 ## Installation
 
@@ -23,7 +23,7 @@ In addition to the current issues.
 
 ## Contributing
 
-Additional information can be found in the [wiki](wiki/contributing).
+Additional information can be found in the [wiki](https://github.com/empirical-org/Stories-With-Friends/wiki/contributing).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
