@@ -16,10 +16,13 @@ angular.module('sf.home', [
       });
   })
 
-  .controller('HomeCtrl', function(){
+  .controller('HomeCtrl', function($state, User){
     var home = this;
 
-    home.header = 'Welcome to the home page!';
+    home.setUser = function(user) {
+      User.setCurrentUser(user);
+      $state.go('sf.lobby');
+    };
   })
 
 ;

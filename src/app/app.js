@@ -2,7 +2,8 @@ angular.module('stories-with-friends', [
 
     // features
     'sf.home',
-    'sf.users',
+    'sf.lobby',
+    'sf.game',
 
     // common, including components and services
     'sf.common',
@@ -16,6 +17,7 @@ angular.module('stories-with-friends', [
     // ngResource // if desired
 
     // third party modules
+    'firebase',
     'ui.bootstrap',
     'ui.router'
   ])
@@ -29,9 +31,6 @@ angular.module('stories-with-friends', [
         views: {
           'header': {
             template: '<sf-header></sf-header>'
-          },
-          'sidebar': {
-            template: '<div class="well">Sidebar can go here, with lots of cool things in it.</div>'
           },
           'content': {
             template: '<div>Main Content</div>'

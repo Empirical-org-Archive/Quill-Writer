@@ -14,8 +14,7 @@
       <div ui-view="header"></div>
     </div>
     <div class="row">
-      <div class="col-md-2" ui-view="sidebar"></div>
-      <div class="col-md-10" ui-view="content"></div>
+      <div class="col-md-12" ui-view="content"></div>
     </div>
     <div class="row">
       <div ui-view="footer"></div>
@@ -26,17 +25,21 @@
   <script type="text/javascript" src="vendor/angular/angular.js"></script>
   <script type="text/javascript" src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
   <script type="text/javascript" src="vendor/angular-bootstrap/ui-bootstrap.js"></script>
+  <script src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
+  <script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
+
 
   <!-- src scripts -->
   <!-- TODO - use a build tool for compilation -->
   <script type="text/javascript" src="app/app.js"></script>
   <script type="text/javascript" src="app/home/home.js"></script>
-  <script type="text/javascript" src="app/users/users.js"></script>
-  <script type="text/javascript" src="app/users/user/user.js"></script>
+  <script type="text/javascript" src="app/lobby/lobby.js"></script>
+  <script type="text/javascript" src="app/game/game.js"></script>
   <script type="text/javascript" src="common/common.js"></script>
   <script type="text/javascript" src="common/constants.js"></script>
   <script type="text/javascript" src="common/services/services.js"></script>
   <script type="text/javascript" src="common/services/user/user.js"></script>
+  <script type="text/javascript" src="common/services/game/game.js"></script>
   <script type="text/javascript" src="common/components/components.js"></script>
   <script type="text/javascript" src="common/components/header/header.js"></script>
   <script type="text/javascript" src="common/components/footer/footer.js"></script>
