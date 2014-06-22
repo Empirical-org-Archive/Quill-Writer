@@ -2,6 +2,8 @@
 
 Stories with Friends - Learn vocabulary by writing stories.
 
+Check out the [wiki](wiki) for more information about the project and how to contribute.
+
 ## Installation
 
 * Clone this repo to your local machine
@@ -12,19 +14,6 @@ Stories with Friends - Learn vocabulary by writing stories.
 
 (note: this process should be temporary until a build tool is implemented)
 
-## Best Practices
-
-(should potentially be in a project style-guide wiki)
-
-* Use 'controller as' syntax. Alias controllers: `SomethingCoolCtrl as somethingCool`
-* Use `ui-router` for routing/states.
-* Organize scripts by features - users, home, lobby, etc.
-* Put common components in a `common` or `components` directories - directives, services, etc.
-* Create a module for each feature/component, and import dependencies as sub modules.
-  * Do not create global modules - `var app = angular.module('app', [])` <-- don't do this
-* Prefer `ctrl as...` syntax instead of using `$scope` whenever possible.
-* Don't worry about using array syntax for controller dependencies, `ng-min` will take care of that.
-
 ## Todo
 
 In addition to the current issues.
@@ -33,6 +22,8 @@ In addition to the current issues.
 * Use template-cache for templates
 
 ## Contributing
+
+Additional information can be found in the [wiki](wiki/contributing).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
