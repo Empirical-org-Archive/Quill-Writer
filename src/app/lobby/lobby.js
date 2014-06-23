@@ -29,14 +29,14 @@ angular.module('sf.lobby', [
     lobby.games = Game.currentGames;
 
     lobby.createGame = function(user) {
-      Game.create(user).then(function(ref) {
-        sendToGame(ref.name());
+      Game.create(user).then(function(gameId) {
+        sendToGame(gameId);
       });
     };
 
     lobby.joinGame = function(gameId) {
-      var currentGame = Game.join(gameId, lobby.user);
-      sendToGame(currentGame.$id);
+      Game.addUser(gameId, lobby.user);
+      sendToGame(gameId);
     };
 
     function sendToGame(id) {
