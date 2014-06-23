@@ -3,47 +3,45 @@ angular.module("sf.services.game", [
   ])
 
   .service("Game", function($firebase, baseFbUrl) {
-    var game = this;
-
-    game.currentGame = null;
+    var gameModel = this;
 
     var gamesRef = new Firebase(baseFbUrl + "/games");
-    game.currentGames = $firebase(gamesRef);
 
-    game.get = function(id) {
-      var ref = new Firebase(gamesRef + '/' + id);
-      return $firebase(ref);
+    gameModel.currentGames = $firebase(gamesRef);
+
+    gameModel.get = function(id) {
+      return gameModel.currentGames.$child(id);
     };
 
-    game.getGames = function() {
-      return game.currentGames;
-    };
-
-    game.create = function(user) {
+    gameModel.create = function(user) {
       var gameData = {
-        status: 'open',
-        creator: user,
-        users: [user]
+        status: 'open'
       };
 
-      return game.currentGames.$add(gameData);
+      var addGame = gameModel.currentGames.$add(gameData);
+
+      return addGame.then(function(ref) {
+        var gameId = ref.name();
+        gameModel.addUser(gameId, user);
+        return gameId;
+      });
     };
 
-    game.join = function(gameId, user) {
-      var currentGame = game.get(gameId);
-      addUser(currentGame, user);
+    gameModel.addUser = function(gameId, user) {
+      var game = gameModel.get(gameId),
+        users = game.$child('users');
 
-      return currentGame;
-    };
+      var userCount = users.$getIndex().length;
 
-    function addUser(currentGame, user) {
-      var users = game.get(currentGame.$id + '/users');
-      currentGame.$update({status: 'full'});
+      if(userCount >= 1) {
+        game.$update({status: 'full'});
+      }
+
       users.$add(user);
-    }
+    };
 
-    game.closeGame = function(gameId) {
-      var currentGame = game.get(gameId);
+    gameModel.closeGame = function(gameId) {
+      var currentGame = gameModel.get(gameId);
       currentGame.$update({status: 'ended'});
     };
 
