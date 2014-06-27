@@ -1,0 +1,34 @@
+<h1>Hi {{lobby.user.name || 'GuestUser' }}</h1>
+
+<p>Start a new game.
+
+<button class="btn btn-primary" role="button" ng-click='lobby.createGame(lobby.user)'>Create Game</button>
+
+</p>
+
+<p>Or join a game.</p>
+
+<!-- <div class="well"> -->
+
+  <ul class='list-group'>
+    <li class='list-group-item' ng-repeat='(key, game) in lobby.games'>
+      <button class='btn btn-primary btn-sm' ng-click='lobby.joinGame(key)' ng-disabled='game.status !== "open"'>Join Game</button>
+      <span>&nbsp;Game {{key}}&nbsp;</span>
+      <span class="label" ng-class='game.status === "open" ? "label-primary" : "label-danger"'>
+        {{game.status}}
+      </span>
+      &nbsp;
+      <a class='float-right' ng-if="game.status === 'ended'" ui-sref="sf.game({id: key})">See Results</a>
+      <a href ng-if="game.status !== 'ended'" ng-click="game.moreInfo = !game.moreInfo">{{game.moreInfo ? "Hide Info" : "Show Info" }}</a>
+      <ul ng-if="game.moreInfo">
+        <br>
+        <li>Status: {{game.status}}</li>
+        <li>Users:</li>
+        <ul>
+          <li ng-repeat='(key, user) in game.users'>{{user.name}} | Id: {{key}}</li>
+        </ul>
+      </ul>
+    </li>
+  </ul>
+
+<!-- </div> -->

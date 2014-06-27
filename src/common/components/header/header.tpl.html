@@ -15,11 +15,11 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li ng-class='{active: header.currentState === "sf.home"}'>
-          <a ui-sref='sf.home' ng-click='header.currentState = "sf.home"'>Home</a>
+        <li ui-sref-active='active'>
+          <a ui-sref='sf.home'>Home</a>
         </li>
-        <li ng-class='{active: header.currentState === "sf.users"}'>
-          <a ui-sref='sf.users' ng-click='header.currentState = "sf.users"'>Users</a>
+        <li ui-sref-active='active'>
+          <a ui-sref='sf.lobby'>Lobby</a>
         </li>
       </ul>
     </div><!-- /.navbar-collapse -->

@@ -2,19 +2,17 @@
 
 Stories with Friends - Learn vocabulary by writing stories.
 
-View the [work in progress site here](https://storieswithfriends.firebaseapp.com/#/).
+View the [work in progress site here](http://stories-with-friends.herokuapp.com/#/)
 
 Check out the [wiki](https://github.com/empirical-org/Stories-With-Friends/wiki) for more information about the project and how to contribute.
 
 ## Installation
 
 * Clone this repo to your local machine
-* Install dependencies `bower install`
-* `cd` to the `src` folder `cd src/`
-* Start a server `python -m SimpleHTTPServer`
-* Open a browser window to `http://localhost:8000/`
-
-(note: this process should be temporary until a build tool is implemented)
+* Install frontend dependencies `bower install`
+* Install backend dependencies `npm install`
+* run `npm start` or [nodemon](https://github.com/remy/nodemon) bin/www
+* Open a browser window to `http://localhost:3000/` or set port with PORT env var
 
 ## Todo
 
