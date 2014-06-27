@@ -1,0 +1,27 @@
+{
+  "name": "Stories-With-Friends",
+  "version": "0.0.0",
+  "description": "Write Stories with a partner",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --recursive",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/empirical-org/Stories-With-Friends"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/empirical-org/Stories-With-Friends/issues"
+  },
+  "homepage": "https://github.com/empirical-org/Stories-With-Friends",
+  "dependencies": {
+    "connect-assets": "^3.0.2",
+    "express": "^4.4.5"
+  },
+  "devDependencies": {
+    "mocha": "^1.20.1"
+  }
+}
