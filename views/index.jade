@@ -1,0 +1,37 @@
+doctype html
+html(ng-app='stories-with-friends')
+head
+    meta(charset='utf-8')
+    title Stories With Friends
+    link(rel='stylesheet', href='vendor/bootstrap/dist/css/bootstrap.css')
+  body
+    .container
+      .row
+        div(ui-view='header')
+      .row
+        .col-md-12(ui-view='content')
+      .row
+        div(ui-view='footer')
+    //
+       vendor scripts 
+    script(type='text/javascript', src='vendor/angular/angular.js')
+    script(type='text/javascript', src='vendor/angular-ui-router/release/angular-ui-router.js')
+    script(type='text/javascript', src='vendor/angular-bootstrap/ui-bootstrap.js')
+    script(src='https://cdn.firebase.com/js/client/1.0.15/firebase.js')
+    script(src='https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js')
+    //
+       src scripts 
+    //
+       TODO - use a build tool for compilation 
+    script(type='text/javascript', src='app/app.js')
+    script(type='text/javascript', src='app/home/home.js')
+    script(type='text/javascript', src='app/lobby/lobby.js')
+    script(type='text/javascript', src='app/game/game.js')
+    script(type='text/javascript', src='common/common.js')
+    script(type='text/javascript', src='common/constants.js')
+    script(type='text/javascript', src='common/services/services.js')
+    script(type='text/javascript', src='common/services/user/user.js')
+    script(type='text/javascript', src='common/services/game/game.js')
+    script(type='text/javascript', src='common/components/components.js')
+    script(type='text/javascript', src='common/components/header/header.js')
+    script(type='text/javascript', src='common/components/footer/footer.js')
