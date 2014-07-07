@@ -5,10 +5,10 @@ angular.module('sf.game', [
   .config(function($stateProvider) {
     $stateProvider
       .state('sf.game', {
-        url: '/games/:id',
+        url: '/games?uid&sid',
         resolve: {
           currentGame: function(Game, $stateParams) {
-            return Game.get($stateParams.id);
+            return Game.get($stateParams.sid);
           }
         },
         views: {

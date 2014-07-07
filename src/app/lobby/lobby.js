@@ -41,7 +41,7 @@ angular.module('sf.lobby', [
 
     function sendToGame(id) {
       // this is the random key firebase generates
-      $state.go('sf.game', {id: id});
+      $state.go('sf.game', {uid: id, sid: id});
     }
   })
 
