@@ -2,7 +2,6 @@ angular.module('stories-with-friends', [
 
     // features
     'sf.home',
-    'sf.lobby',
     'sf.game',
 
     // common, including components and services

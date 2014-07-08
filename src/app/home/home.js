@@ -21,18 +21,19 @@ angular.module('sf.home', [
 
     home.setUser = function(user) {
       User.setCurrentUser(user);
-      $state.go('sf.lobby');
+      $state.go('sf.game');
     };
 
     function continueWithValidSession() {
       if ($state.params.uid && $state.params.sid) {
-        User.setCurrentUser({
+        home.setUser({
           uid: $state.params.uid,
           sid: $state.params.uid
         });
-        $state.go('sf.lobby');
       }
     }
+
+    continueWithValidSession();
   })
 
 ;

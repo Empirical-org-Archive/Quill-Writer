@@ -13,6 +13,12 @@ angular.module("sf.services.game", [
       return gameModel.currentGames.$child(id);
     };
 
+    gameModel.getGameByUser = function(currentUser) {
+      return gameModel.create(currentUser).then(function(gameId) {
+        return gameModel.get(gameId);
+      });
+    };
+
     gameModel.create = function(user) {
       var gameData = {
         status: 'open'
