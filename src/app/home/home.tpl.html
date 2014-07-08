@@ -4,12 +4,13 @@
 
 <div class="row">
   <div class="col-md-12 text-center">
-      <h4>Please type in your name, and then enter the lobby to join a game.</h4><br>
+      <h4>Please type in your uid and sid, and then enter the game to wait for your partner.</h4><br>
     <div class="col-xs-4 col-xs-offset-4">
       <form name="form" class="css-form" novalidate>
-        <input type="text" class="form-control input-lg" ng-model='home.user.name' placeholer='Username' required>
+        <input type="text" class="form-control input-lg" ng-model='home.user.uid' placeholder='uid' required>
+        <input type="text" class="form-control input-lg" ng-model='home.user.sid' placeholder='sid' required>
         <br>
-        <button class="btn btn-primary btn-lg" role="button" ng-click='home.setUser(home.user)' ng-disabled="form.$invalid">Enter Lobby</button>
+        <button class="btn btn-primary btn-lg" role="button" ng-click='home.setUser(home.user)' ng-disabled="form.$invalid">Enter Game</button>
         </form>
     </div>
   </div>

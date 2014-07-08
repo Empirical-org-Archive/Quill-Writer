@@ -6,6 +6,18 @@ View the [work in progress site here](http://stories-with-friends.herokuapp.com/
 
 Check out the [wiki](https://github.com/empirical-org/Stories-With-Friends/wiki) for more information about the project and how to contribute.
 
+##Compass Activity Specification
+
+The `module_url` for this activity is `/#/`.
+
+For example,
+
+```
+http://stories-with-friends.herokuapp.com/#/?uid=asdf1234&sid=5678aoeu
+```
+
+will be the complete url Compass loads for Stories with Friends.
+
 ## Installation
 
 * Clone this repo to your local machine

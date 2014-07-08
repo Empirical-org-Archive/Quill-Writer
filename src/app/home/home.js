@@ -5,7 +5,7 @@ angular.module('sf.home', [
   .config(function($stateProvider) {
     $stateProvider
       .state('sf.home', {
-        url: '/',
+        url: '/?uid&sid',
         views: {
           'content@': {
             // TODO - use html2js template cache
@@ -21,8 +21,19 @@ angular.module('sf.home', [
 
     home.setUser = function(user) {
       User.setCurrentUser(user);
-      $state.go('sf.lobby');
+      $state.go('sf.game');
     };
+
+    function continueWithValidSession() {
+      if ($state.params.uid && $state.params.sid) {
+        home.setUser({
+          uid: $state.params.uid,
+          sid: $state.params.uid
+        });
+      }
+    }
+
+    continueWithValidSession();
   })
 
 ;
