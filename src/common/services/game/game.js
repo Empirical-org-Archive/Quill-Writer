@@ -13,19 +13,15 @@ angular.module("sf.services.game", [
 
     gameModel.getGameByUser = function(currentUser) {
       var game = gameModel.get(currentUser.sid);
-      var init = $firebase(game.child("init"));
-      if (!init.value) {
-        var gameUsers = $firebase(game.child("users"));
-        if (gameUsers.$getIndex().length < 2) {
-          gameUsers.$add(currentUser);
-        }
-        init.$set(true);
+      var gameUsers = $firebase(game.child("users"));
+      if (gameUsers.$getIndex().length < 1) {
+        gameUsers.$add(currentUser);
       }
       return $firebase(game);
     };
 
     gameModel.closeGame = function(gameId) {
-      var currentGame = gameModel.get(gameId);
+      var currentGame = $firebase(gameModel.get(gameId));
       currentGame.$update({status: 'ended'});
     };
 
