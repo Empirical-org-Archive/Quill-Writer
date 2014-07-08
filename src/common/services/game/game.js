@@ -7,43 +7,21 @@ angular.module("sf.services.game", [
 
     var gamesRef = new Firebase(baseFbUrl + "/games");
 
-    gameModel.currentGames = $firebase(gamesRef);
-
     gameModel.get = function(id) {
-      return gameModel.currentGames.$child(id);
+      return gamesRef.child(id);
     };
 
     gameModel.getGameByUser = function(currentUser) {
-      return gameModel.create(currentUser).then(function(gameId) {
-        return gameModel.get(gameId);
-      });
-    };
-
-    gameModel.create = function(user) {
-      var gameData = {
-        status: 'open'
-      };
-
-      var addGame = gameModel.currentGames.$add(gameData);
-
-      return addGame.then(function(ref) {
-        var gameId = ref.name();
-        gameModel.addUser(gameId, user);
-        return gameId;
-      });
-    };
-
-    gameModel.addUser = function(gameId, user) {
-      var game = gameModel.get(gameId),
-        users = game.$child('users');
-
-      var userCount = users.$getIndex().length;
-
-      if(userCount >= 1) {
-        game.$update({status: 'full'});
+      var game = gameModel.get(currentUser.sid);
+      var init = $firebase(game.child("init"));
+      if (!init.value) {
+        var gameUsers = $firebase(game.child("users"));
+        if (gameUsers.$getIndex().length < 2) {
+          gameUsers.$add(currentUser);
+        }
+        init.$set(true);
       }
-
-      users.$add(user);
+      return $firebase(game);
     };
 
     gameModel.closeGame = function(gameId) {
