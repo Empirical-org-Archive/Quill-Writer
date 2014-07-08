@@ -7,8 +7,8 @@ angular.module('sf.game', [
       .state('sf.game', {
         url: '/games?uid&sid',
         resolve: {
-          currentGame: function(Game, $stateParams) {
-            return Game.get($stateParams.sid);
+          currentGame: function(Game, User) {
+            return Game.getGameByUser(User.currentUser);
           }
         },
         views: {
