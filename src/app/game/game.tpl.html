@@ -14,4 +14,16 @@
   </ul>
 </div>
 
+<div class="well">
+  <p>{{game.currentGame.sentences}}</p>
+</div>
+
+<div class="sentence-input">
+  <div class="well">
+    <input type="text" ng-model="game.newSentence"/>
+  </div>
+  <button type="submit" ng-click="game.submitSentence()">Submit Sentence</button>
+</div>
+
+
 <button ng-if='game.currentGame.status !== "ended"' class="btn btn-primary" role="button" ng-click='game.closeGame()'>End Game</button>

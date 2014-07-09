@@ -30,6 +30,14 @@ angular.module('sf.game', [
       var gameId = game.currentGame.$id;
       Game.closeGame(gameId);
     };
+
+    game.newSentence = "Prompt here";
+
+    game.submitSentence = function() {
+      //do some validation here
+      var sentence = String(game.newSentence);
+      Game.sendSentence(game.currentGame.$id, sentence);
+    }
   })
 
 ;

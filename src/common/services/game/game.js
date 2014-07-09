@@ -28,6 +28,12 @@ angular.module("sf.services.game", [
       currentGame.$update({status: 'ended'});
     };
 
+    gameModel.sendSentence = function(gameId, sentence) {
+      var game = gameModel.get(gameId);
+      var sentences = game.$child("sentences");
+      sentences.$add(sentence);
+    };
+
   })
 
 ;
