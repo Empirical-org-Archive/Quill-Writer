@@ -1,5 +1,6 @@
 angular.module("sf.services.game", [
-    'sf.constants'
+    'sf.constants',
+    'sf.services.compass'
   ])
 
   .service("Game", function($firebase, baseFbUrl) {
