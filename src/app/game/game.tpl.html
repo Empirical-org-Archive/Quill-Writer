@@ -14,8 +14,22 @@
   </ul>
 </div>
 
-<div class="well">
-  <p ng-repeat='(key, sentence) in game.currentGame.sentences'>{{sentence}}</p>
+<div class="row">
+  <div class="col-md-2">
+    <div class="well">
+      <h3>Words to Use!</h3>
+      <ul>
+        <li ng-repeat='(key, item) in game.currentGame.wordList'>
+          {{item.word}}
+          </li>
+        </ul>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <div class="well">
+      <p ng-repeat='(key, sentence) in game.currentGame.sentences'>{{sentence}}</p>
+    </div>
+  </div>
 </div>
 
 <div class="sentence-input">
