@@ -18,8 +18,8 @@ angular.module('sf.services.compass', [
     };
 
     compass.getPrompt = function(cb) {
-
-
+      var temp_prompt = "You were awakened one morning by a talking parrot. \"I know where a treasure is buried,\", it squawked..."
+      cb(temp_prompt);
     };
 
     compass.flagSentence = function(sentence, cb) {
@@ -28,6 +28,12 @@ angular.module('sf.services.compass', [
 
     compass.submitStory = function(story, cb) {
 
+    };
+
+    compass.initializeGame = function(game, users, currentUser) {
+      compass.getPrompt(function(p) {
+        game.prompt = p;
+      });
     };
 
   })
