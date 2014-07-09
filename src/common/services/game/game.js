@@ -8,21 +8,30 @@ angular.module("sf.services.game", [
     var gamesRef = new Firebase(baseFbUrl + "/games");
 
     gameModel.get = function(id) {
-      return gamesRef.child(id);
+      return $firebase(gamesRef).$child(id);
     };
 
     gameModel.getGameByUser = function(currentUser) {
       var game = gameModel.get(currentUser.sid);
-      var gameUsers = $firebase(game.child("users"));
-      if (gameUsers.$getIndex().length < 1) {
-        gameUsers.$add(currentUser);
-      }
-      return $firebase(game);
+      var gameUsers = game.$child("users");
+      gameUsers.$on('loaded', function() {
+        var length = gameUsers.$getIndex().length;
+        if (length < 2) {
+          gameUsers.$add(currentUser);
+        }
+      });
+      return game;
     };
 
     gameModel.closeGame = function(gameId) {
       var currentGame = $firebase(gameModel.get(gameId));
       currentGame.$update({status: 'ended'});
+    };
+
+    gameModel.sendSentence = function(gameId, sentence) {
+      var game = gameModel.get(gameId);
+      var sentences = game.$child("sentences");
+      sentences.$add(sentence);
     };
 
   })

@@ -30,6 +30,15 @@ angular.module('sf.game', [
       var gameId = game.currentGame.$id;
       Game.closeGame(gameId);
     };
+
+    game.currentGame.newSentence = "";
+
+    game.submitSentence = function() {
+      //do some validation here
+      var sentence = String(game.currentGame.newSentence);
+      Game.sendSentence(game.currentGame.$id, sentence);
+      game.currentGame.newSentence = "";
+    }
   })
 
 ;
