@@ -15,7 +15,7 @@
 </div>
 
 <div class="well">
-  <p>{{game.currentGame.sentences}}</p>
+  <p ng-repeat='(key, sentence) in game.currentGame.sentences'>{{sentence}}</p>
 </div>
 
 <div class="sentence-input">
