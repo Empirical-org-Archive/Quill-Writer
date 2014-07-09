@@ -19,6 +19,7 @@ angular.module("sf.services.game", [
         var length = gameUsers.$getIndex().length;
         if (length < 2) {
           currentUser.name = "Player " + String(length + 1);
+          currentUser.isTheirTurn = currentUser.name === "Player 1";
           gameUsers.$add(currentUser);
         }
         Compass.initializeGame(game, gameUsers, currentUser);

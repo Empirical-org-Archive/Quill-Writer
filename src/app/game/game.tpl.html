@@ -3,7 +3,9 @@
     <div class="well">
       <h3>Partners</h3>
       <ul>
-        <li ng-repeat='(key, user) in game.currentGame.users'>{{user.name}}</li>
+        <li ng-repeat='(key, user) in game.currentGame.users'>
+          <p ng-class="{'active': user.isTheirTurn}">{{user.name}}</p>
+        </li>
       </ul>
     </div>
   </div>
