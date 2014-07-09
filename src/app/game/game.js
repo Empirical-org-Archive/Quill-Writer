@@ -31,12 +31,13 @@ angular.module('sf.game', [
       Game.closeGame(gameId);
     };
 
-    game.newSentence = "Prompt here";
+    game.currentGame.newSentence = "";
 
     game.submitSentence = function() {
       //do some validation here
-      var sentence = String(game.newSentence);
+      var sentence = String(game.currentGame.newSentence);
       Game.sendSentence(game.currentGame.$id, sentence);
+      game.currentGame.newSentence = "";
     }
   })
 

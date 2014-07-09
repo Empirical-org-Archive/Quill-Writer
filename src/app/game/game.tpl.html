@@ -20,10 +20,15 @@
 
 <div class="sentence-input">
   <div class="well">
-    <input type="text" ng-model="game.newSentence"/>
+    <div class="row">
+      <form ng-submit="game.submitSentence()">
+        <div class="col-md-10">
+          <input type="text" class="form-control" ng-model="game.currentGame.newSentence" />
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-primary" ng-click="game.submitSentence()">Submit Sentence</button>
+        </div>
+      </form>
+    </div>
   </div>
-  <button type="submit" ng-click="game.submitSentence()">Submit Sentence</button>
 </div>
-
-
-<button ng-if='game.currentGame.status !== "ended"' class="btn btn-primary" role="button" ng-click='game.closeGame()'>End Game</button>
