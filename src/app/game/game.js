@@ -32,6 +32,7 @@ angular.module('sf.game', [
     };
 
     game.currentGame.newSentence = "";
+    game.currentGame.wordsUsed = 0;
 
     game.submitSentence = function() {
       //do some validation here

@@ -1,8 +1,9 @@
 angular.module("sf.services.game", [
-    'sf.constants'
+    'sf.constants',
+    'sf.services.compass'
   ])
 
-  .service("Game", function($firebase, baseFbUrl) {
+  .service("Game", function($firebase, baseFbUrl, Compass) {
     var gameModel = this;
 
     var gamesRef = new Firebase(baseFbUrl + "/games");
@@ -17,8 +18,10 @@ angular.module("sf.services.game", [
       gameUsers.$on('loaded', function() {
         var length = gameUsers.$getIndex().length;
         if (length < 2) {
+          currentUser.name = "Player " + String(length + 1);
           gameUsers.$add(currentUser);
         }
+        Compass.initializeGame(game, gameUsers, currentUser);
       });
       return game;
     };
@@ -33,6 +36,7 @@ angular.module("sf.services.game", [
       var sentences = game.$child("sentences");
       sentences.$add(sentence);
     };
+
 
   })
 
