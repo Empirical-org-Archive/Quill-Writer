@@ -59,6 +59,12 @@ angular.module('sf.services.compass', [
 
     };
 
+    //Activity Admin Things
+    compass.createActivity = function(activity, cb) {
+      console.log("submitting this activity %s", JSON.stringify(activity));
+      cb();
+    };
+
   })
 
 ;
