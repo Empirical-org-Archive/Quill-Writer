@@ -8,7 +8,9 @@ Check out the [wiki](https://github.com/empirical-org/Stories-With-Friends/wiki)
 
 ##Compass Activity Specification
 
-The `module_url` for this activity is `/#/`.
+###Module URL
+
+The `module_url` for this application is `/#/`.
 
 For example,
 
@@ -17,6 +19,24 @@ http://stories-with-friends.herokuapp.com/#/?uid=asdf1234&sid=5678aoeu
 ```
 
 will be the complete url Compass loads for Stories with Friends.
+
+###Form URL
+
+The `form_url` for this application is `/#/form`
+
+For example,
+
+```
+http://stories-with-friends.herokuapp.com/#/form?uid=1234klasdf
+```
+
+The form url is served up when an administrator wants to add another
+activity. Compass provides a small form to input the name, description,
+flag and topic. Stories with Friends must provide a form for vendor
+data.
+
+A Stories with Friends Activity will need the prompt, list of word +
+definition pairs, and the number of words used to finish the story.
 
 ## Installation
 

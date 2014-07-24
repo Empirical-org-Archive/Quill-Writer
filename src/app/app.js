@@ -4,6 +4,9 @@ angular.module('stories-with-friends', [
     'sf.home',
     'sf.game',
 
+    // admin features
+    'sf.form',
+
     // common, including components and services
     'sf.common',
     'sf.constants',
