@@ -26,6 +26,8 @@ angular.module("sf.services.game", [
         }
         Compass.initializeGame(game, gameUsers, currentUser);
       });
+      game.wordsUsed = game.$child("wordsUsed");
+      game.wordsUsedLength = game.$child("wordsUsedLength");
       return game;
     };
 
@@ -50,7 +52,21 @@ angular.module("sf.services.game", [
       });
     }
 
-
+    gameModel.logWords = function(gameId, currentGame, sentence) {
+      var game = gameModel.get(gameId);
+      var wordsUsed = game.$child("wordsUsed");
+      var wordsToUse = currentGame.wordList;
+      var wordsInSentence = sentence.split(" ");
+      wordsInSentence.forEach(function(word) {
+        for (var i = 0; i < wordsToUse.length; i++) {
+          var wordToLookAt = wordsToUse[i].word;
+          if (word === wordToLookAt || word.indexOf(wordToLookAt) !== -1 || wordToLookAt.indexOf(word) !== -1) {
+            wordsUsed.$add(wordToLookAt);
+            word.crossed = true;
+          }
+        }
+      });
+    }
   })
 
 ;
