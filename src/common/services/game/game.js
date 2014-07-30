@@ -57,12 +57,14 @@ angular.module("sf.services.game", [
       var wordsUsed = game.$child("wordsUsed");
       var wordsToUse = currentGame.wordList;
       var wordsInSentence = sentence.split(" ");
-      wordsInSentence.forEach(function(word) {
+      wordsInSentence.forEach(function(cased_word) {
+        var word = cased_word.toLowerCase();
         for (var i = 0; i < wordsToUse.length; i++) {
-          var wordToLookAt = wordsToUse[i].word;
-          if (word === wordToLookAt || word.indexOf(wordToLookAt) !== -1 || wordToLookAt.indexOf(word) !== -1) {
-            wordsUsed.$add(wordToLookAt);
-            word.crossed = true;
+          var wordToLookAt = wordsToUse[i].word.toLowerCase();
+          console.log("Word to look at " + wordToLookAt)
+          console.log("Word " + word);
+          if (word === wordToLookAt || word.indexOf(wordToLookAt) !== -1) {
+            wordsUsed.$add(wordsToUse[i].word);
           }
         }
       });
