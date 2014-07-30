@@ -12,7 +12,7 @@ angular.module('sf.services.compass', [
     compass.getWordList = function(activityId, cb) {
       var temp_word_list = [
         {word: "Deliberate", definition: "..."},
-        {word: "Triumpth", definition: "..."},
+        {word: "Triumph", definition: "..."},
         {word: "Numb", definition: "..."},
         {word: "Tether", definition: "..."},
         {word: "Prod", definition: "..."},
