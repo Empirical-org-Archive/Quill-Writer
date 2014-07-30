@@ -12,13 +12,16 @@ angular.module("sf.services.game", [
       return $firebase(gamesRef).$child(id);
     };
 
-    gameModel.getGameByUser = function(currentUser) {
+    gameModel.getGameByUser = function(User) {
+      var currentUser = User.currentUser;
       var game = gameModel.get(currentUser.sid);
       var gameUsers = game.$child("users");
       gameUsers.$on('loaded', function() {
         var length = gameUsers.$getIndex().length;
         if (length < 2) {
           currentUser.name = "Player " + String(length + 1);
+          currentUser.isTheirTurn = currentUser.name === "Player 1";
+          User.localUser = currentUser.name;
           gameUsers.$add(currentUser);
         }
         Compass.initializeGame(game, gameUsers, currentUser);
@@ -36,6 +39,16 @@ angular.module("sf.services.game", [
       var sentences = game.$child("sentences");
       sentences.$add(sentence);
     };
+
+    gameModel.takeTurns = function(gameId) {
+      var game = gameModel.get(gameId);
+      var users = game.$child("users");
+      var keys = users.$getIndex();
+      angular.forEach(keys, function(key) {
+        var userRef = users.$child(key);
+        userRef.$update({isTheirTurn: !userRef.isTheirTurn});
+      });
+    }
 
 
   })

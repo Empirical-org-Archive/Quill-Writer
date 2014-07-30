@@ -8,7 +8,7 @@ angular.module('sf.game', [
         url: '/games?uid&sid',
         resolve: {
           currentGame: function(Game, User) {
-            return Game.getGameByUser(User.currentUser);
+            return Game.getGameByUser(User);
           }
         },
         views: {
@@ -21,7 +21,7 @@ angular.module('sf.game', [
       });
   })
 
-  .controller('GameCtrl', function(Game, currentGame){
+  .controller('GameCtrl', function(Game, currentGame, User){
     var game = this;
 
     game.currentGame = currentGame;
@@ -39,6 +39,22 @@ angular.module('sf.game', [
       var sentence = String(game.currentGame.newSentence);
       Game.sendSentence(game.currentGame.$id, sentence);
       game.currentGame.newSentence = "";
+      Game.takeTurns(game.currentGame.$id);
+    }
+
+    game.isLocalPlayersTurn = function() {
+      var users = game.currentGame.users;
+      if (users) {
+        var userInControl;
+        for (var i in users) {
+          if (users[i].isTheirTurn) {
+            userInControl = users[i];
+            break;
+          }
+        }
+        return userInControl.name === User.localUser;
+      }
+      return false;
     }
   })
 
