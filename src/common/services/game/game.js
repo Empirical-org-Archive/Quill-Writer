@@ -12,7 +12,8 @@ angular.module("sf.services.game", [
       return $firebase(gamesRef).$child(id);
     };
 
-    gameModel.getGameByUser = function(currentUser) {
+    gameModel.getGameByUser = function(User) {
+      var currentUser = User.currentUser;
       var game = gameModel.get(currentUser.sid);
       var gameUsers = game.$child("users");
       gameUsers.$on('loaded', function() {
@@ -20,6 +21,7 @@ angular.module("sf.services.game", [
         if (length < 2) {
           currentUser.name = "Player " + String(length + 1);
           currentUser.isTheirTurn = currentUser.name === "Player 1";
+          User.localUser = currentUser.name;
           gameUsers.$add(currentUser);
         }
         Compass.initializeGame(game, gameUsers, currentUser);
