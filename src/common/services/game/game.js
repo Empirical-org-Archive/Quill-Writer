@@ -40,6 +40,16 @@ angular.module("sf.services.game", [
       sentences.$add(sentence);
     };
 
+    gameModel.takeTurns = function(gameId) {
+      var game = gameModel.get(gameId);
+      var users = game.$child("users");
+      var keys = users.$getIndex();
+      angular.forEach(keys, function(key) {
+        var userRef = users.$child(key);
+        userRef.$update({isTheirTurn: !userRef.isTheirTurn});
+      });
+    }
+
 
   })
 

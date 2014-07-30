@@ -39,6 +39,7 @@ angular.module('sf.game', [
       var sentence = String(game.currentGame.newSentence);
       Game.sendSentence(game.currentGame.$id, sentence);
       game.currentGame.newSentence = "";
+      Game.takeTurns(game.currentGame.$id);
     }
 
     game.isLocalPlayersTurn = function() {
@@ -55,7 +56,6 @@ angular.module('sf.game', [
       }
       return false;
     }
-    console.log(User);
   })
 
 ;
