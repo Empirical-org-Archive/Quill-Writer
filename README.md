@@ -1,6 +1,12 @@
 # Stories with Friends
 
-Stories with Friends - Learn vocabulary by writing stories.
+# Welcome to Stories with Friends!
+
+- **Getting Started:** [Start here with this doc.](https://github.com/empirical-org/Documentation/tree/master/Getting-Started) 
+- **Mailing List:** [Empirical Core developers mailing list.](https://groups.google.com/forum/#!forum/empirical-core)
+- **Real Time Chat:** [Join us in the Empirical Core Gitter room.](https://gitter.im/empirical-org)
+
+## Stories with Friends - Learn vocabulary by writing stories.
 
 View the [work in progress site here](http://stories-with-friends.herokuapp.com/#/)
 
