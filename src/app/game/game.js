@@ -36,11 +36,25 @@ angular.module('sf.game', [
     game.submitSentence = function() {
       //do some validation here
       var sentence = String(game.currentGame.newSentence);
-      Game.sendSentence(game.currentGame.$id, sentence);
-      Game.logWords(game.currentGame.$id, game.currentGame, sentence);
-      game.currentGame.newSentence = "";
-      Game.takeTurns(game.currentGame.$id);
+      var errors = game.validateSentence(sentence);
+      if (!errors) {
+        Game.sendSentence(game.currentGame.$id, sentence);
+        Game.logWords(game.currentGame.$id, game.currentGame, sentence);
+        game.currentGame.newSentence = "";
+        Game.takeTurns(game.currentGame.$id);
+      } else {
+        game.showErrors(errors);
+      }
+
     }
+
+    game.validateSentence = function(sentence) {
+
+    };
+
+    game.showErrors = function(errors) {
+
+    };
 
     game.isLocalPlayersTurn = function() {
       var users = game.currentGame.users;
