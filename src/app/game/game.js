@@ -1,5 +1,6 @@
 angular.module('sf.game', [
-    'ui.router'
+    'ui.router',
+    'sf.services.profanity-filter'
   ])
 
   .config(function($stateProvider) {
@@ -21,7 +22,7 @@ angular.module('sf.game', [
       });
   })
 
-  .controller('GameCtrl', function(Game, currentGame, User){
+  .controller('GameCtrl', function(Game, currentGame, User, ProfanityFilter){
     var game = this;
 
     game.currentGame = currentGame;
@@ -37,7 +38,7 @@ angular.module('sf.game', [
       //do some validation here
       var sentence = String(game.currentGame.newSentence);
       var errors = game.validateSentence(sentence);
-      if (!errors) {
+      if (errors.length === 0) {
         Game.sendSentence(game.currentGame.$id, sentence);
         Game.logWords(game.currentGame.$id, game.currentGame, sentence);
         game.currentGame.newSentence = "";
@@ -49,7 +50,12 @@ angular.module('sf.game', [
     }
 
     game.validateSentence = function(sentence) {
-
+      var errors = [];
+      var profane = ProfanityFilter.checkSentence(sentence);
+      if (profane) {
+        errors.push(profane);
+      }
+      return errors;
     };
 
     game.showErrors = function(errors) {
