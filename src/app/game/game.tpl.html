@@ -25,8 +25,8 @@
       <h3>Words</h3>
       <ul>
         <li ng-repeat='(key, item) in game.currentGame.wordList'>
-          {{item.word}}
-          </li>
+          <p ng-class="{'striked': game.isWordUsed(item.word)}">{{item.word}}</p>
+        </li>
         </ul>
     </div>
     <div class="well">
