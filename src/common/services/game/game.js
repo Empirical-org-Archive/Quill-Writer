@@ -61,8 +61,6 @@ angular.module("sf.services.game", [
         var word = cased_word.toLowerCase();
         for (var i = 0; i < wordsToUse.length; i++) {
           var wordToLookAt = wordsToUse[i].word.toLowerCase();
-          console.log("Word to look at " + wordToLookAt)
-          console.log("Word " + word);
           if (word === wordToLookAt || word.indexOf(wordToLookAt) !== -1) {
             wordsUsed.$add(wordsToUse[i].word);
           }
