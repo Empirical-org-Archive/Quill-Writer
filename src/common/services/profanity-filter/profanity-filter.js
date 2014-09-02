@@ -8,9 +8,9 @@ angular.module('sf.services.profanity-filter', [
     var wordsInSentence = sentence.split(" ");
     var badWordsInSentence = [];
     for (var badWord in pFilter.badWords) {
-      for (var i in wordsInSentence) {
+      for (var i = 0; i < wordsInSentence.length; i++) {
         var word = wordsInSentence[i].toLowerCase();
-        if (word === badWord || word.indexOf(badWord) !== -1) {
+        if (word === badWord) {
           badWordsInSentence.push(word);
         }
       }
