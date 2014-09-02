@@ -59,7 +59,14 @@ angular.module('sf.game', [
     };
 
     game.showErrors = function(errors) {
-      console.log(errors);
+      var eString = [];
+      errors.forEach(function(err) {
+        err.forEach(function(errString) {
+          eString.push(errString);
+        });
+      });
+
+      alert(eString.join("\n"))
     };
 
     game.isLocalPlayersTurn = function() {
