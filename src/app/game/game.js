@@ -59,7 +59,7 @@ angular.module('sf.game', [
     };
 
     game.showErrors = function(errors) {
-
+      console.log(errors);
     };
 
     game.isLocalPlayersTurn = function() {
