@@ -1,3 +1,6 @@
 p.active {
   font-weight: bold;
 }
+p.striked {
+  text-decoration: line-through;
+}

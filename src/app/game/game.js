@@ -32,12 +32,12 @@ angular.module('sf.game', [
     };
 
     game.currentGame.newSentence = "";
-    game.currentGame.wordsUsed = 0;
 
     game.submitSentence = function() {
       //do some validation here
       var sentence = String(game.currentGame.newSentence);
       Game.sendSentence(game.currentGame.$id, sentence);
+      Game.logWords(game.currentGame.$id, game.currentGame, sentence);
       game.currentGame.newSentence = "";
       Game.takeTurns(game.currentGame.$id);
     }
@@ -53,6 +53,15 @@ angular.module('sf.game', [
           }
         }
         return userInControl.name === User.localUser;
+      }
+      return false;
+    }
+
+    game.isWordUsed = function(word) {
+      for (var i in game.currentGame.wordsUsed) {
+        if (word === game.currentGame.wordsUsed[i]) {
+          return true;
+        }
       }
       return false;
     }
