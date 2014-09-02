@@ -1,5 +1,6 @@
 angular.module('sf.game', [
-    'ui.router'
+    'ui.router',
+    'sf.services.profanity-filter'
   ])
 
   .config(function($stateProvider) {
@@ -21,7 +22,7 @@ angular.module('sf.game', [
       });
   })
 
-  .controller('GameCtrl', function(Game, currentGame, User){
+  .controller('GameCtrl', function(Game, currentGame, User, ProfanityFilter){
     var game = this;
 
     game.currentGame = currentGame;
@@ -36,11 +37,37 @@ angular.module('sf.game', [
     game.submitSentence = function() {
       //do some validation here
       var sentence = String(game.currentGame.newSentence);
-      Game.sendSentence(game.currentGame.$id, sentence);
-      Game.logWords(game.currentGame.$id, game.currentGame, sentence);
-      game.currentGame.newSentence = "";
-      Game.takeTurns(game.currentGame.$id);
+      var errors = game.validateSentence(sentence);
+      if (errors.length === 0) {
+        Game.sendSentence(game.currentGame.$id, sentence);
+        Game.logWords(game.currentGame.$id, game.currentGame, sentence);
+        game.currentGame.newSentence = "";
+        Game.takeTurns(game.currentGame.$id);
+      } else {
+        game.showErrors(errors);
+      }
+
     }
+
+    game.validateSentence = function(sentence) {
+      var errors = [];
+      var profane = ProfanityFilter.checkSentence(sentence);
+      if (profane) {
+        errors.push(profane);
+      }
+      return errors;
+    };
+
+    game.showErrors = function(errors) {
+      var eString = [];
+      errors.forEach(function(err) {
+        err.forEach(function(errString) {
+          eString.push(errString);
+        });
+      });
+
+      alert(eString.join("\n"))
+    };
 
     game.isLocalPlayersTurn = function() {
       var users = game.currentGame.users;
