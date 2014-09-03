@@ -66,10 +66,10 @@ function scripts(cb) {
         .on('error', plugins.util.log);
     });
 
-    bundler.on('update', rebundle);
-    bundler.on('error', plugins.util.log);
-    rebundle();
   }
+  bundler.on('update', rebundle);
+  bundler.on('error', plugins.util.log);
+  rebundle();
 }
 
 function styles(cb) {
