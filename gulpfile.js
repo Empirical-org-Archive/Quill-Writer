@@ -12,7 +12,7 @@ var connectLr         = require('connect-livereload'),
     plugins           = require('gulp-load-plugins')(),
     publicDir         = require('path').resolve('./dist'),
     source            = require('vinyl-source-stream'),
-    ngAnnotate        = require('gulp-ng-annotate'),
+    mainBowerFiles    = require('main-bower-files'),
     watchify          = require('watchify');
 
 
@@ -54,15 +54,16 @@ function scripts(cb) {
   var bundler = watchify('./src/app/app.js');
 
   function rebundle() {
-    clean('/app/*.js', function() {
+    clean('/app*.js', function() {
       plugins.util.log('Rebuilding application JS bundle');
 
       return bundler.bundle({ debug: true})
         .pipe(source('app.js'))
-        .pipe(gulp.dest(expressRoot + '/app'))
+        .pipe(plugins.streamify(plugins.rev()))
+        .pipe(gulp.dest(expressRoot + '/'))
         .pipe(plugins.streamify(plugins.uglify({ mangle: false })))
         .pipe(plugins.streamify(plugins.size({ showFiles: true })))
-        .pipe(gulp.dest(publicDir + '/app'))
+        .pipe(gulp.dest(publicDir + '/'))
         .on('end', cb || function() {})
         .on('error', plugins.util.log);
     });
@@ -74,17 +75,17 @@ function scripts(cb) {
 }
 
 function styles(cb) {
-  clean('/scripts/templates*.js', function() {
+  clean('/templates*.js', function() {
     plugins.util.log('Rebuilding templates');
 
-    gulp.src('app/views/**/*.html')
+    gulp.src('app/**/*.html')
       .pipe(plugins.angularTemplatecache({
         root:   'views/',
         module: 'clientApp'
       }))
       .pipe(plugins.streamify(plugins.rev()))
-      .pipe(gulp.dest(expressRoot + '/scripts'))
-      .pipe(gulp.dest(publicDir + '/scripts'))
+      .pipe(gulp.dest(expressRoot + '/'))
+      .pipe(gulp.dest(publicDir + '/'))
       .on('end', cb || function() {})
       .on('error', plugins.util.log);
   });
@@ -100,8 +101,8 @@ function templates(cb) {
         module: 'stories-with-friends'
       }))
       .pipe(plugins.streamify(plugins.rev()))
-      .pipe(gulp.dest(expressRoot + '/app'))
-      .pipe(gulp.dest(publicDir + '/app'))
+      .pipe(gulp.dest(expressRoot + '/'))
+      .pipe(gulp.dest(publicDir + '/'))
       .on('end', cb)
       .on('error', plugins.util.log)
   });
@@ -115,13 +116,13 @@ function vendor(cb) {
   clean('/app/vendor*.js', function() {
     plugins.util.log('Rebuilding vendor JS bundle');
 
-    gulp.src(require('./app/vendor'))
+    gulp.src(mainBowerFiles())
       .pipe(plugins.concat('vendor.js'))
       .pipe(plugins.streamify(plugins.uglify({ mangle: false })))
       .pipe(plugins.streamify(plugins.rev()))
       .pipe(plugins.size({ showFiles: true }))
-      .pipe(gulp.dest(expressRoot + '/scripts'))
-      .pipe(gulp.dest(publicDir + '/scripts'))
+      .pipe(gulp.dest(expressRoot + '/'))
+      .pipe(gulp.dest(publicDir + '/'))
       .on('end', cb || function() {})
       .on('error', plugins.util.log);
   });
@@ -182,10 +183,6 @@ function indexHtml(cb) {
   buildIndex(publicDir, function(){});
 }
 
-gulp.task('vendor', function () {
-  vendor(indexHtml);
-});
-
 gulp.task('default', function () {
   startExpress();
   startLiveReload();
@@ -197,6 +194,14 @@ gulp.task('default', function () {
   scripts(function() {
     indexHtml(function() {
       notifyLivereload('index.html');
+    });
+  });
+
+  gulp.watch('bower.json', function() {
+    vendor(function() {
+      indexHtml(function() {
+        notifyLivereload('index.html');
+      });
     });
   });
 
