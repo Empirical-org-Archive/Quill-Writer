@@ -12,6 +12,7 @@ var connectLr         = require('connect-livereload'),
     plugins           = require('gulp-load-plugins')(),
     publicDir         = require('path').resolve('./dist'),
     source            = require('vinyl-source-stream'),
+    ngAnnotate        = require('gulp-ng-annotate'),
     watchify          = require('watchify');
 
 
@@ -111,7 +112,7 @@ function shims(cb) {
 }
 
 function vendor(cb) {
-  clean('/scripts/vendor*.js', function() {
+  clean('/app/vendor*.js', function() {
     plugins.util.log('Rebuilding vendor JS bundle');
 
     gulp.src(require('./app/vendor'))
@@ -167,11 +168,11 @@ function indexHtml(cb) {
 
   function buildIndex(path, cb) {
     gulp.src('app/index.html')
-      .pipe(inject('./styles/app*.css', path, 'app-style'))
-      .pipe(inject('./scripts/shim*.js', path, 'shim'))
-      .pipe(inject('./scripts/vendor*.js', path, 'vendor'))
-      .pipe(inject('./scripts/app*.js', path, 'app'))
-      .pipe(inject('./scripts/templates*.js', path, 'templates'))
+      .pipe(inject('./style*.css', path, 'app-style'))
+      .pipe(inject('./shim*.js', path, 'shim'))
+      .pipe(inject('./vendor*.js', path, 'vendor'))
+      .pipe(inject('./app*.js', path, 'app'))
+      .pipe(inject('./templates*.js', path, 'templates'))
       .pipe(gulp.dest(path))
       .on('end', cb || function() {})
       .on('error', plugins.util.log);
@@ -199,7 +200,7 @@ gulp.task('default', function () {
     });
   });
 
-  gulp.watch('src/scripts/shims.js', function() {
+  gulp.watch('src/shims.js', function() {
     shims(function() {
       indexHtml(function() {
         notifyLivereload('index.html');
@@ -210,7 +211,7 @@ gulp.task('default', function () {
   gulp.watch(['src/styles/**/*', '!src/styles/fonts/**/*'], function() {
     styles(function() {
       indexHtml(function() {
-        notifyLivereload('styles/app.css');
+        notifyLivereload('style.css');
       });
     });
   });
@@ -219,7 +220,7 @@ gulp.task('default', function () {
     fonts(function() {
       styles(function() {
         indexHtml(function() {
-          notifyLivereload('styles/app.css');
+          notifyLivereload('style.css');
         });
       });
     });
@@ -233,7 +234,7 @@ gulp.task('default', function () {
     });
   });
 
-  gulp.watch('app/views/**/*', function() {
+  gulp.watch('src/app/**/*.html', function() {
     templates(function() {
       indexHtml(function() {
         notifyLivereload('index.html');
