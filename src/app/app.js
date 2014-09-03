@@ -1,8 +1,8 @@
-var sfHome = require('./home/home.js')
-var sfGame = require('./game/game.js')
-var sfForm = require('./form/form.js')
-var sfCommon = require('./../common/common.js');
-var sfConstants = require('./../common/constants.js');
+var sfHome = require('./home/')
+var sfGame = require('./game/')
+var sfForm = require('./form/')
+var sfCommon = require('./../common/');
+var sfConstants = require('./../common/constants');
 
 angular.module('stories-with-friends', [
 

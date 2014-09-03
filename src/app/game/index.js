@@ -1,4 +1,5 @@
 var profanityFilter = require('./../../common/services/profanity-filter/');
+var game = require('./../../common/services/game/');
 
 angular.module('sf.game', [
     'ui.router',
