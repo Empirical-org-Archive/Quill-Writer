@@ -1,5 +1,6 @@
+var sfConstants = require('./../../constants');
 angular.module('sf.components.header', [
-    'sf.constants'
+    sfConstants,
   ])
 
     .directive('sfHeader', function() {

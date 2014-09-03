@@ -1,3 +1,4 @@
+var User = require('./../../common/services/user/');
 angular.module('sf.home', [
     'ui.router'
   ])

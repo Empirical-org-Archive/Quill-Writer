@@ -1,5 +1,6 @@
+var sfConstants = require('./../../constants');
 angular.module('sf.components.footer', [
-    'sf.constants'
+    sfConstants,
   ])
 
     .directive('sfFooter', function() {

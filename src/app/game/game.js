@@ -1,6 +1,8 @@
+var profanityFilter = require('./../../common/services/profanity-filter/');
+
 angular.module('sf.game', [
     'ui.router',
-    'sf.services.profanity-filter'
+    profanityFilter
   ])
 
   .config(function($stateProvider) {

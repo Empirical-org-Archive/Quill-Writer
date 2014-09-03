@@ -1,5 +1,6 @@
+var sfConstants = require('./../../constants');
 angular.module('sf.services.compass', [
-    'sf.constants'
+    sfConstants
   ])
 
   .service("Compass", function($http, compassBaseURL) {
