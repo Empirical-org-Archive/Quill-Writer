@@ -1,7 +1,8 @@
-
+var sfConstants = require('./../../constants');
+var compass = require('./../compass/');
 angular.module('sf.services.form', [
-  'sf.constants',
-  'sf.services.compass'
+  sfConstants,
+  compass
 ])
 
 .service("Form", function(Compass) {
@@ -15,3 +16,5 @@ angular.module('sf.services.form', [
     })
   }
 })
+
+module.exports = 'sf.services.form';

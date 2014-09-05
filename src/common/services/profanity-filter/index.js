@@ -482,3 +482,4 @@ angular.module('sf.services.profanity-filter', [
   };
 
 })
+module.exports = 'sf.services.profanity-filter';
