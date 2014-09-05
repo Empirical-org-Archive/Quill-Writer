@@ -95,7 +95,7 @@ function templates(cb) {
   clean('/app/templates*.js', function() {
     plugins.util.log('Rebuilding templates');
 
-    gulp.src('app/**/*.html')
+    gulp.src('src/**/*.html')
       .pipe(plugins.angularTemplatecache({
         root: 'views/',
         module: 'stories-with-friends'
