@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 angular.module('sf.form', [
     'ui.router'
   ])
@@ -8,7 +10,7 @@ angular.module('sf.form', [
         url: '/form?uid',
         views: {
           'content@': {
-            templateUrl: 'app/form/form.tpl.html',
+            template: fs.readFileSync(__dirname + '/form.tpl.html'),
             controller: 'FormCtrl as form'
           }
         }

@@ -1,4 +1,7 @@
 var sfConstants = require('./../../constants');
+
+var fs = require('fs');
+
 angular.module('sf.components.footer', [
     sfConstants,
   ])
@@ -7,8 +10,7 @@ angular.module('sf.components.footer', [
       return {
         restrict: 'E',
 
-        // TODO - use html2js template cache
-        templateUrl: 'common/components/footer/footer.tpl.html',
+        template: fs.readFileSync(__dirname + '/footer.tpl.html'),
         controller: 'SfFooterCtrl as footer'
       };
     })

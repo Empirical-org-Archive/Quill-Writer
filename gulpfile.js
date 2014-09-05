@@ -53,6 +53,8 @@ function clean(relativePath, cb) {
 function scripts(cb) {
   var bundler = watchify('./src/app/app.js');
 
+  bundler.transform('brfs');
+
   function rebundle() {
     clean('/app*.js', function() {
       plugins.util.log('Rebuilding application JS bundle');
@@ -92,20 +94,8 @@ function styles(cb) {
 }
 
 function templates(cb) {
-  clean('/app/templates*.js', function() {
-    plugins.util.log('Rebuilding templates');
-
-    gulp.src('src/**/*.html')
-      .pipe(plugins.angularTemplatecache({
-        root: 'views/',
-        module: 'stories-with-friends'
-      }))
-      .pipe(plugins.streamify(plugins.rev()))
-      .pipe(gulp.dest(expressRoot + '/'))
-      .pipe(gulp.dest(publicDir + '/'))
-      .on('end', cb)
-      .on('error', plugins.util.log)
-  });
+  //Inlining templates with browserify, and brfs
+  cb();
 }
 
 function shims(cb) {
@@ -189,7 +179,6 @@ gulp.task('default', function () {
   fonts();
   images();
   styles(indexHtml);
-  templates(indexHtml);
   shims(indexHtml);
   scripts(function() {
     indexHtml(function() {
@@ -240,7 +229,7 @@ gulp.task('default', function () {
   });
 
   gulp.watch('src/app/**/*.html', function() {
-    templates(function() {
+    scripts(function() {
       indexHtml(function() {
         notifyLivereload('index.html');
       });

@@ -1,4 +1,6 @@
 var User = require('./../../common/services/user/');
+var fs = require('fs');
+
 angular.module('sf.home', [
     'ui.router'
   ])
@@ -9,8 +11,7 @@ angular.module('sf.home', [
         url: '/?uid&sid',
         views: {
           'content@': {
-            // TODO - use html2js template cache
-            templateUrl: 'app/home/home.tpl.html',
+            template: fs.readFileSync(__dirname + '/home.tpl.html'),
             controller: 'HomeCtrl as home'
           }
         }
