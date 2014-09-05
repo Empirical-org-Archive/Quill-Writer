@@ -77,16 +77,15 @@ function scripts(cb) {
 }
 
 function styles(cb) {
-  clean('/templates*.js', function() {
-    plugins.util.log('Rebuilding templates');
+  clean('/style*.css', function() {
+    plugins.util.log('Rebuilding application styles');
 
-    gulp.src('app/**/*.html')
-      .pipe(plugins.angularTemplatecache({
-        root:   'views/',
-        module: 'clientApp'
-      }))
-      .pipe(plugins.streamify(plugins.rev()))
+    gulp.src('src/style.css')
+      .pipe(plugins.plumber())
       .pipe(gulp.dest(expressRoot + '/'))
+      .pipe(plugins.minifyCss())
+      .pipe(plugins.streamify(plugins.rev()))
+      .pipe(plugins.size({ showFiles: true }))
       .pipe(gulp.dest(publicDir + '/'))
       .on('end', cb || function() {})
       .on('error', plugins.util.log);
