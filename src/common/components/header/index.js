@@ -1,13 +1,15 @@
+var sfConstants = require('./../../constants');
+var fs = require('fs');
+
 angular.module('sf.components.header', [
-    'sf.constants'
+    sfConstants,
   ])
 
     .directive('sfHeader', function() {
       return {
         restrict: 'E',
 
-        // TODO - use html2js template cache
-        templateUrl: 'common/components/header/header.tpl.html',
+        template: fs.readFileSync(__dirname + '/header.tpl.html'),
         controller: 'SfHeaderCtrl as header'
       };
     })
@@ -18,3 +20,5 @@ angular.module('sf.components.header', [
       header.appName = appName;
     })
 ;
+
+module.exports = 'sf.components.header';

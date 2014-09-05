@@ -1,6 +1,6 @@
 {
   "firebase": "storieswithfriends",
-  "public": "src",
+  "public": "dist",
   "ignore": [
     "firebase.json",
     ".*",

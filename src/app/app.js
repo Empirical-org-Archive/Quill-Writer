@@ -1,15 +1,21 @@
+var sfHome = require('./home/')
+var sfGame = require('./game/')
+var sfForm = require('./form/')
+var sfCommon = require('./../common/');
+var sfConstants = require('./../common/constants');
+
 angular.module('stories-with-friends', [
 
     // features
-    'sf.home',
-    'sf.game',
+    sfHome,
+    sfGame,
 
     // admin features
-    'sf.form',
+    sfForm,
 
     // common, including components and services
-    'sf.common',
-    'sf.constants',
+    sfCommon,
+    sfConstants,
 
     // template modules
     // templates-app
@@ -19,8 +25,9 @@ angular.module('stories-with-friends', [
     // ngResource // if desired
 
     // third party modules
+    // These will not be browserified
     'firebase',
-    'ui.bootstrap',
+    //'ui.bootstrap',
     'ui.router'
   ])
 

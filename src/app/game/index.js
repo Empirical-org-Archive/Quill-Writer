@@ -1,6 +1,11 @@
+var profanityFilter = require('./../../common/services/profanity-filter/');
+var game = require('./../../common/services/game/');
+
+var fs = require('fs');
+
 angular.module('sf.game', [
     'ui.router',
-    'sf.services.profanity-filter'
+    profanityFilter
   ])
 
   .config(function($stateProvider) {
@@ -14,8 +19,7 @@ angular.module('sf.game', [
         },
         views: {
           'content@': {
-            // TODO - use html2js template cache
-            templateUrl: 'app/game/game.tpl.html',
+            template: fs.readFileSync(__dirname + "/game.tpl.html"),
             controller: 'GameCtrl as game'
           }
         }
@@ -95,3 +99,5 @@ angular.module('sf.game', [
   })
 
 ;
+
+module.exports = 'sf.game';
