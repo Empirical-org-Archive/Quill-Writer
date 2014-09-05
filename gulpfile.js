@@ -116,7 +116,7 @@ function vendor(cb) {
   clean('/app/vendor*.js', function() {
     plugins.util.log('Rebuilding vendor JS bundle');
 
-    gulp.src(mainBowerFiles())
+    gulp.src(mainBowerFiles(), {base: 'src/vendor'})
       .pipe(plugins.concat('vendor.js'))
       .pipe(plugins.streamify(plugins.uglify({ mangle: false })))
       .pipe(plugins.streamify(plugins.rev()))
