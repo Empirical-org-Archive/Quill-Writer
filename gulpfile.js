@@ -168,7 +168,7 @@ function indexHtml(cb) {
   }
 
   function buildIndex(path, cb) {
-    gulp.src('app/index.html')
+    gulp.src('src/index.html')
       .pipe(inject('./style*.css', path, 'app-style'))
       .pipe(inject('./shim*.js', path, 'shim'))
       .pipe(inject('./vendor*.js', path, 'vendor'))
