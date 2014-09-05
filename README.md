@@ -2,7 +2,8 @@
 
 Stories with Friends - Learn vocabulary by writing stories.
 
-View the [work in progress site here](http://stories-with-friends.herokuapp.com/#/)
+View the [work in progress site
+here](https://storieswithfriends.firebaseapp.com/#/)
 
 Check out the [wiki](https://github.com/empirical-org/Stories-With-Friends/wiki) for more information about the project and how to contribute.
 
@@ -41,18 +42,10 @@ definition pairs, and the number of words used to finish the story.
 ## Installation
 
 * Clone this repo to your local machine
-* Install frontend dependencies `bower install`
-* Install backend dependencies `npm install`
-* run `npm start` or [nodemon](https://github.com/remy/nodemon) bin/www
-* Open a browser window to `http://localhost:3000/` or set port with PORT env var
-
-## Todo
-
-In addition to the current issues.
-
-* Utilize a build tool (Grunt or Gulp)
-* Use template-cache for templates
-* Find a way to run post install commands on FireBase hosting (stop committing vendor scripts).
+* Install development dependencies `npm install`
+* Install gulp globally `npm install gulp -g`
+* Run `gulp`
+* Open a browser window to `http://localhost:4000/`
 
 ## Contributing
 
