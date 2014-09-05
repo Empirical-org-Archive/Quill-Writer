@@ -6,3 +6,4 @@ angular.module('sf.common', [
   ])
 
 ;
+module.exports = 'sf.common';

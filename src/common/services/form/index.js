@@ -16,3 +16,5 @@ angular.module('sf.services.form', [
     })
   }
 })
+
+module.exports = 'sf.services.form';

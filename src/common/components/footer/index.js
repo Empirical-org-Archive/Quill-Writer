@@ -19,3 +19,5 @@ angular.module('sf.components.footer', [
       footer.appName = appName;
     })
 ;
+
+module.exports = 'sf.components.footer';

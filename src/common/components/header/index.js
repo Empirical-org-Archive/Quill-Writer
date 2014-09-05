@@ -19,3 +19,5 @@ angular.module('sf.components.header', [
       header.appName = appName;
     })
 ;
+
+module.exports = 'sf.components.header';

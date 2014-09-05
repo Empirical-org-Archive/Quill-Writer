@@ -40,3 +40,5 @@ angular.module('sf.form', [
   })
 
 ;
+
+module.exports = 'sf.form';

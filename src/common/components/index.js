@@ -7,3 +7,5 @@ angular.module('sf.common.components', [
   ])
 
 ;
+
+module.exports = 'sf.common.components';

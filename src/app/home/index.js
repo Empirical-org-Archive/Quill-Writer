@@ -38,3 +38,5 @@ angular.module('sf.home', [
   })
 
 ;
+
+module.exports = 'sf.home';

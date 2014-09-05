@@ -98,3 +98,5 @@ angular.module('sf.game', [
   })
 
 ;
+
+module.exports = 'sf.game';

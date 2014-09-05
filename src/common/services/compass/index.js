@@ -69,3 +69,4 @@ angular.module('sf.services.compass', [
   })
 
 ;
+module.exports = 'sf.services.compass';

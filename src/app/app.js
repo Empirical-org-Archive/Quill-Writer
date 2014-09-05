@@ -27,7 +27,7 @@ angular.module('stories-with-friends', [
     // third party modules
     // These will not be browserified
     'firebase',
-    'ui.bootstrap',
+    //'ui.bootstrap',
     'ui.router'
   ])
 

@@ -12,3 +12,5 @@ angular.module('sf.common.services', [
     ProfanityFilter,
   ])
 ;
+
+module.exports = 'sf.common.services';
