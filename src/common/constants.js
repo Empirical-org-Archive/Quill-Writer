@@ -5,3 +5,5 @@ angular.module("sf.constants", [])
   .constant("compassBaseURL", "http://api.compass.com")
 
 ;
+
+module.exports = 'sf.constants';

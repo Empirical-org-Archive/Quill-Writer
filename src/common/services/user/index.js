@@ -11,3 +11,5 @@ angular.module('sf.services.user', [])
   })
 
 ;
+
+module.exports = 'sf.services.user';

@@ -1,6 +1,8 @@
+var sfConstants = require('../../constants');
+var sfCompass = require('../compass');
 angular.module("sf.services.game", [
-    'sf.constants',
-    'sf.services.compass'
+    sfConstants,
+    sfCompass,
   ])
 
   .service("Game", function($firebase, baseFbUrl, Compass) {
@@ -71,3 +73,4 @@ angular.module("sf.services.game", [
 
 ;
 
+module.exports = 'sf.services.game';
