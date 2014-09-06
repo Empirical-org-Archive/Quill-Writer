@@ -114,7 +114,7 @@ var result = gameHelper(game);
 We need to create a spell check service for our game view.
 
 * `mdkir src/common/services/spell-check`
-* `$EDITOR src/common/service/spell-check/index.js`
+* `$EDITOR src/common/services/spell-check/index.js`
 * Write your awesome spell check service
 * Make sure to export out the angular service name you register with.
 ```js
