@@ -16,7 +16,7 @@ The `module_url` for this application is `/#/`.
 For example,
 
 ```
-http://stories-with-friends.herokuapp.com/#/?uid=asdf1234&sid=5678aoeu
+https://storieswithfriends.firebaseapp.com/#/?uid=asdf1234&sid=5678aoeu
 ```
 
 will be the complete url Compass loads for Stories with Friends.
@@ -28,7 +28,7 @@ The `form_url` for this application is `/#/form`
 For example,
 
 ```
-http://stories-with-friends.herokuapp.com/#/form?uid=1234klasdf
+https://storieswithfriends.firebaseapp.com/#/form?uid=1234klasdf
 ```
 
 The form url is served up when an administrator wants to add another
