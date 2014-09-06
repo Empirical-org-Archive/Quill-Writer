@@ -47,6 +47,51 @@ definition pairs, and the number of words used to finish the story.
 * Run `gulp`
 * Open a browser window to `http://localhost:4000/`
 
+## Developing
+
+Stories with Friends is an Angular front end application that uses
+[firebase](https://www.firebase.com/) for socket communication and game
+state persistence between students.
+
+We utilize [Gulp]() for a build tool and development server. [Bower]()
+for most front end dependencies. [NPM](http://www.npmjs.org) for
+installing development dependencies and versioning.
+
+We write modular front end code with [Browserify](). While we still use
+Angular dependency injection, we must "require" in and "export" the
+application modules to be walked and injected into the Browserify
+bundle.
+
+###Examples of Browserifying the app
+
+####Adding a helper function to src/app/game
+
+* Make a new "module" game-helper.js in `src/app/game/`
+```
+function gameHelper(game) {
+  //do something cool
+}
+
+module.exports = gameHelper;
+```
+* Require in the gameHelper in `src/app/game/index.js`
+
+```
+var gameHelper = require('./game-helper');
+```
+Notice the relative module include
+
+* Use the function as you wish
+
+```
+...
+var result = gameHelper(game);
+...
+```
+
+
+
+
 ## Contributing
 
 Additional information can be found in the [wiki](https://github.com/empirical-org/Stories-With-Friends/wiki/contributing).
