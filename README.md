@@ -109,6 +109,46 @@ var result = gameHelper(game);
 ...
 ```
 
+####Creating a New Service
+
+We need to create a spell check service for our game view.
+
+* `mdkir src/common/services/spell-check`
+* `$EDITOR src/common/service/spell-check/index.js`
+* Write your awesome spell check service
+* Make sure to export out the angular service name you register with.
+```js
+module.exports = 'sf.services.spellcheck'
+```
+* Require in the spell check module, so Browserify knows to bundle it.
+```js
+var SpellCheck = require('./../../common/services/spell-check/');
+
+angular.module('example-consumer', [
+  SpellCheck
+])
+...
+```
+
+Because SpellCheck is equal to 'sf.services.spellcheck', Angular knows
+which Service 'example-consumer' needs as a dependency.
+
+To reiterate,
+
+1. `require`ing the module file tells Browserify to include it in the
+   source bundle.
+2. Passing the string object to 'example-consumer' tells Angular to look
+   for the 'sf.services.spellcheck' module.
+
+If you've used browserify and node for that matter, you will already
+know you can export any JavaScript out of a module you'd like! But for
+this project we are only exporting string module ids.
+
+As an added bonus all modules are wrapped in a function closure, so feel
+free to add "private" functions if desired as they will not pollute the
+global name space.
+
+
 ## Contributing
 
 Additional information can be found in the [wiki](https://github.com/empirical-org/Stories-With-Friends/wiki/contributing).
