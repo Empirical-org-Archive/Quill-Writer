@@ -53,11 +53,11 @@ Stories with Friends is an Angular front end application that uses
 [firebase](https://www.firebase.com/) for socket communication and game
 state persistence between students.
 
-We utilize [Gulp]() for a build tool and development server. [Bower]()
+We utilize [Gulp](http://gulpjs.com/) for a build tool and development server. [Bower](http://bower.io/)
 for most front end dependencies. [NPM](http://www.npmjs.org) for
 installing development dependencies and versioning.
 
-We write modular front end code with [Browserify](). While we still use
+We write modular front end code with [Browserify](http://browserify.org/). While we still use
 Angular dependency injection, we must "require" in and "export" the
 application modules to be walked and injected into the Browserify
 bundle.
@@ -88,7 +88,6 @@ Notice the relative module include
 var result = gameHelper(game);
 ...
 ```
-
 
 
 
