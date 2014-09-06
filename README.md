@@ -62,12 +62,32 @@ Angular dependency injection, we must "require" in and "export" the
 application modules to be walked and injected into the Browserify
 bundle.
 
+###Browserifying Conventions to Follow
+
+Most modules will be required in a their directory. For the Profanity
+Filter, we require it in like this (from app/game/index.js):
+
+```js
+var ProfanityFilter =
+require('./../../common/services/profanity-filter/');
+```
+
+Note the trailing slash. By default, browserify will search for the
+`index.js` file in the `profanity-filter/` directory.
+
+If we were to require a file directly, the trailing slash can be
+omitted. For example, requiring constants would look like this (from app/app.js)
+
+```js
+var constants = require('./../common/constants')
+```
+
 ###Examples of Browserifying the app
 
 ####Adding a helper function to src/app/game
 
 * Make a new "module" game-helper.js in `src/app/game/`
-```
+```js
 function gameHelper(game) {
   //do something cool
 }
@@ -76,20 +96,18 @@ module.exports = gameHelper;
 ```
 * Require in the gameHelper in `src/app/game/index.js`
 
-```
+```js
 var gameHelper = require('./game-helper');
 ```
 Notice the relative module include
 
 * Use the function as you wish
 
-```
+```js
 ...
 var result = gameHelper(game);
 ...
 ```
-
-
 
 ## Contributing
 
