@@ -30,6 +30,12 @@ angular.module("sf.services.game", [
       });
       game.wordsUsed = game.$child("wordsUsed");
       game.wordsUsedLength = game.$child("wordsUsedLength");
+      game.sentences = game.$child("setences");
+      function updateSentences() {
+        var sentenceKeys = game
+      }
+      //game.sentences.$on('change', updateSentences);
+      //game.sentences.$on('loaded', updateSentences);
       return game;
     };
 

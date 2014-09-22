@@ -46,12 +46,10 @@ angular.module('sf.game', [
     game.submitEntry = function() {
       //do some validation here
       var sentence = game.getCurrentSentence();
-      console.log(sentence);
       var errors = game.validateSentence(sentence);
       if (errors.length === 0) {
         Game.sendSentence(game.currentGame.$id, sentence);
         Game.logWords(game.currentGame.$id, game.currentGame, sentence);
-        game.currentGame.newSentence = "";
         Game.takeTurns(game.currentGame.$id);
       } else {
         game.showErrors(errors);
