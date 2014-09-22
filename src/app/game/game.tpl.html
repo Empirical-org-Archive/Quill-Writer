@@ -37,9 +37,9 @@
     <div class="well">
       <p ng-repeat='(key, sentence) in game.currentGame.sentences'>{{sentence}}</p>
     </div>
-    <form ng-submit="game.submitSentence()">
-      <textarea ng-model="game.currentGame.sentenceModel">
+    <form ng-submit="game.submitEntry()">
+      <textarea ng-model="game.currentGame.sentenceModel"></textarea>
     </form>
-    <button type="button" class="btn btn-primary" ng-click="game.submitSentence()">Submit Sentence</button>
+    <button type="button" class="btn btn-primary" ng-click="game.submitEntry()">Submit Sentence</button>
   </div>
 </div>
