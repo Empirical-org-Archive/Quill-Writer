@@ -31,14 +31,15 @@ angular.module('sf.game', [
 
     game.currentGame = currentGame;
 
+    game.currentGame.sentenceModel = "";
+    game.currentGame.oldSentenceModel = "";
+
     game.closeGame = function() {
       var gameId = game.currentGame.$id;
       Game.closeGame(gameId);
     };
 
-    game.currentGame.newSentence = "";
-
-    game.submitSentence = function() {
+    game.submitEntry = function() {
       //do some validation here
       var sentence = String(game.currentGame.newSentence);
       var errors = game.validateSentence(sentence);
