@@ -34,11 +34,10 @@
     </div>
   </div>
   <div class="col-md-10">
-    <div class="well">
-      <p ng-repeat='(key, sentence) in game.currentGame.sentences'>{{sentence}}</p>
-    </div>
     <form ng-submit="game.submitEntry()">
-      <textarea ng-model="game.currentGame.sentenceModel"></textarea>
+      <div  class="boxsizingBorder">
+        <textarea style="width: 100%" ng-model="game.currentGame.sentenceModel"></textarea>
+      </div>
     </form>
     <button type="button" class="btn btn-primary" ng-click="game.submitEntry()">Submit Sentence</button>
   </div>
