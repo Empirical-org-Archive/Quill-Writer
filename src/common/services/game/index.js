@@ -11,15 +11,21 @@ angular.module("sf.services.game", [
     var gamesRef = new Firebase(baseFbUrl + "/games");
 
     gameModel.get = function(id) {
-      return $firebase(gamesRef).$child(id);
+      return $firebase(gameModel.getRef(id));
     };
+
+    gameModel.getRef = function(id) {
+      return gamesRef.child(id);
+    }
 
     gameModel.getGameByUser = function(User) {
       var currentUser = User.currentUser;
-      var game = gameModel.get(currentUser.sid);
-      var gameUsers = game.$child("users");
-      gameUsers.$on('loaded', function() {
-        var length = gameUsers.$getIndex().length;
+      var gameRef = gameModel.getRef(currentUser.sid);
+      var gameUsersRef = gameRef.child("users");
+      var gameUsers = $firebase(gameUsersRef).$asObject();
+      var game = $firebase(gameRef);
+      gameUsers.$loaded().then(function() {
+        var length = gameUsers.length
         if (length < 2) {
           currentUser.name = "Player " + String(length + 1);
           currentUser.isTheirTurn = currentUser.name === "Player 1";
@@ -28,16 +34,16 @@ angular.module("sf.services.game", [
         }
         Compass.initializeGame(game, gameUsers, currentUser);
       });
-      game.wordsUsed = game.$child("wordsUsed");
-      game.wordsUsedLength = game.$child("wordsUsedLength");
-      game.sentences = game.$child("setences");
-      function updateSentences() {
-        var sentenceKeys = game
-      }
-      //game.sentences.$on('change', updateSentences);
-      //game.sentences.$on('loaded', updateSentences);
+      var wordsUsed = $firebase(gameRef.child("wordsUsed")).$asObject();
+      var wordsUsedLength = $firebase(gameRef.child("wordsUsedLength")).$asObject();
+      game.wordsUsed = wordsUsed;
+      game.wordsUsedLength = wordsUsedLength;
       return game;
     };
+
+    gameModel.getSentences = function(gameId) {
+      return $firebase(gameModel.getRef(gameId).child("sentences")).$asArray();
+    }
 
     gameModel.closeGame = function(gameId) {
       var currentGame = $firebase(gameModel.get(gameId));
@@ -45,9 +51,7 @@ angular.module("sf.services.game", [
     };
 
     gameModel.sendSentence = function(gameId, sentence) {
-      var game = gameModel.get(gameId);
-      var sentences = game.$child("sentences");
-      sentences.$add(sentence);
+      gameModel.getSentences(gameId).$add(sentence);
     };
 
     gameModel.takeTurns = function(gameId) {
@@ -61,8 +65,8 @@ angular.module("sf.services.game", [
     }
 
     gameModel.logWords = function(gameId, currentGame, sentence) {
-      var game = gameModel.get(gameId);
-      var wordsUsed = game.$child("wordsUsed");
+      var gameRef = gameModel.getRef(gameId);
+      var wordsUsed = gameRef.child("wordsUsed");
       var wordsToUse = currentGame.wordList;
       var wordsInSentence = sentence.split(" ");
       wordsInSentence.forEach(function(cased_word) {
