@@ -32,7 +32,7 @@ angular.module("sf.services.game", [
           User.localUser = currentUser.name;
           gameUsers.$add(currentUser);
         }
-        Compass.initializeGame(game, gameUsers, currentUser);
+        Compass.initializeGame($scope, gameUsers, currentUser);
       }).then(function() {
         $scope.users = gameUsers;
       });
