@@ -12,11 +12,6 @@ angular.module('sf.game', [
     $stateProvider
       .state('sf.game', {
         url: '/games?uid&sid',
-        resolve: {
-          currentGame: function(Game, User) {
-            return Game.getGameByUser(User);
-          }
-        },
         views: {
           'content@': {
             template: fs.readFileSync(__dirname + "/game.tpl.html"),
@@ -26,10 +21,10 @@ angular.module('sf.game', [
       });
   })
 
-  .controller('GameCtrl', function(Game, currentGame, User, ProfanityFilter){
+  .controller('GameCtrl', function($scope, Game, User, ProfanityFilter){
     var game = this;
 
-    game.currentGame = currentGame;
+    game.currentGame = Game.getGameByUser(User, $scope);
 
     game.currentGame.sentenceModel = "";
     game.currentGame.oldSentenceModel = "";

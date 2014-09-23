@@ -18,14 +18,14 @@ angular.module("sf.services.game", [
       return gamesRef.child(id);
     }
 
-    gameModel.getGameByUser = function(User) {
+    gameModel.getGameByUser = function(User, $scope) {
       var currentUser = User.currentUser;
       var gameRef = gameModel.getRef(currentUser.sid);
       var gameUsersRef = gameRef.child("users");
-      var gameUsers = $firebase(gameUsersRef).$asObject();
-      var game = $firebase(gameRef);
+      var gameUsers = $firebase(gameUsersRef).$asArray();
+      var game = $firebase(gameRef).$asObject();
       gameUsers.$loaded().then(function() {
-        var length = gameUsers.length
+        var length = gameUsers.length;
         if (length < 2) {
           currentUser.name = "Player " + String(length + 1);
           currentUser.isTheirTurn = currentUser.name === "Player 1";
@@ -33,12 +33,14 @@ angular.module("sf.services.game", [
           gameUsers.$add(currentUser);
         }
         Compass.initializeGame(game, gameUsers, currentUser);
+      }).then(function() {
+        $scope.users = gameUsers;
       });
       var wordsUsed = $firebase(gameRef.child("wordsUsed")).$asObject();
       var wordsUsedLength = $firebase(gameRef.child("wordsUsedLength")).$asObject();
-      game.wordsUsed = wordsUsed;
-      game.wordsUsedLength = wordsUsedLength;
-      return game;
+      $scope.wordsUsed = wordsUsed;
+      $scope.wordsUsedLength = wordsUsedLength;
+      return $scope;
     };
 
     gameModel.getSentences = function(gameId) {
