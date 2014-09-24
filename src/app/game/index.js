@@ -44,7 +44,6 @@ angular.module('sf.game', [
       var sentence = game.getCurrentSentence();
       var errors = game.validateSentence(sentence);
       if (errors.length === 0) {
-        console.log(game.currentGame.wordList);
         Game.sendSentence(gameId, sentence, User.currentUser);
         Game.logWords(gameId, game.currentGame, sentence);
         Game.takeTurns(gameId);
