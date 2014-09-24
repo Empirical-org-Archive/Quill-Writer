@@ -23,7 +23,6 @@ angular.module("sf.services.game", [
       var gameRef = gameModel.getRef(currentUser.sid);
       var gameUsersRef = gameRef.child("users");
       var gameUsers = $firebase(gameUsersRef).$asArray();
-      var game = $firebase(gameRef).$asObject();
       gameUsers.$loaded().then(function() {
         var length = gameUsers.length;
         if (length < 2) {
@@ -57,18 +56,19 @@ angular.module("sf.services.game", [
     };
 
     gameModel.takeTurns = function(gameId) {
-      var game = gameModel.get(gameId);
-      var users = game.$child("users");
-      var keys = users.$getIndex();
-      angular.forEach(keys, function(key) {
-        var userRef = users.$child(key);
-        userRef.$update({isTheirTurn: !userRef.isTheirTurn});
+      var game = gameModel.getRef(gameId);
+      var users = $firebase(game.child("users")).$asArray();
+      users.$loaded().then(function(){
+        angular.forEach(users, function(user) {
+          user.isTheirTurn = !user.isTheirTurn;
+          users.$save(user);
+        });
       });
     }
 
     gameModel.logWords = function(gameId, currentGame, sentence) {
       var gameRef = gameModel.getRef(gameId);
-      var wordsUsed = gameRef.child("wordsUsed");
+      var wordsUsed = $firebase(gameRef.child("wordsUsed")).$asArray();
       var wordsToUse = currentGame.wordList;
       var wordsInSentence = sentence.split(" ");
       wordsInSentence.forEach(function(cased_word) {

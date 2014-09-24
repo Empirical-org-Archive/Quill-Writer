@@ -26,6 +26,8 @@ angular.module('sf.game', [
 
     game.currentGame = Game.getGameByUser(User, $scope);
 
+    var gameId = User.currentUser.sid;
+
     game.currentGame.sentenceModel = "";
     game.currentGame.oldSentenceModel = "";
 
@@ -43,9 +45,9 @@ angular.module('sf.game', [
       var sentence = game.getCurrentSentence();
       var errors = game.validateSentence(sentence);
       if (errors.length === 0) {
-        Game.sendSentence(game.currentGame.$id, sentence);
-        Game.logWords(game.currentGame.$id, game.currentGame, sentence);
-        Game.takeTurns(game.currentGame.$id);
+        Game.sendSentence(gameId, sentence);
+        Game.logWords(gameId, game.currentGame, sentence);
+        Game.takeTurns(gameId);
       } else {
         game.showErrors(errors);
       }
