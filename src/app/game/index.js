@@ -12,11 +12,6 @@ angular.module('sf.game', [
     $stateProvider
       .state('sf.game', {
         url: '/games?uid&sid',
-        resolve: {
-          currentGame: function(Game, User) {
-            return Game.getGameByUser(User);
-          }
-        },
         views: {
           'content@': {
             template: fs.readFileSync(__dirname + "/game.tpl.html"),
@@ -26,27 +21,33 @@ angular.module('sf.game', [
       });
   })
 
-  .controller('GameCtrl', function(Game, currentGame, User, ProfanityFilter){
+  .controller('GameCtrl', function($scope, Game, User, ProfanityFilter){
     var game = this;
 
-    game.currentGame = currentGame;
+    game.currentGame = Game.getGameByUser(User, $scope);
+
+    var gameId = User.currentUser.sid;
+
+    game.currentGame.newSentence = "";
 
     game.closeGame = function() {
       var gameId = game.currentGame.$id;
       Game.closeGame(gameId);
     };
 
-    game.currentGame.newSentence = "";
+    game.getCurrentSentence = function() {
+      return game.currentGame.newSentence;
+    }
 
-    game.submitSentence = function() {
+    game.submitEntry = function() {
       //do some validation here
-      var sentence = String(game.currentGame.newSentence);
+      var sentence = game.getCurrentSentence();
       var errors = game.validateSentence(sentence);
       if (errors.length === 0) {
-        Game.sendSentence(game.currentGame.$id, sentence);
-        Game.logWords(game.currentGame.$id, game.currentGame, sentence);
+        Game.sendSentence(gameId, sentence, User.currentUser);
+        Game.logWords(gameId, game.currentGame, sentence);
+        Game.takeTurns(gameId);
         game.currentGame.newSentence = "";
-        Game.takeTurns(game.currentGame.$id);
       } else {
         game.showErrors(errors);
       }
@@ -77,15 +78,19 @@ angular.module('sf.game', [
       var users = game.currentGame.users;
       if (users) {
         var userInControl;
-        for (var i in users) {
-          if (users[i].isTheirTurn) {
-            userInControl = users[i];
-            break;
+        angular.forEach(users, function(user) {
+          if (user.isTheirTurn) {
+            userInControl = user;
           }
+        });
+        if (userInControl) {
+          return userInControl.name === User.localUser;
+        } else {
+          return false;
         }
-        return userInControl.name === User.localUser;
+      } else {
+        return false;
       }
-      return false;
     }
 
     game.isWordUsed = function(word) {
