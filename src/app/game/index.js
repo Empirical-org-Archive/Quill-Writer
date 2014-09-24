@@ -44,6 +44,7 @@ angular.module('sf.game', [
       var sentence = game.getCurrentSentence();
       var errors = game.validateSentence(sentence);
       if (errors.length === 0) {
+        console.log(game.currentGame.wordList);
         Game.sendSentence(gameId, sentence, User.currentUser);
         Game.logWords(gameId, game.currentGame, sentence);
         Game.takeTurns(gameId);
@@ -94,12 +95,13 @@ angular.module('sf.game', [
     }
 
     game.isWordUsed = function(word) {
-      for (var i in game.currentGame.wordsUsed) {
-        if (word === game.currentGame.wordsUsed[i]) {
-          return true;
+      var wordUsed = false;
+      angular.forEach(game.currentGame.wordsUsed, function(usedWord) {
+        if (word === usedWord.$value) {
+          wordUsed = true;
         }
-      }
-      return false;
+      });
+      return wordUsed;
     }
   })
 

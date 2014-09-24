@@ -24,13 +24,13 @@
     <div class="well">
       <h3>Words</h3>
       <ul>
-        <li ng-repeat='(key, item) in game.currentGame.wordList'>
+        <li ng-repeat='item in game.currentGame.wordList'>
           <p ng-class="{'striked': game.isWordUsed(item.word)}">{{item.word}}</p>
         </li>
         </ul>
     </div>
     <div class="well">
-      <p>Words used {{game.currentGame.wordsUsed}} of {{game.currentGame.requirements.needed}}</p>
+      <p>Words used {{game.currentGame.wordsList.length}} of {{game.currentGame.requirements.needed}}</p>
     </div>
   </div>
   <div class="col-md-10">

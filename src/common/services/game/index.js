@@ -35,11 +35,9 @@ angular.module("sf.services.game", [
       }).then(function() {
         $scope.users = gameUsers;
       });
-      var wordsUsed = $firebase(gameRef.child("wordsUsed")).$asObject();
-      var wordsUsedLength = $firebase(gameRef.child("wordsUsedLength")).$asObject();
+      var wordsUsed = $firebase(gameRef.child("wordsUsed")).$asArray();
       var sentences = $firebase(gameRef.child("sentences")).$asArray();
       $scope.wordsUsed = wordsUsed;
-      $scope.wordsUsedLength = wordsUsedLength;
       $scope.sentences = sentences;
       return $scope;
     };
