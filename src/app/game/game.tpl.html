@@ -34,11 +34,22 @@
     </div>
   </div>
   <div class="col-md-10">
-    <form ng-submit="game.submitEntry()">
-      <div  class="boxsizingBorder">
-        <textarea style="width: 100%" ng-model="game.currentGame.sentenceModel"></textarea>
-      </div>
-    </form>
-    <button type="button" class="btn btn-primary" ng-click="game.submitEntry()">Submit Sentence</button>
+    <div class="well row">
+      <p>
+        <span ng-repeat='sentence in game.currentGame.sentences'>{{sentence}}</span>
+      </p>
+    </div>
+    <div class="row">
+      <form ng-submit="game.submitEntry()">
+        <div class="col-md-10">
+          <input type="text" class="form-control" ng-model="game.currentGame.newSentence"
+            ng-disabled="!game.isLocalPlayersTurn()"
+          />
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-primary" ng-click="game.submitEntry()">Submit Sentence</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

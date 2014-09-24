@@ -28,8 +28,7 @@ angular.module('sf.game', [
 
     var gameId = User.currentUser.sid;
 
-    game.currentGame.sentenceModel = "";
-    game.currentGame.oldSentenceModel = "";
+    game.currentGame.newSentence = "";
 
     game.closeGame = function() {
       var gameId = game.currentGame.$id;
@@ -37,7 +36,7 @@ angular.module('sf.game', [
     };
 
     game.getCurrentSentence = function() {
-      return game.currentGame.sentenceModel;
+      return game.currentGame.newSentence;
     }
 
     game.submitEntry = function() {
@@ -48,6 +47,7 @@ angular.module('sf.game', [
         Game.sendSentence(gameId, sentence);
         Game.logWords(gameId, game.currentGame, sentence);
         Game.takeTurns(gameId);
+        game.currentGame.newSentence = "";
       } else {
         game.showErrors(errors);
       }
@@ -78,15 +78,19 @@ angular.module('sf.game', [
       var users = game.currentGame.users;
       if (users) {
         var userInControl;
-        for (var i in users) {
-          if (users[i].isTheirTurn) {
-            userInControl = users[i];
-            break;
+        angular.forEach(users, function(user) {
+          if (user.isTheirTurn) {
+            userInControl = user;
           }
+        });
+        if (userInControl) {
+          return userInControl.name === User.localUser;
+        } else {
+          return false;
         }
-        return userInControl.name === User.localUser;
+      } else {
+        return false;
       }
-      return false;
     }
 
     game.isWordUsed = function(word) {
