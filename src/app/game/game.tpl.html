@@ -3,7 +3,7 @@
     <div class="well">
       <h3>Partners</h3>
       <ul>
-        <li ng-repeat='(key, user) in game.currentGame.users'>
+        <li ng-repeat='user in game.currentGame.users'>
           <p ng-class="{'active': user.isTheirTurn}">{{user.name}}</p>
         </li>
       </ul>
@@ -34,23 +34,18 @@
     </div>
   </div>
   <div class="col-md-10">
-    <div class="well">
-      <p ng-repeat='(key, sentence) in game.currentGame.sentences'>{{sentence}}</p>
+    <div class="well row">
+      <p ng-repeat='sentence in game.currentGame.sentences'>{{sentence.entry}}</p>
     </div>
-  </div>
-</div>
-
-<div class="sentence-input">
-  <div class="well">
     <div class="row">
-      <form ng-submit="game.submitSentence()">
+      <form ng-submit="game.submitEntry()">
         <div class="col-md-10">
           <input type="text" class="form-control" ng-model="game.currentGame.newSentence"
             ng-disabled="!game.isLocalPlayersTurn()"
           />
         </div>
         <div class="col-md-2">
-          <button type="button" class="btn btn-primary" ng-click="game.submitSentence()">Submit Sentence</button>
+          <button type="button" class="btn btn-primary" ng-click="game.submitEntry()">Submit Sentence</button>
         </div>
       </form>
     </div>
