@@ -37,6 +37,20 @@ angular.module("sf.services.game", [
       });
       var wordsUsed = $firebase(gameRef.child("wordsUsed")).$asArray();
       var sentences = $firebase(gameRef.child("sentences")).$asArray();
+      var wordsUsedLength = $firebase(gameRef.child("wordsUsedLength")).$asObject();
+      wordsUsedLength.$loaded(function() {
+        if (!wordsUsedLength.length) {
+          wordsUsedLength.length = 0;
+          wordsUsedLength.$save();
+        }
+      });
+      wordsUsed.$watch(function() {
+        wordsUsedLength.$loaded(function() {
+          wordsUsedLength.length = wordsUsed.length;
+          wordsUsedLength.$save();
+        });
+      });
+      $scope.wordsUsedLength = wordsUsedLength;
       $scope.wordsUsed = wordsUsed;
       $scope.sentences = sentences;
       return $scope;
