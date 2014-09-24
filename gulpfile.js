@@ -102,7 +102,7 @@ function shims(cb) {
 }
 
 function vendor(cb) {
-  clean('/app/vendor*.js', function() {
+  clean('/vendor*.js', function() {
     plugins.util.log('Rebuilding vendor JS bundle');
 
     gulp.src(mainBowerFiles(), {base: 'src/vendor'})
