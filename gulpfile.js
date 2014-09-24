@@ -179,6 +179,7 @@ gulp.task('default', function () {
   images();
   styles(indexHtml);
   shims(indexHtml);
+  vendor(indexHtml);
   scripts(function() {
     indexHtml(function() {
       notifyLivereload('index.html');
