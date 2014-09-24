@@ -37,8 +37,10 @@ angular.module("sf.services.game", [
       });
       var wordsUsed = $firebase(gameRef.child("wordsUsed")).$asObject();
       var wordsUsedLength = $firebase(gameRef.child("wordsUsedLength")).$asObject();
+      var sentences = $firebase(gameRef.child("sentences")).$asArray();
       $scope.wordsUsed = wordsUsed;
       $scope.wordsUsedLength = wordsUsedLength;
+      $scope.sentences = sentences;
       return $scope;
     };
 
@@ -51,8 +53,8 @@ angular.module("sf.services.game", [
       currentGame.$update({status: 'ended'});
     };
 
-    gameModel.sendSentence = function(gameId, sentence) {
-      gameModel.getSentences(gameId).$add(sentence);
+    gameModel.sendSentence = function(gameId, sentence, currentUser) {
+      gameModel.getSentences(gameId).$add({entry: sentence, user: currentUser});
     };
 
     gameModel.takeTurns = function(gameId) {

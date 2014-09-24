@@ -35,9 +35,7 @@
   </div>
   <div class="col-md-10">
     <div class="well row">
-      <p>
-        <span ng-repeat='sentence in game.currentGame.sentences'>{{sentence}}</span>
-      </p>
+      <p ng-repeat='sentence in game.currentGame.sentences'>{{sentence.entry}}</p>
     </div>
     <div class="row">
       <form ng-submit="game.submitEntry()">
