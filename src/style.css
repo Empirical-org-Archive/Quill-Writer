@@ -10,3 +10,16 @@ p.striked {
        -moz-box-sizing: border-box;
             box-sizing: border-box;
 }
+
+.navbar {
+  background-color: #599CC3;
+}
+
+.navbar .navbar-brand.title {
+  color: #FFF;
+  font-size: 30px;
+}
+
+.navbar .navbar-brand.tagline {
+  color: #000;
+}
