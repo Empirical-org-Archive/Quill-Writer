@@ -31,3 +31,8 @@ p.striked {
 .well.side-bar {
   background-color: #F3F4F4;
 }
+
+ul.no-points {
+  list-style: none;
+  padding-left: 10px;
+}
