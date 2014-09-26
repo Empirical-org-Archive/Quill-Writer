@@ -36,3 +36,8 @@ ul.no-points {
   list-style: none;
   padding-left: 10px;
 }
+
+.side-bar h3 {
+  color: #599CC3;
+  font-weight: bold;
+}

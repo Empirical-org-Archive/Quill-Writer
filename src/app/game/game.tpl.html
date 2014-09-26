@@ -1,18 +1,19 @@
 <div class="row">
   <div class="col-md-2">
     <div class="well side-bar">
-      <h3>Partners</h3>
+      <h3>Authors</h3>
       <ul class="no-points">
         <li ng-repeat='user in game.currentGame.users'>
           <p ng-class="{'active': user.isTheirTurn}">{{user.name}}</p>
         </li>
       </ul>
-      <h3>Words</h3>
+      <h3>Story Words</h3>
       <ul class="no-points">
         <li ng-repeat='item in game.currentGame.wordList'>
           <p ng-class="{'striked': game.isWordUsed(item.word)}">{{item.word}}</p>
         </li>
         </ul>
+      <h3>Goals</h3>
       <p >Words used {{game.currentGame.wordsUsedLength.length}} of {{game.currentGame.requirements.needed}}</p>
     </div>
   </div>
