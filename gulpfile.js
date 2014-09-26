@@ -82,9 +82,9 @@ function styles(cb) {
 
     gulp.src('src/style.css')
       .pipe(plugins.plumber())
+      .pipe(plugins.streamify(plugins.rev()))
       .pipe(gulp.dest(expressRoot + '/'))
       .pipe(plugins.minifyCss())
-      .pipe(plugins.streamify(plugins.rev()))
       .pipe(plugins.size({ showFiles: true }))
       .pipe(gulp.dest(publicDir + '/'))
       .on('end', cb || function() {})
@@ -194,44 +194,13 @@ gulp.task('default', function () {
     });
   });
 
-  gulp.watch('src/shims.js', function() {
-    shims(function() {
-      indexHtml(function() {
-        notifyLivereload('index.html');
-      });
-    });
-  });
-
-  gulp.watch(['src/styles/**/*', '!src/styles/fonts/**/*'], function() {
-    styles(function() {
-      indexHtml(function() {
-        notifyLivereload('style.css');
-      });
-    });
-  });
-
-  gulp.watch('src/styles/fonts/**/*', function() {
-    fonts(function() {
+  gulp.watch('src/**/**', function() {
+    console.log("Noticed App Changes");
+    scripts(function() {
       styles(function() {
         indexHtml(function() {
-          notifyLivereload('style.css');
+          notifyLivereload('index.html');
         });
-      });
-    });
-  });
-
-  gulp.watch('src/images/**/*', function() {
-    images(function() {
-      indexHtml(function() {
-        notifyLivereload('index.html');
-      });
-    });
-  });
-
-  gulp.watch('src/app/**/*.html', function() {
-    scripts(function() {
-      indexHtml(function() {
-        notifyLivereload('index.html');
       });
     });
   });
@@ -241,4 +210,8 @@ gulp.task('default', function () {
       notifyLivereload('index.html');
     });
   });
+});
+
+process.on('uncaughtException', function(err) {
+  console.error("We found an error %s", err);
 });

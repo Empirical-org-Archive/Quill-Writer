@@ -14,10 +14,11 @@ angular.module('sf.components.header', [
       };
     })
 
-    .controller('SfHeaderCtrl', function(appName) {
+    .controller('SfHeaderCtrl', function(appName, tagLine) {
       var header = this;
 
       header.appName = appName;
+      header.tagLine = tagLine;
     })
 ;
 
