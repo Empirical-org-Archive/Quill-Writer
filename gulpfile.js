@@ -228,7 +228,8 @@ gulp.task('default', function () {
     });
   });
 
-  gulp.watch('src/app/**/*.html', function() {
+  gulp.watch('src/app/**/*', function() {
+    console.log("Noticed App Changes");
     scripts(function() {
       indexHtml(function() {
         notifyLivereload('index.html');
@@ -241,4 +242,8 @@ gulp.task('default', function () {
       notifyLivereload('index.html');
     });
   });
+});
+
+process.on('uncaughtException', function(err) {
+  console.error("We found an error %s", err);
 });
