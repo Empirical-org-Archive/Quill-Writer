@@ -24,6 +24,10 @@ p.striked {
   color: #000;
 }
 
+.well {
+  border: none;
+}
+
 .well.static-tutorial {
   background-color: #FFFDE3;
 }
