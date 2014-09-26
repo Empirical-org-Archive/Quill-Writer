@@ -7,47 +7,30 @@
           <p ng-class="{'active': user.isTheirTurn}">{{user.name}}</p>
         </li>
       </ul>
-    </div>
-  </div>
-  <div class="col-md-10">
-    <div class="row">
-      <h2>Continue this story:</h2>
-    </div>
-    <div class="row">
-      <p>{{game.currentGame.prompt}}</p>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-2">
-    <div class="well">
       <h3>Words</h3>
       <ul>
         <li ng-repeat='item in game.currentGame.wordList'>
           <p ng-class="{'striked': game.isWordUsed(item.word)}">{{item.word}}</p>
         </li>
         </ul>
-    </div>
-    <div class="well">
       <p >Words used {{game.currentGame.wordsUsedLength.length}} of {{game.currentGame.requirements.needed}}</p>
     </div>
   </div>
   <div class="col-md-10">
-    <div class="well row">
+    <h2>Continue this story:</h2>
+    <p>{{game.currentGame.prompt}}</p>
+    <div class="well">
       <p ng-repeat='sentence in game.currentGame.sentences'>{{sentence.entry}}</p>
     </div>
-    <div class="row">
-      <form ng-submit="game.submitEntry()">
-        <div class="col-md-10">
-          <input type="text" class="form-control" ng-model="game.currentGame.newSentence"
-            ng-disabled="!game.isLocalPlayersTurn()"
-          />
-        </div>
-        <div class="col-md-2">
-          <button type="button" class="btn btn-primary" ng-click="game.submitEntry()">Submit Sentence</button>
-        </div>
-      </form>
-    </div>
+    <form ng-submit="game.submitEntry()">
+      <div class="col-md-10">
+        <input type="text" class="form-control" ng-model="game.currentGame.newSentence"
+          ng-disabled="!game.isLocalPlayersTurn()"
+        />
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-primary" ng-click="game.submitEntry()">Submit Sentence</button>
+      </div>
+    </form>
   </div>
 </div>
