@@ -1,53 +1,38 @@
 <div class="row">
-  <div class="col-md-2">
-    <div class="well">
-      <h3>Partners</h3>
-      <ul>
+  <div class="col-md-3">
+    <div class="well side-bar">
+      <h3>Authors</h3>
+      <ul class="no-points">
         <li ng-repeat='user in game.currentGame.users'>
           <p ng-class="{'active': user.isTheirTurn}">{{user.name}}</p>
         </li>
       </ul>
-    </div>
-  </div>
-  <div class="col-md-10">
-    <div class="row">
-      <h2>Continue this story:</h2>
-    </div>
-    <div class="row">
-      <p>{{game.currentGame.prompt}}</p>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-2">
-    <div class="well">
-      <h3>Words</h3>
-      <ul>
+      <h3>Story Words</h3>
+      <ul class="no-points">
         <li ng-repeat='item in game.currentGame.wordList'>
           <p ng-class="{'striked': game.isWordUsed(item.word)}">{{item.word}}</p>
         </li>
         </ul>
-    </div>
-    <div class="well">
+      <h3>Goals</h3>
       <p >Words used {{game.currentGame.wordsUsedLength.length}} of {{game.currentGame.requirements.needed}}</p>
     </div>
   </div>
-  <div class="col-md-10">
-    <div class="well row">
+  <div class="col-md-offset-1 col-md-7">
+    <div class="well static-tutorial">
+      <p>You can use the past tense of verbs.</p>
+      <p>You can highlight for the definition.</p>
+    </div>
+    <h2>Continue this story:</h2>
+    <p>{{game.currentGame.prompt}}</p>
+    <div class="well">
       <p ng-repeat='sentence in game.currentGame.sentences'>{{sentence.entry}}</p>
     </div>
-    <div class="row">
-      <form ng-submit="game.submitEntry()">
-        <div class="col-md-10">
-          <input type="text" class="form-control" ng-model="game.currentGame.newSentence"
-            ng-disabled="!game.isLocalPlayersTurn()"
-          />
-        </div>
-        <div class="col-md-2">
-          <button type="button" class="btn btn-primary" ng-click="game.submitEntry()">Submit Sentence</button>
-        </div>
-      </form>
-    </div>
+    <form ng-submit="game.submitEntry()">
+      <input type="text" class="form-control" ng-model="game.currentGame.newSentence"
+        ng-disabled="!game.isLocalPlayersTurn()"
+      />
+      <button type="button" class="btn btn-primary" ng-click="game.submitEntry()">Submit Sentence</button>
+    </form>
   </div>
+  <div class="col-md-2"></div>
 </div>
