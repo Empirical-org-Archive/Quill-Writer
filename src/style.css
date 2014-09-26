@@ -23,3 +23,7 @@ p.striked {
 .navbar .navbar-brand.tagline {
   color: #000;
 }
+
+.well.static-tutorial {
+  background-color: #FFFDE3;
+}
