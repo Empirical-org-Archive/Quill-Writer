@@ -13,6 +13,7 @@ var connectLr         = require('connect-livereload'),
     publicDir         = require('path').resolve('./dist'),
     source            = require('vinyl-source-stream'),
     mainBowerFiles    = require('main-bower-files'),
+    _                 = require('underscore'),
     watchify          = require('watchify');
 
 
@@ -77,6 +78,14 @@ function scripts(cb) {
 }
 
 function styles(cb) {
+  vendorStyles(function() {
+    appStyles(function() {
+      cb();
+    });
+  });
+}
+
+function appStyles(cb) {
   clean('/style*.css', function() {
     plugins.util.log('Rebuilding application styles');
 
@@ -92,20 +101,46 @@ function styles(cb) {
   });
 }
 
-function templates(cb) {
-  //Inlining templates with browserify, and brfs
-  cb();
+function vendorStyles(cb) {
+  clean('/vendor*.css', function() {
+    plugins.util.log('Rebuilding vendor styles');
+
+    gulp.src(mainCssBowerFiles(), {base :'src/vendor'})
+      .pipe(plugins.concat('vendor.css'))
+      .pipe(plugins.plumber())
+      .pipe(plugins.streamify(plugins.rev()))
+      .pipe(gulp.dest(expressRoot + '/'))
+      .pipe(plugins.minifyCss())
+      .pipe(plugins.size({ showFiles: true }))
+      .pipe(gulp.dest(publicDir + '/'))
+      .on('end', cb || function() {})
+      .on('error', plugins.util.log);
+  });
 }
 
 function shims(cb) {
   cb();
 }
 
+function mainCssBowerFiles() {
+  return _.filter(mainBowerFiles(), function(file) {
+    return file.indexOf('.css') !== -1;
+  });
+}
+
+console.log(mainCssBowerFiles());
+
+function mainJsBowerFiles() {
+  return _.filter(mainBowerFiles(), function(file) {
+    return file.indexOf('.js') !== -1;
+  });
+}
+
 function vendor(cb) {
   clean('/vendor*.js', function() {
     plugins.util.log('Rebuilding vendor JS bundle');
 
-    gulp.src(mainBowerFiles(), {base: 'src/vendor'})
+    gulp.src(mainJsBowerFiles(), {base: 'src/vendor'})
       .pipe(plugins.concat('vendor.js'))
       .pipe(plugins.streamify(plugins.uglify({ mangle: false })))
       .pipe(plugins.streamify(plugins.rev()))
@@ -158,6 +193,7 @@ function indexHtml(cb) {
 
   function buildIndex(path, cb) {
     gulp.src('src/index.html')
+      .pipe(inject('./vendor*.css', path, 'vendor-style'))
       .pipe(inject('./style*.css', path, 'app-style'))
       .pipe(inject('./shim*.js', path, 'shim'))
       .pipe(inject('./vendor*.js', path, 'vendor'))
