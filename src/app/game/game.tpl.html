@@ -17,7 +17,7 @@
       <p >Words used {{game.currentGame.wordsUsedLength.length}} of {{game.currentGame.requirements.needed}}</p>
     </div>
   </div>
-  <div class="col-md-9">
+  <div class="col-md-offset-1 col-md-7">
     <div class="well static-tutorial">
       <p>You can use the past tense of verbs.</p>
       <p>You can highlight for the definition.</p>
@@ -28,14 +28,11 @@
       <p ng-repeat='sentence in game.currentGame.sentences'>{{sentence.entry}}</p>
     </div>
     <form ng-submit="game.submitEntry()">
-      <div class="col-md-10">
-        <input type="text" class="form-control" ng-model="game.currentGame.newSentence"
-          ng-disabled="!game.isLocalPlayersTurn()"
-        />
-      </div>
-      <div class="col-md-2">
-        <button type="button" class="btn btn-primary" ng-click="game.submitEntry()">Submit Sentence</button>
-      </div>
+      <input type="text" class="form-control" ng-model="game.currentGame.newSentence"
+        ng-disabled="!game.isLocalPlayersTurn()"
+      />
+      <button type="button" class="btn btn-primary" ng-click="game.submitEntry()">Submit Sentence</button>
     </form>
   </div>
+  <div class="col-md-2"></div>
 </div>
