@@ -9,11 +9,11 @@
       </ul>
       <h3>Story Words</h3>
       <ul class="no-points">
-        <li ng-repeat='item in game.currentGame.wordList'>
-          <p ng-class="{'striked': game.isWordUsed(item.word)}"
-             data-title="{{item.definition}}"
-             bs-tooltip="tooltip"
-          >{{item.word}}</p>
+        <li ng-repeat='item in game.currentGame.wordList'
+           data-title="{{item.definition}}"
+           data-placement="right"
+           bs-tooltip>
+          <p ng-class="{'striked': game.isWordUsed(item.word)}">{{item.word}}</p>
         </li>
         </ul>
       <h3>Goals</h3>
