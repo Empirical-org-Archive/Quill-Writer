@@ -28,7 +28,8 @@ angular.module('stories-with-friends', [
     // These will not be browserified
     'firebase',
     //'ui.bootstrap',
-    'ui.router'
+    'ui.router',
+    'mgcrea.ngStrap'
   ])
 
   .config(function($stateProvider, $urlRouterProvider) {

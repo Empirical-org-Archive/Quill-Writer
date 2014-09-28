@@ -12,14 +12,14 @@ angular.module('sf.services.compass', [
 
     compass.getWordList = function(activityId, cb) {
       var temp_word_list = [
-        {word: "Deliberate", definition: "..."},
-        {word: "Triumph", definition: "..."},
-        {word: "Numb", definition: "..."},
-        {word: "Tether", definition: "..."},
-        {word: "Prod", definition: "..."},
-        {word: "Disclose", definition: "..."},
-        {word: "Culprit", definition: "..."},
-        {word: "Employed", definition: "..."},
+        {word: "Deliberate", definition: "done consciously and intentionally"},
+        {word: "Triumph", definition: "a great victory or achievement"},
+        {word: "Numb", definition: "deprived of the power of sensation"},
+        {word: "Tether", definition: "a rope or chain with which an animal is tied to restrict its movement"},
+        {word: "Prod", definition: "poke (someone) with a finger, foot, or pointed object"},
+        {word: "Disclose", definition: "make (secret or new information) known"},
+        {word: "Culprit", definition: "a person who is responsible for a crime or other misdeed"},
+        {word: "Employed", definition: "give work to (someone) and pay them for it"},
       ];
       cb(temp_word_list);
     };
