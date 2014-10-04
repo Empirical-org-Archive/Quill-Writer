@@ -65,9 +65,27 @@ angular.module("sf.services.game", [
       currentGame.$update({status: 'ended'});
     };
 
-    gameModel.sendSentence = function(gameId, sentence, currentUser) {
+    gameModel.sendSentence = function(gameId, currentGame, sentence, currentUser) {
+      sentence = gameModel.highlightWords(gameId, currentGame, sentence);
       gameModel.getSentences(gameId).$add({entry: sentence, user: currentUser});
     };
+
+    gameModel.highlightWords = function(gameId, currentGame, sentence) {
+      var wordsToUse = currentGame.wordList;
+      var wordsInSentence = sentence.split(" ");
+      var returnedSentences = [];
+      wordsInSentence.forEach(function(cased_word) {
+        var word = cased_word.toLowerCase();
+        for (var i = 0; i < wordsToUse.length; i++) {
+          var wordToLookAt = wordsToUse[i].word.toLowerCase();
+          if (word === wordToLookAt || word.indexOf(wordToLookAt) !== -1) {
+            cased_word = "<b>" + cased_word + "</b>";
+          }
+        }
+        returnedSentences.push(cased_word);
+      });
+      return returnedSentences.join(" ");
+    }
 
     gameModel.takeTurns = function(gameId) {
       var game = gameModel.getRef(gameId);
