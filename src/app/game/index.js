@@ -5,7 +5,8 @@ var fs = require('fs');
 
 angular.module('sf.game', [
     'ui.router',
-    profanityFilter
+    profanityFilter,
+    'ngSanitize'
   ])
 
   .config(function($stateProvider) {
@@ -20,7 +21,6 @@ angular.module('sf.game', [
         }
       });
   })
-
   .controller('GameCtrl', function($scope, Game, User, ProfanityFilter){
     var game = this;
 
@@ -44,7 +44,7 @@ angular.module('sf.game', [
       var sentence = game.getCurrentSentence();
       var errors = game.validateSentence(sentence);
       if (errors.length === 0) {
-        Game.sendSentence(gameId, sentence, User.currentUser);
+        Game.sendSentence(gameId, game.currentGame, sentence, User.currentUser);
         Game.logWords(gameId, game.currentGame, sentence);
         Game.takeTurns(gameId);
         game.currentGame.newSentence = "";
