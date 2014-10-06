@@ -36,6 +36,12 @@
       />
       <button type="button" class="btn btn-primary" ng-click="game.submitEntry()">Submit Sentence</button>
     </form>
+    <div>
+      <form ng-submit="game.finish()">
+        <button type="button" class="btn btn-primary" ng-click="game.finish()" ng-show="game.isReadyToSubmit()">Submit Story to Teacher</button>
+      </form>
+      <p ng-show="game.hasFinishMessageToShow()">{{game.currentGame.finishMessageToShow}}</p>
+    </div>
   </div>
   <div class="col-md-2"></div>
 </div>
