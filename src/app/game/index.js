@@ -29,6 +29,7 @@ angular.module('sf.game', [
     var gameId = User.currentUser.sid;
 
     game.currentGame.newSentence = "";
+    game.currentGame.finishMessageToShow = "";
 
     game.closeGame = function() {
       var gameId = game.currentGame.$id;
@@ -104,7 +105,7 @@ angular.module('sf.game', [
     }
 
     game.finish = function() {
-      console.log("Calling finish");
+      game.currentGame.finishMessageToShow = "You have submitted the story. Waiting for the other player to approve.";
       Game.imDone(gameId, game.currentGame, User.currentUser);
     }
 
@@ -115,6 +116,10 @@ angular.module('sf.game', [
         return false;
       }
     };
+
+    game.hasFinishMessageToShow = function() {
+      return game.currentGame.finishMessageToShow !== "";
+    }
   })
 
 ;
