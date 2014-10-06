@@ -29,7 +29,14 @@ angular.module("sf.services.game", [
           currentUser.name = "Player " + String(length + 1);
           currentUser.isTheirTurn = currentUser.name === "Player 1";
           User.localUser = currentUser.name;
-          gameUsers.$add(currentUser);
+          currentUser.finishMessageToShow = "";
+          gameUsers.$add(currentUser).then(function(newUserRef) {
+            var newUser = gameUsers[gameUsers.$indexFor(newUserRef.name())];
+            console.log(newUser);
+            newUser.$watch(function() {
+              $scope.finishMessageToShow = newUser.finishMessageToShow;
+            });
+          });
         }
         Compass.initializeGame($scope, gameUsers, currentUser);
       }).then(function() {
@@ -109,8 +116,11 @@ angular.module("sf.services.game", [
         angular.forEach(users, function(user) {
           if (gameModel.isSameUser(user, currentUser)) {
             user.done = true
-            users.$save(user);
+            user.finishMessageToShow = "You have submitted the story. Waiting for the other player to approve.";
+          } else {
+            user.finishMessageToShow = "The other player has voted to submit to the story. Press submit to teacher when you feel the story is complete. You may continue to use words.";
           }
+          users.$save(user);
         });
       });
     }

@@ -105,7 +105,6 @@ angular.module('sf.game', [
     }
 
     game.finish = function() {
-      game.currentGame.finishMessageToShow = "You have submitted the story. Waiting for the other player to approve.";
       Game.imDone(gameId, game.currentGame, User.currentUser);
     }
 
