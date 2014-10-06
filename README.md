@@ -1,9 +1,9 @@
-# Stories with Friends
+# Quill Writer
 
-Stories with Friends - Learn vocabulary by writing stories.
+Quill Writer - Learn by Writing Together
 
 View the [work in progress site
-here](https://storieswithfriends.firebaseapp.com/#/)
+here](https://quill-writer.firebaseapp.com/#/)
 
 Check out the [wiki](https://github.com/empirical-org/Quill-Writer/wiki) for more information about the project and how to contribute.
 
@@ -16,7 +16,7 @@ The `module_url` for this application is `/#/`.
 For example,
 
 ```
-https://storieswithfriends.firebaseapp.com/#/?uid=asdf1234&sid=5678aoeu
+https://quill-writer.firebaseapp.com/#/?uid=asdf1234&sid=5678aoeu
 ```
 
 will be the complete url Compass loads for Stories with Friends.
@@ -28,7 +28,7 @@ The `form_url` for this application is `/#/form`
 For example,
 
 ```
-https://storieswithfriends.firebaseapp.com/#/form?uid=1234klasdf
+https://quill-writer.firebaseapp.com/#/form?uid=1234klasdf
 ```
 
 The form url is served up when an administrator wants to add another
