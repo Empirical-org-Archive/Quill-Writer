@@ -1,4 +1,5 @@
 var sfConstants = require('./../../constants');
+
 angular.module('sf.services.compass', [
     sfConstants
   ])
@@ -6,21 +7,7 @@ angular.module('sf.services.compass', [
   .service("Compass", function($http, compassBaseURL) {
     var compass = this;
 
-    var staticWords = {
-      1: {
-        wordList: [
-          {word: "Deliberate", definition: "done consciously and intentionally"},
-          {word: "Triumph", definition: "a great victory or achievement"},
-          {word: "Numb", definition: "deprived of the power of sensation"},
-          {word: "Tether", definition: "a rope or chain with which an animal is tied to restrict its movement"},
-          {word: "Prod", definition: "poke (someone) with a finger, foot, or pointed object"},
-          {word: "Disclose", definition: "make (secret or new information) known"},
-          {word: "Culprit", definition: "a person who is responsible for a crime or other misdeed"},
-          {word: "Employed", definition: "give work to (someone) and pay them for it"},
-        ],
-        prompt: "You were awakened one morning by a talking parrot. \"I know where a treasure is buried,\", it squawked..."
-      }
-    };
+    var staticWords = require('./stories.json');
 
     compass.getStaticActivity = function(activityId) {
       if (staticWords[activityId]) {
