@@ -72,8 +72,7 @@ angular.module("sf.services.game", [
     }
 
     gameModel.closeGame = function(gameId) {
-      var currentGame = $firebase(gameModel.get(gameId));
-      currentGame.$update({status: 'ended'});
+      console.log("Close game %s", gameId);
     };
 
     gameModel.sendSentence = function(gameId, currentGame, sentence, currentUser) {
@@ -124,7 +123,23 @@ angular.module("sf.services.game", [
           } else {
             user.finishMessageToShow.message = "The other player has voted to submit to the story. Press submit to teacher when you feel the story is complete. You may continue to use words.";
           }
-          users.$save(user);
+          users.$save(user).then(function() {
+            users.$loaded().then(function() {
+              var allDone = true;
+              angular.forEach(users, function(user) {
+                if (allDone && !user.done) {
+                  allDone = false;
+                }
+              });
+              if (allDone) {
+                angular.forEach(users, function(user) {
+                  user.finishMessageToShow.message = "You have completed this story!";
+                  users.$save(user);
+                });
+                gameModel.closeGame();
+              }
+            });
+          });
         });
       });
     }
