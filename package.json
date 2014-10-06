@@ -1,6 +1,7 @@
 {
   "name": "Quill-Writer",
   "version": "0.1.5",
+  "repository": "git@github.com:Empirical-Org/Quill-Writer.git",
   "scripts": {},
   "dependencies": {},
   "devDependencies": {
