@@ -98,6 +98,23 @@ angular.module("sf.services.game", [
       });
     }
 
+    gameModel.isSameUser = function(u1, u2) {
+      return ((u1.sid === u2.sid) && (u1.uid === u2.uid) && (u1.name === u2.name));
+    }
+
+    gameModel.imDone = function(gameId, currentGame, currentUser) {
+      var game = gameModel.getRef(gameId);
+      var users = $firebase(game.child("users")).$asArray();
+      users.$loaded().then(function(){
+        angular.forEach(users, function(user) {
+          if (gameModel.isSameUser(user, currentUser)) {
+            user.done = true
+            users.$save(user);
+          }
+        });
+      });
+    }
+
     gameModel.logWords = function(gameId, currentGame, sentence) {
       var gameRef = gameModel.getRef(gameId);
       var wordsUsed = $firebase(gameRef.child("wordsUsed")).$asArray();

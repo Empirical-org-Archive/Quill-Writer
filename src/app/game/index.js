@@ -104,11 +104,16 @@ angular.module('sf.game', [
     }
 
     game.finish = function() {
-      console.log("Finishing Game");
+      console.log("Calling finish");
+      Game.imDone(gameId, game.currentGame, User.currentUser);
     }
 
     game.isReadyToSubmit = function() {
-      return game.currentGame.wordsUsed.length >= game.currentGame.requirements.needed;
+      if (game.currentGame.requirements) {
+        return game.currentGame.wordsUsed.length >= game.currentGame.requirements.needed;
+      } else {
+        return false;
+      }
     };
   })
 
