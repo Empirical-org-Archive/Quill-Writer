@@ -1,5 +1,5 @@
 {
-  "firebase": "quill-writer",
+  "firebase":"storieswithfriends",
   "public": "dist",
   "ignore": [
     "firebase.json",
