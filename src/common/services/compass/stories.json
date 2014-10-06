@@ -35,5 +35,30 @@
          }
       ],
       "prompt" : "You were awakened one morning by a talking parrot. \"I know where a treasure is buried,\", it squawked..."
+   },
+   "2" : {
+      "wordList" : [
+         {
+            "word" : "Periphery",
+            "definition" : "The outer limits or edge of an area"
+         },
+         {
+            "word" : "Rucksack",
+            "definition" : "a backpack, often made of strong materials"
+         },
+         {
+            "word" : "Dusk",
+            "definition" : "The time right before night; the darker stage of twilight"
+         },
+         {
+            "word" : "Slumber",
+            "definition" : "Sleep"
+         },
+         {
+            "word" : "Tremulous",
+            "definition" : "Nervous; shaking"
+         }
+      ],
+      "prompt" : "The Boy Who Loved Words"
    }
 }
