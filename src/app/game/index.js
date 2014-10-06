@@ -102,6 +102,14 @@ angular.module('sf.game', [
       });
       return wordUsed;
     }
+
+    game.finish = function() {
+      console.log("Finishing Game");
+    }
+
+    game.isReadyToSubmit = function() {
+      return game.currentGame.wordsUsed.length >= game.currentGame.requirements.needed;
+    };
   })
 
 ;
