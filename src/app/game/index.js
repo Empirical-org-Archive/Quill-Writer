@@ -117,7 +117,7 @@ angular.module('sf.game', [
     };
 
     game.hasFinishMessageToShow = function() {
-      return game.currentGame.finishMessageToShow !== "";
+      return true;
     }
   })
 
