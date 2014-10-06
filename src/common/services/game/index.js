@@ -27,9 +27,20 @@ angular.module("sf.services.game", [
         var length = gameUsers.length;
         if (length < 2) {
           currentUser.name = "Player " + String(length + 1);
+          currentUser.done = false;
           currentUser.isTheirTurn = currentUser.name === "Player 1";
           User.localUser = currentUser.name;
-          gameUsers.$add(currentUser);
+          gameUsers.$add(currentUser).then(function(newUserRef) {
+            var userFinishMessageToShow = $firebase(newUserRef.child("finishMessageToShow")).$asObject();
+            userFinishMessageToShow.message = "";
+            userFinishMessageToShow.$watch(function() {
+              $scope.finishMessageToShow = userFinishMessageToShow.message;
+            });
+            userFinishMessageToShow.$save();
+            var newUser = gameUsers.$getRecord(newUserRef.name());
+            newUser.finishMessageToShow = userFinishMessageToShow;
+            gameUsers.$save(newUser);
+          });
         }
         Compass.initializeGame($scope, gameUsers, currentUser);
       }).then(function() {
@@ -61,8 +72,7 @@ angular.module("sf.services.game", [
     }
 
     gameModel.closeGame = function(gameId) {
-      var currentGame = $firebase(gameModel.get(gameId));
-      currentGame.$update({status: 'ended'});
+      console.log("Close game %s", gameId);
     };
 
     gameModel.sendSentence = function(gameId, currentGame, sentence, currentUser) {
@@ -94,6 +104,42 @@ angular.module("sf.services.game", [
         angular.forEach(users, function(user) {
           user.isTheirTurn = !user.isTheirTurn;
           users.$save(user);
+        });
+      });
+    }
+
+    gameModel.isSameUser = function(u1, u2) {
+      return ((u1.sid === u2.sid) && (u1.uid === u2.uid) && (u1.name === u2.name));
+    }
+
+    gameModel.imDone = function(gameId, currentGame, currentUser) {
+      var game = gameModel.getRef(gameId);
+      var users = $firebase(game.child("users")).$asArray();
+      users.$loaded().then(function(){
+        angular.forEach(users, function(user) {
+          if (gameModel.isSameUser(user, currentUser)) {
+            user.done = true
+            user.finishMessageToShow.message = "You have submitted the story. Waiting for the other player to approve.";
+          } else {
+            user.finishMessageToShow.message = "The other player has voted to submit to the story. Press submit to teacher when you feel the story is complete. You may continue to use words.";
+          }
+          users.$save(user).then(function() {
+            users.$loaded().then(function() {
+              var allDone = true;
+              angular.forEach(users, function(user) {
+                if (allDone && !user.done) {
+                  allDone = false;
+                }
+              });
+              if (allDone) {
+                angular.forEach(users, function(user) {
+                  user.finishMessageToShow.message = "You have completed this story!";
+                  users.$save(user);
+                });
+                gameModel.closeGame();
+              }
+            });
+          });
         });
       });
     }

@@ -29,6 +29,7 @@ angular.module('sf.game', [
     var gameId = User.currentUser.sid;
 
     game.currentGame.newSentence = "";
+    game.currentGame.finishMessageToShow = "";
 
     game.closeGame = function() {
       var gameId = game.currentGame.$id;
@@ -101,6 +102,22 @@ angular.module('sf.game', [
         }
       });
       return wordUsed;
+    }
+
+    game.finish = function() {
+      Game.imDone(gameId, game.currentGame, User.currentUser);
+    }
+
+    game.isReadyToSubmit = function() {
+      if (game.currentGame.requirements) {
+        return game.currentGame.wordsUsed.length >= game.currentGame.requirements.needed;
+      } else {
+        return false;
+      }
+    };
+
+    game.hasFinishMessageToShow = function() {
+      return game.currentGame.finishMessageToShow !== "";
     }
   })
 
