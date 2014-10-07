@@ -45,7 +45,7 @@ angular.module('sf.services.compass', [
     };
 
     compass.initializeGame = function(game, users, currentUser) {
-      var sessionId = currentUser.sid;
+      var sessionId = currentUser.activityPrompt;
 
       compass.getPrompt(sessionId, function(p) {
         game.prompt = p;
