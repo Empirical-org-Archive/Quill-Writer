@@ -12,7 +12,7 @@ angular.module('sf.game', [
   .config(function($stateProvider) {
     $stateProvider
       .state('sf.game', {
-        url: '/games?uid&sid',
+        url: '/games?uid&sid&activityPrompt',
         views: {
           'content@': {
             template: fs.readFileSync(__dirname + "/game.tpl.html"),
