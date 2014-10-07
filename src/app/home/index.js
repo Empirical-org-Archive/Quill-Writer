@@ -8,7 +8,7 @@ angular.module('sf.home', [
   .config(function($stateProvider) {
     $stateProvider
       .state('sf.home', {
-        url: '/?uid&sid',
+        url: '/?uid&sid&activityPrompt',
         views: {
           'content@': {
             template: fs.readFileSync(__dirname + '/home.tpl.html'),
@@ -27,10 +27,11 @@ angular.module('sf.home', [
     };
 
     function continueWithValidSession() {
-      if ($state.params.uid && $state.params.sid) {
+      if ($state.params.uid && $state.params.sid && $state.params.activityPrompt) {
         home.setUser({
           uid: $state.params.uid,
-          sid: $state.params.uid
+          sid: $state.params.uid,
+          activityPrompt: $state.params.activityPrompt
         });
       }
     }

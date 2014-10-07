@@ -1,0 +1,180 @@
+{
+   "6" : {
+      "wordList" : [
+         {
+            "word" : "evaporation",
+            "definition" : "the changing of a liquid into a gas, often under the influence of heat (as in the boiling of water)"
+         },
+         {
+            "word" : "condensation",
+            "definition" : "the conversion of a vapor or gas to a liquid; water that collects as droplets on a cold surface when humid air is in contact with it"
+         },
+         {
+            "word" : "precipitation",
+            "definition" : "any product of the condensation of atmospheric water vapour that falls under gravity"
+         },
+         {
+            "word" : "collection",
+            "definition" : "when water that falls from the clouds as rain, snow, hail or sleet, collects in the oceans, rivers, lakes, streams"
+         }
+      ],
+      "prompt" : "Team up with your partner to explain the watercycle in 4-7 sentences."
+   },
+   "4" : {
+      "wordList" : [
+         {
+            "word" : "government",
+            "definition" : "the group of people who control and make decisions for a country, state, etc."
+         },
+         {
+            "word" : "pesiticide",
+            "definition" : "a chemical that is used to kill animals or insects that damage plants or crops"
+         },
+         {
+            "word" : "hybrid",
+            "definition" : "something that is formed by combining two or more things"
+         },
+         {
+            "word" : "ecological",
+            "definition" : "a science that deals with the relationships between groups of living things and their environments"
+         },
+         {
+            "word" : "fossil fuel",
+            "definition" : "a fuel (such as coal, oil, or natural gas) that is formed in the earth from dead plants or animals"
+         },
+         {
+            "word" : "calorie",
+            "definition" : "a unit of heat used to indicate the amount of energy that foods will produce in the human body"
+         },
+         {
+            "word" : "policy",
+            "definition" : "a high-level overall plan embracing the general goals and acceptable procedures especially of a governmental body"
+         }
+      ],
+      "prompt" : "How do you think we might be taking risks with our health and the health of the human world by being part of the industrial food chain?"
+   },
+   "1" : {
+      "wordList" : [
+         {
+            "word" : "Deliberate",
+            "definition" : "done consciously and intentionally"
+         },
+         {
+            "word" : "Triumph",
+            "definition" : "a great victory or achievement"
+         },
+         {
+            "word" : "Numb",
+            "definition" : "deprived of the power of sensation"
+         },
+         {
+            "word" : "Tether",
+            "definition" : "a rope or chain with which an animal is tied to restrict its movement"
+         },
+         {
+            "word" : "Prod",
+            "definition" : "poke (someone) with a finger, foot, or pointed object"
+         },
+         {
+            "word" : "Disclose",
+            "definition" : "make (secret or new information) known"
+         },
+         {
+            "word" : "Culprit",
+            "definition" : "a person who is responsible for a crime or other misdeed"
+         },
+         {
+            "word" : "Employed",
+            "definition" : "give work to (someone) and pay them for it"
+         }
+      ],
+      "prompt" : "You were awakened one morning by a talking parrot. \"I know where a treasure is buried,\", it squawked..."
+   },
+   "3" : {
+      "wordList" : [
+         {
+            "word" : "fundamental",
+            "definition" : "necessary or central part of an idea; the basis"
+         },
+         {
+            "word" : "inalienable",
+            "definition" : "cannot be given or taken away from the possessor"
+         },
+         {
+            "word" : "charter",
+            "definition" : "a written document that defines an entity's rights and priveleges"
+         },
+         {
+            "word" : "reaffirm",
+            "definition" : "to confirm the validity of"
+         },
+         {
+            "word" : "dignity",
+            "definition" : "the state of being worthy of honor or respect"
+         },
+         {
+            "word" : "uphold",
+            "definition" : "to support or defend; to not judge against something"
+         },
+         {
+            "word" : "promote",
+            "definition" : "to raise to a higher level; to help or assist"
+         },
+         {
+            "word" : "protect",
+            "definition" : "to keep from being harmed"
+         }
+      ],
+      "prompt" : "We believe in human rights because..."
+   },
+   "2" : {
+      "wordList" : [
+         {
+            "word" : "Periphery",
+            "definition" : "The outer limits or edge of an area"
+         },
+         {
+            "word" : "Rucksack",
+            "definition" : "a backpack, often made of strong materials"
+         },
+         {
+            "word" : "Dusk",
+            "definition" : "The time right before night; the darker stage of twilight"
+         },
+         {
+            "word" : "Slumber",
+            "definition" : "Sleep"
+         },
+         {
+            "word" : "Tremulous",
+            "definition" : "Nervous; shaking"
+         }
+      ],
+      "prompt" : "The Boy Who Loved Words"
+   },
+   "5" : {
+      "wordList" : [
+         {
+            "word" : "thwart",
+            "definition" : "oppose successfully; prevent from accomplishing a purpose"
+         },
+         {
+            "word" : "hinder",
+            "definition" : "prevented from doing, acting, or happening"
+         },
+         {
+            "word" : "morbid",
+            "definition" : "suggesting an unhealthy mental state or attitude; unwholesomely gloomy, sensitive, extreme, etc."
+         },
+         {
+            "word" : "asunder",
+            "definition" : "into seperate parts; in or into pieces"
+         },
+         {
+            "word" : "chastity",
+            "definition" : " the state of refraining from sexual intercourse that is regarded as contrary to morality or religion "
+         }
+      ],
+      "prompt" : "Woolf claims that the particular social realities in which women live create distinctively female values and outlooks. Do you think this is a good thing or a bad thing?"
+   }
+}
