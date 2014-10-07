@@ -60,9 +60,8 @@
          }
       ],
       "prompt" : "The Boy Who Loved Words"
-   }
-   
-      "3" : {
+   },
+   "3" : {
       "wordList" : [
          {
             "word" : "fundamental",
@@ -83,15 +82,15 @@
          {
             "word" : "dignity",
             "definition" : "the state of being worthy of honor or respect"
-         }
+         },
          {
             "word" : "uphold",
             "definition" : "to support or defend; to not judge against something"
-         }
+         },
          {
             "word" : "promote",
             "definition" : "to raise to a higher level; to help or assist"
-         }
+         },
          {
             "word" : "protect",
             "definition" : "to keep from being harmed"
