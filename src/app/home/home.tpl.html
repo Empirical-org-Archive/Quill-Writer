@@ -9,6 +9,7 @@
       <form name="form" class="css-form" novalidate>
         <input type="text" class="form-control input-lg" ng-model='home.user.uid' placeholder='uid' required>
         <input type="text" class="form-control input-lg" ng-model='home.user.sid' placeholder='sid' required>
+        <input type="text" class="form-control input-lg" ng-model='home.user.activityPrompt' placeholder='Activity Prompt' required>
         <br>
         <button class="btn btn-primary btn-lg" role="button" ng-click='home.setUser(home.user)' ng-disabled="form.$invalid">Enter Game</button>
         </form>
