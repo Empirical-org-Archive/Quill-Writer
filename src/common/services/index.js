@@ -3,6 +3,7 @@ var Game = require('./game/');
 var Form = require('./form/');
 var Compass = require('./compass/');
 var ProfanityFilter = require('./profanity-filter/');
+var Punctuation = require('./punctuation/');
 
 angular.module('sf.common.services', [
     User,
@@ -10,6 +11,7 @@ angular.module('sf.common.services', [
     Form,
     Compass,
     ProfanityFilter,
+    Punctuation,
   ])
 ;
 
