@@ -23,24 +23,46 @@ angular.module("sf.services.game", [
       var gameRef = gameModel.getRef(currentUser.sid);
       var gameUsersRef = gameRef.child("users");
       var gameUsers = $firebase(gameUsersRef).$asArray();
-      gameUsers.$loaded().then(function() {
-        var length = gameUsers.length;
-        if (length < 2) {
-          currentUser.name = "Player " + String(length + 1);
-          currentUser.done = false;
-          currentUser.isTheirTurn = currentUser.name === "Player 1";
-          User.localUser = currentUser.name;
-          gameUsers.$add(currentUser).then(function(newUserRef) {
+      function makeNewUser(length) {
+        currentUser.name = "Player " + String(length + 1);
+        currentUser.done = false;
+        currentUser.isTheirTurn = currentUser.name === "Player 1";
+        User.localUser = currentUser.name;
+        gameUsers.$add(currentUser).then(function(newUserRef) {
+          gameUsers.$loaded(function() {
             var userFinishMessageToShow = $firebase(newUserRef.child("finishMessageToShow")).$asObject();
             userFinishMessageToShow.message = "";
             userFinishMessageToShow.$watch(function() {
               $scope.finishMessageToShow = userFinishMessageToShow.message;
             });
-            userFinishMessageToShow.$save();
-            var newUser = gameUsers.$getRecord(newUserRef.name());
-            newUser.finishMessageToShow = userFinishMessageToShow;
-            gameUsers.$save(newUser);
+            userFinishMessageToShow.$save().then(function() {
+              var newUser = gameUsers.$getRecord(newUserRef.name());
+              newUser.finishMessageToShow = userFinishMessageToShow;
+              gameUsers.$save(newUser);
+              User.setCurrentUser(newUser);
+            })
           });
+        });
+        User.setCurrentUser(currentUser);
+      }
+      function findCurrentUser() {
+        var localUser = currentUser;
+        var returnUser = null;
+        _.each(gameUsers, function(gameUser) {
+          if (gameModel.isSameUser(gameUser, localUser)) {
+            returnUser = gameUser;
+          }
+        });
+        return returnUser;
+      }
+      gameUsers.$loaded(function() {
+        var length = gameUsers.length;
+        var gameUser = findCurrentUser();
+        if (gameUser) {
+          currentUser = gameUser;
+          User.localUser = currentUser.name;
+        } else if (length < 2) {
+          makeNewUser(length)
         }
         Compass.initializeGame($scope, gameUsers, currentUser);
       }).then(function() {
