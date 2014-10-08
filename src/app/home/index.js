@@ -33,6 +33,11 @@ angular.module('sf.home', [
           sid: $state.params.sid,
           activityPrompt: $state.params.activityPrompt
         });
+      } else {
+        var user = User.getUserFromLocalStorage();
+        if (user) {
+          home.setUser(user);
+        }
       }
     }
 

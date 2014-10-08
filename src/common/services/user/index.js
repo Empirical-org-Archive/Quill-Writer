@@ -10,6 +10,10 @@ angular.module('sf.services.user', [])
       user.currentUser = newUser;
       localStorageService.set(user.currentUserKey, newUser);
     };
+
+    user.getUserFromLocalStorage = function() {
+      return localStorageService.get(user.currentUserKey);
+    }
   })
 
 ;
