@@ -31,9 +31,9 @@
       <p ng-repeat='sentence in game.currentGame.sentences' ng-bind-html="sentence.entry"></p>
     </div>
     <form ng-submit="game.submitEntry()">
-      <input type="text" class="form-control" ng-model="game.currentGame.newSentence"
-        ng-disabled="!game.isLocalPlayersTurn()"
-      />
+      <textarea type="text" class="form-control" ng-model="game.currentGame.newSentence"
+        ng-disabled="!game.isLocalPlayersTurn()">
+        </textarea>
       <button type="button" class="btn btn-primary" ng-click="game.submitEntry()">Submit Sentence</button>
     </form>
     <div>
