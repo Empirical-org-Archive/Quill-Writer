@@ -28,7 +28,9 @@
     <h2>Continue this story:</h2>
     <p>{{game.currentGame.prompt}}</p>
     <div class="well">
-      <p ng-repeat='sentence in game.currentGame.sentences' ng-bind-html="sentence.entry"></p>
+      <p>
+        <span ng-repeat='sentence in game.currentGame.sentences' ng-bind-html="sentence.entry">
+      </p>
     </div>
     <div class="well">
       <form ng-submit="game.submitEntry()">
