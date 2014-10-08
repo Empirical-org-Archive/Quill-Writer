@@ -55,6 +55,9 @@ angular.module('sf.game', [
     game.submitEntry = function() {
       //do some validation here
       var sentence = game.getCurrentSentence();
+      if (sentence === "") {
+        return;
+      }
       var errors = game.validateSentence(sentence);
       if (errors.length === 0) {
         Game.sendSentence(gameId, game.currentGame, sentence, User.currentUser);
