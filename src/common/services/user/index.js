@@ -13,7 +13,7 @@ angular.module('sf.services.user', [])
 
     user.getUserFromLocalStorage = function() {
       return localStorageService.get(user.currentUserKey);
-    }
+    };
   })
 
 ;
