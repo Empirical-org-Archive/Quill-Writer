@@ -29,7 +29,8 @@ angular.module('stories-with-friends', [
     'firebase',
     //'ui.bootstrap',
     'ui.router',
-    'mgcrea.ngStrap'
+    'mgcrea.ngStrap',
+    'underscore'
   ])
 
   .config(function($stateProvider, $urlRouterProvider) {
