@@ -30,7 +30,8 @@ angular.module('stories-with-friends', [
     //'ui.bootstrap',
     'ui.router',
     'mgcrea.ngStrap',
-    'underscore'
+    'underscore',
+    'LocalStorageModule'
   ])
 
   .config(function($stateProvider, $urlRouterProvider) {
