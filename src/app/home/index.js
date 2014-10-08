@@ -30,7 +30,7 @@ angular.module('sf.home', [
       if ($state.params.uid && $state.params.sid && $state.params.activityPrompt) {
         home.setUser({
           uid: $state.params.uid,
-          sid: $state.params.uid,
+          sid: $state.params.sid,
           activityPrompt: $state.params.activityPrompt
         });
       }

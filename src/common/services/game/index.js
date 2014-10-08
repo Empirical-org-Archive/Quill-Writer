@@ -5,7 +5,7 @@ angular.module("sf.services.game", [
     sfCompass,
   ])
 
-  .service("Game", function($firebase, baseFbUrl, Compass) {
+  .service("Game", function($firebase, baseFbUrl, Compass, _) {
     var gameModel = this;
 
     var gamesRef = new Firebase(baseFbUrl + "/games");
@@ -149,14 +149,18 @@ angular.module("sf.services.game", [
       var wordsUsed = $firebase(gameRef.child("wordsUsed")).$asArray();
       var wordsToUse = currentGame.wordList;
       var wordsInSentence = sentence.split(" ");
+      var wordsToAdd = [];
       wordsInSentence.forEach(function(cased_word) {
         var word = cased_word.toLowerCase();
         for (var i = 0; i < wordsToUse.length; i++) {
           var wordToLookAt = wordsToUse[i].word.toLowerCase();
           if (word === wordToLookAt || word.indexOf(wordToLookAt) !== -1) {
-            wordsUsed.$add(wordsToUse[i].word);
+            wordsToAdd.push(wordsToUse[i].word);
           }
         }
+      });
+      _.each(_.uniq(wordsToAdd), function(word) {
+        wordsUsed.$add(word);
       });
     }
   })
