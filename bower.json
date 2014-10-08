@@ -22,6 +22,7 @@
     "angular-strap": "~2.1.1",
     "angular-sanitize": "~1.2.26",
     "angular-underscore-module": "~1.0.1",
-    "underscore": "~1.7.0"
+    "underscore": "~1.7.0",
+    "angular-local-storage": "~0.1.1"
   }
 }
