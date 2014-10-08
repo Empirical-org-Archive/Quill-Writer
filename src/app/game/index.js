@@ -1,4 +1,5 @@
 var profanityFilter = require('./../../common/services/profanity-filter/');
+var punctuation = require('./../../common/services/punctuation/');
 var game = require('./../../common/services/game/');
 
 var fs = require('fs');
@@ -6,6 +7,7 @@ var fs = require('fs');
 angular.module('sf.game', [
     'ui.router',
     profanityFilter,
+    punctuation,
     'ngSanitize'
   ])
 
@@ -21,7 +23,7 @@ angular.module('sf.game', [
         }
       });
   })
-  .controller('GameCtrl', function($scope, $state, Game, User, ProfanityFilter){
+  .controller('GameCtrl', function($scope, $state, Game, User, ProfanityFilter, Punctuation) {
     var game = this;
 
     var currentUser = User.currentUser;
@@ -75,6 +77,10 @@ angular.module('sf.game', [
       var profane = ProfanityFilter.checkSentence(sentence);
       if (profane) {
         errors.push(profane);
+      }
+      var incorrectPunctuation = Punctuation.checkEndingPunctuation(sentence);
+      if (incorrectPunctuation) {
+        errors.push(incorrectPunctuation);
       }
       return errors;
     };
