@@ -131,6 +131,10 @@ angular.module('sf.game', [
     game.hasFinishMessageToShow = function() {
       return game.currentGame.finishMessageToShow !== "";
     }
+
+    game.isYou = function(user) {
+      return user.name === User.localUser;
+    }
   })
 
 ;

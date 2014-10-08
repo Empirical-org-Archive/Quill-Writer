@@ -4,7 +4,7 @@
       <h3>Authors</h3>
       <ul class="no-points">
         <li ng-repeat='user in game.currentGame.users'>
-          <p ng-class="{'active': user.isTheirTurn}">{{user.name}}</p>
+          <p ng-class="{'active': user.isTheirTurn}">{{user.name}} <span ng-show="game.isYou(user)">(You)</span></p>
         </li>
       </ul>
       <h3>Story Words</h3>
