@@ -30,18 +30,20 @@
     <div class="well">
       <p ng-repeat='sentence in game.currentGame.sentences' ng-bind-html="sentence.entry"></p>
     </div>
-    <form ng-submit="game.submitEntry()">
-      <textarea type="text" class="form-control" ng-model="game.currentGame.newSentence"
-        ng-disabled="!game.isLocalPlayersTurn()"
-        placeholder="Type your sentence here. Move your mouse pointer over the story word to see the definition." >
-        </textarea>
-      <button type="button" class="btn btn-primary" ng-click="game.submitEntry()">Submit Sentence</button>
-    </form>
-    <div>
-      <form ng-submit="game.finish()">
-        <button type="button" class="btn btn-primary" ng-click="game.finish()" ng-show="game.isReadyToSubmit()">Submit Story to Teacher</button>
+    <div class="well">
+      <form ng-submit="game.submitEntry()">
+        <textarea type="text" class="form-control" ng-model="game.currentGame.newSentence"
+          ng-disabled="!game.isLocalPlayersTurn()"
+          placeholder="Type your sentence here. Move your mouse pointer over the story word to see the definition." >
+          </textarea>
+        <button type="button" class="btn btn-primary" ng-click="game.submitEntry()">Submit Sentence</button>
       </form>
-      <p ng-show="game.hasFinishMessageToShow()">{{game.currentGame.finishMessageToShow}}</p>
+      <div>
+        <form ng-submit="game.finish()">
+          <button type="button" class="btn btn-primary" ng-click="game.finish()" ng-show="game.isReadyToSubmit()">Submit Story to Teacher</button>
+        </form>
+        <p ng-show="game.hasFinishMessageToShow()">{{game.currentGame.finishMessageToShow}}</p>
+      </div>
     </div>
   </div>
   <div class="col-md-2"></div>
