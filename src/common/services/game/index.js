@@ -99,8 +99,17 @@ angular.module("sf.services.game", [
 
     gameModel.sendSentence = function(gameId, currentGame, sentence, currentUser) {
       sentence = gameModel.highlightWords(gameId, currentGame, sentence);
+      sentence = gameModel.appendExtraSpaceIfNeccessary(sentence);
       gameModel.getSentences(gameId).$add({entry: sentence, user: currentUser});
     };
+
+    gameModel.appendExtraSpaceIfNeccessary = function(sentence) {
+      var tokens = sentence.split('');
+      if (tokens[tokens.length - 1] !== " ") {
+        tokens.push(" ");
+      }
+      return tokens.join('');
+    }
 
     gameModel.highlightWords = function(gameId, currentGame, sentence) {
       var wordsToUse = currentGame.wordList;
