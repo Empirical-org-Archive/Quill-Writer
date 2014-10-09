@@ -42,7 +42,9 @@
       </form>
       <div>
         <form ng-submit="game.finish()">
-          <button type="button" class="btn btn-primary" ng-click="game.finish()" ng-show="game.isReadyToSubmit()">Submit Story to Teacher</button>
+          <button type="button" class="btn btn-primary" ng-click="game.finish()" ng-show="game.isReadyToSubmit()"
+            analytics-on="click" analytics-event="Quill-Writer Submit Story to Teacher"
+            >Submit Story to Teacher</button>
         </form>
         <p ng-show="game.hasFinishMessageToShow()">{{game.currentGame.finishMessageToShow}}</p>
       </div>
