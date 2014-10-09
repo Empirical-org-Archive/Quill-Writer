@@ -11,7 +11,7 @@
       <ul class="no-points">
         <li ng-repeat='item in game.currentGame.wordList'
            data-title="{{item.definition}}"
-           data-placement="top"
+           data-placement="right"
            bs-tooltip>
           <p ng-class="{'striked': game.isWordUsed(item.word)}">{{item.word}}</p>
         </li>
