@@ -53,3 +53,22 @@ ul.no-points {
   color: #599CC3;
   font-weight: bold;
 }
+
+.bottom-panel {
+  padding-top: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-bottom: 10px;
+}
+
+.bottom-panel .row {
+  padding-bottom: 20px;
+}
+
+.bottom-panel .row .btn {
+  margin-right: 20px;
+}
+
+.tooltip {
+  min-width:350px;
+}
