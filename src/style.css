@@ -68,3 +68,7 @@ ul.no-points {
 .bottom-panel .row .btn {
   margin-right: 20px;
 }
+
+.tooltip {
+  min-width:350px;
+}
