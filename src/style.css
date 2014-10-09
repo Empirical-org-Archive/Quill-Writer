@@ -42,6 +42,7 @@ p.striked {
 
 .well.side-bar {
   background-color: #F3F4F4;
+  font-size: 16px;
 }
 
 ul.no-points {
@@ -71,4 +72,5 @@ ul.no-points {
 
 .tooltip {
   min-width:350px;
+  font-size: 16px;
 }
