@@ -31,7 +31,9 @@ angular.module('stories-with-friends', [
     'ui.router',
     'mgcrea.ngStrap',
     'underscore',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'angulartics',
+    'angulartics.mixpanel'
   ])
 
   .config(function($stateProvider, $urlRouterProvider) {
