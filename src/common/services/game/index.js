@@ -5,7 +5,7 @@ angular.module("sf.services.game", [
     sfCompass,
   ])
 
-  .service("Game", function($firebase, baseFbUrl, Compass, _) {
+  .service("Game", function($firebase, baseFbUrl, Compass, _, $analytics) {
     var gameModel = this;
 
     var gamesRef = new Firebase(baseFbUrl + "/games");
@@ -190,8 +190,14 @@ angular.module("sf.services.game", [
           }
         }
       });
-      _.each(_.uniq(wordsToAdd), function(word) {
-        wordsUsed.$add(word);
+      wordsUsed.$loaded(function() {
+        var uniqueWordsToAdd = _.uniq(wordsToAdd);
+        if (wordsUsed.length === 0 && uniqueWordsToAdd.length > 0) {
+          $analytics.eventTrack('Quill-Writer Story Word Used', { wordUsed : uniqueWordsToAdd[0] });
+        }
+        _.each(uniqueWordsToAdd, function(word) {
+          wordsUsed.$add(word);
+        });
       });
     }
   })
