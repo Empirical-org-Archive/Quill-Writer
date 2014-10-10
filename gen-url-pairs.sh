@@ -2,28 +2,28 @@
 
 URL="https://quill-writer.firebaseapp.com/#/"
 
-PROMPTS="1 2 3 4 5"
+PROMPTS="1 2 3 4 5 6"
 
 USERS="1 2"
-PAIRSNEEDED="50"
+PAIRSNEEDEDPERPROMPT="5"
+
 
 newRandomThing()
 {
-  echo "`od -vAn -N4 -tu4 < /dev/urandom | md5`"
+  echo "`od -vAn -N4 -tu4 < /dev/urandom | cksum | awk '{print $1}'`"
 }
 
 for p in $PROMPTS;
 do
-  echo "======================"
-  echo "= URLS for Prompt $p ="
-  echo "======================"
-  SESSION=`newRandomThing`
-  echo " Session ID: $SESSION"
-  echo " Players:"
-  for u in $USERS;
+  echo "ActivityPrompt $p"
+  for s in `seq 1 $PAIRSNEEDEDPERPROMPT`
   do
-    USER=`newRandomThing`
-    echo "     User ID: $USER"
-    echo "     $URL?uid=$USER&sid=$SESSION&activityPrompt=$p"
+    SESSION=`newRandomThing`
+    echo "Session $s"
+    for u in $USERS;
+    do
+      USER=`newRandomThing`
+      echo "$URL?uid=$USER&sid=$SESSION&activityPrompt=$p"
+    done
   done
 done
