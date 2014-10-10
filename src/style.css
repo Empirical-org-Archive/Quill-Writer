@@ -70,6 +70,11 @@ ul.no-points {
   margin-right: 20px;
 }
 
+.bottom-panel .row .btn.send {
+  background-color: #ec673b;
+  border-color: #ec673b;
+}
+
 .tooltip {
   min-width:350px;
   font-size: 16px;
