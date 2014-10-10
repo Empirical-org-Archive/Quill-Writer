@@ -5,6 +5,7 @@ URL="https://quill-writer.firebaseapp.com/#/"
 PROMPTS="1 2 3 4 5"
 
 USERS="1 2"
+PAIRSNEEDED="50"
 
 newRandomThing()
 {
@@ -13,12 +14,16 @@ newRandomThing()
 
 for p in $PROMPTS;
 do
-  echo "URLS for Prompt $p"
+  echo "======================"
+  echo "= URLS for Prompt $p ="
+  echo "======================"
   SESSION=`newRandomThing`
+  echo " Session ID: $SESSION"
+  echo " Players:"
   for u in $USERS;
   do
     USER=`newRandomThing`
-    echo "$URL?uid=$USER&sid=$SESSION&activityPrompt=$p"
+    echo "     User ID: $USER"
+    echo "     $URL?uid=$USER&sid=$SESSION&activityPrompt=$p"
   done
-  echo "========================"
 done
