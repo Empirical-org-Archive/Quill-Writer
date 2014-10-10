@@ -88,7 +88,7 @@
             "definition" : "give work to (someone) and pay them for it"
          }
       ],
-      "prompt" : "You were awakened one morning by a talking parrot. \"I know where a treasure is buried,\", it squawked..."
+      "prompt" : "You were awakened one morning by a talking parrot. \"I know where a treasure is buried,\" it squawked..."
    },
    "3" : {
       "wordList" : [
@@ -155,26 +155,54 @@
    "5" : {
       "wordList" : [
          {
-            "word" : "thwart",
-            "definition" : "oppose successfully; prevent from accomplishing a purpose"
+            "word" : "blossom",
+            "definition" : "(v) to produce flowers, to develop or open up"
          },
          {
-            "word" : "hinder",
-            "definition" : "prevented from doing, acting, or happening"
+            "word" : "collide",
+            "definition" : "(v) to strike against each other, to clash"
          },
          {
-            "word" : "morbid",
-            "definition" : "suggesting an unhealthy mental state or attitude; unwholesomely gloomy, sensitive, extreme, etc."
+            "word" : "constant",
+            "definition" : "(adj) never stopping, recurring"
          },
          {
-            "word" : "asunder",
-            "definition" : "into seperate parts; in or into pieces"
+            "word" : "content",
+            "definition" : "(adj) pleased with, accepting of"
          },
          {
-            "word" : "chastity",
-            "definition" : " the state of refraining from sexual intercourse that is regarded as contrary to morality or religion "
+            "word" : "distract",
+            "definition" : "(v) to draw attention to something else"
+         },
+         {
+            "word" : "drought",
+            "definition" : "(n) a long time without rain"
+         },
+         {
+            "word" : "foul",
+            "definition" : "(adj) unpleasant to the senses, dishonorable, against the rules of a game"
+         },
+         {
+            "word" : "noble",
+            "definition" : "(adj/n) of high birth or rank, good moral character"
+         },
+         {
+            "word" : "policy",
+            "definition" : "(n) a plan, set of rules, a written contract"
+         },
+         {
+            "word" : "quiver",
+            "definition" : "(n) a trembling motion (v) to tremble"
+         },
+         {
+            "word" : "slight",
+            "definition" : "(adj) small in size, not much"
+         },
+         {
+            "word" : "tidy",
+            "definition" : "(v) to put things in near or proper order"
          }
       ],
-      "prompt" : "Woolf claims that the particular social realities in which women live create distinctively female values and outlooks. Do you think this is a good thing or a bad thing?"
+      "prompt" : "You wake up in a garden full of elves and fairies. An elf begins to chase you...."
    }
 }
