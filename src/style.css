@@ -89,3 +89,8 @@ p.story {
   font-size: 18px;
   line-height: 2.5;
 }
+
+.well.story {
+  margin-right: -40px;
+  margin-left: -40px;
+}
