@@ -21,14 +21,10 @@
     </div>
   </div>
   <div class="col-md-offset-1 col-md-7">
-    <div class="well static-tutorial">
-      <p>You can use the past tense of verbs.</p>
-      <p>You can highlight for the definition.</p>
-    </div>
     <h2>Continue this story:</h2>
     <p>{{game.currentGame.prompt}}</p>
-    <div class="well">
-      <p>
+    <div class="well story">
+      <p class="story">
         <span ng-repeat='sentence in game.currentGame.sentences' ng-bind-html="sentence.entry">
       </p>
     </div>
@@ -50,6 +46,10 @@
           <p ng-show="game.hasFinishMessageToShow()">{{game.currentGame.finishMessageToShow}}</p>
         </div>
       </div>
+    </div>
+    <div class="well static-tutorial">
+      <p>You can use the past tense of verbs.</p>
+      <p>You can highlight for the definition.</p>
     </div>
   </div>
   <div class="col-md-2"></div>
