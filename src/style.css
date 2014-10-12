@@ -84,3 +84,8 @@ ul.no-points {
   min-width:350px;
   font-size: 16px;
 }
+
+p.story {
+  font-size: 18px;
+  line-height: 2.5;
+}
