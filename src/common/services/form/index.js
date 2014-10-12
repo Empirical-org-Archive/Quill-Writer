@@ -1,15 +1,15 @@
 var sfConstants = require('./../../constants');
-var compass = require('./../compass/');
+var empirical = require('./../empirical/');
 angular.module('sf.services.form', [
   sfConstants,
-  compass
+  empirical
 ])
 
-.service("Form", function(Compass) {
+.service("Form", function(Empirical) {
   var form = this;
 
   form.submit = function(f, cb) {
-    Compass.createActivity(f, function(err) {
+    Empirical.createActivity(f, function(err) {
       if (typeof cb === 'function') {
         cb(err);
       }

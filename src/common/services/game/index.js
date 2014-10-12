@@ -1,11 +1,11 @@
 var sfConstants = require('../../constants');
-var sfCompass = require('../compass');
+var sfEmpirical = require('../empirical');
 angular.module("sf.services.game", [
     sfConstants,
-    sfCompass,
+    sfEmpirical,
   ])
 
-  .service("Game", function($firebase, baseFbUrl, Compass, _, $analytics) {
+  .service("Game", function($firebase, baseFbUrl, Empirical, _, $analytics) {
     var gameModel = this;
 
     var gamesRef = new Firebase(baseFbUrl + "/games");
@@ -64,7 +64,7 @@ angular.module("sf.services.game", [
         } else if (length < 2) {
           makeNewUser(length)
         }
-        Compass.initializeGame($scope, gameUsers, currentUser);
+        Empirical.initializeGame($scope, gameUsers, currentUser);
       }).then(function() {
         $scope.users = gameUsers;
       });
