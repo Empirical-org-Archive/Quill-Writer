@@ -19,8 +19,8 @@
       }
     ],
     "prompt": "Team up with your partner to explain the watercycle in 4-7 sentences.",
-    "name": "name",
-    "description": "desc"
+    "name": "Watercycle Overview",
+    "description": "Two students write a passage together using the following words: evaporation, condensation, precipitation, and collection."
   },
   "4": {
     "wordList": [
@@ -29,7 +29,7 @@
         "definition": "the group of people who control and make decisions for a country, state, etc."
       },
       {
-        "word": "pesiticide",
+        "word": "pesticide",
         "definition": "a chemical that is used to kill animals or insects that damage plants or crops"
       },
       {
@@ -54,47 +54,47 @@
       }
     ],
     "prompt": "How do you think we might be taking risks with our health and the health of the human world by being part of the industrial food chain?",
-    "name": "name",
-    "description": "desc"
+    "name": "Omnivore's Dilemma",
+    "description": "Two students write a passage together using the following words: government, pesticide, hybrid, ecological, fossil fuel, calorie, policy."
   },
   "1": {
     "wordList": [
       {
-        "word": "Deliberate",
+        "word": "deliberate",
         "definition": "done consciously and intentionally"
       },
       {
-        "word": "Triumph",
+        "word": "triumph",
         "definition": "a great victory or achievement"
       },
       {
-        "word": "Numb",
+        "word": "numb",
         "definition": "deprived of the power of sensation"
       },
       {
-        "word": "Tether",
+        "word": "tether",
         "definition": "a rope or chain with which an animal is tied to restrict its movement"
       },
       {
-        "word": "Prod",
+        "word": "prod",
         "definition": "poke (someone) with a finger, foot, or pointed object"
       },
       {
-        "word": "Disclose",
+        "word": "disclose",
         "definition": "make (secret or new information) known"
       },
       {
-        "word": "Culprit",
+        "word": "culprit",
         "definition": "a person who is responsible for a crime or other misdeed"
       },
       {
-        "word": "Employed",
+        "word": "employ",
         "definition": "give work to (someone) and pay them for it"
       }
     ],
     "prompt": "You were awakened one morning by a talking parrot. \"I know where a treasure is buried,\" it squawked...",
-    "name": "name",
-    "description": "desc"
+    "name": "A Buried Treasure",
+    "description": "Two students write a passage together using the following words: deliberate, triumph, numb, tether, prod, disclose, culprit, and employ."
   },
   "3": {
     "wordList": [
@@ -132,35 +132,35 @@
       }
     ],
     "prompt": "We believe in human rights because...",
-    "name": "name",
-    "description": "desc"
+    "name": "Human Rights",
+    "description": "Two students write a passage together using the following words:"
   },
   "2": {
     "wordList": [
       {
-        "word": "Periphery",
+        "word": "periphery",
         "definition": "The outer limits or edge of an area"
       },
       {
-        "word": "Rucksack",
+        "word": "rucksack",
         "definition": "a backpack, often made of strong materials"
       },
       {
-        "word": "Dusk",
+        "word": "dusk",
         "definition": "The time right before night; the darker stage of twilight"
       },
       {
-        "word": "Slumber",
+        "word": "slumber",
         "definition": "Sleep"
       },
       {
-        "word": "Tremulous",
+        "word": "tremulous",
         "definition": "Nervous; shaking"
       }
     ],
-    "prompt": "The Boy Who Loved Words",
-    "name": "name",
-    "description": "desc"
+    "prompt": "After eating the last s'more, I decided to go to bed. That is when I first heard...",
+    "name": "The Woods at Night",
+    "description": "Two students write a passage together using the following words:"
   },
   "5": {
     "wordList": [
@@ -214,7 +214,7 @@
       }
     ],
     "prompt": "You wake up in a garden full of elves and fairies. An elf begins to chase you....",
-    "name": "name",
-    "description": "desc"
+    "name": "Ms. Wieland's Lesson",
+    "description": "Two students write a passage together using the following words:"
   }
 }
