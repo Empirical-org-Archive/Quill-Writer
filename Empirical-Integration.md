@@ -32,3 +32,18 @@ point is the module url.
 In addition to the vendor properties, which will be the data attribute
 you post, other parameters are required. They are outlined in the
 Empirical Docs [here](http://empirical-core.readme.io/v1.0/docs/activities).
+
+If you need to update different aspects of your app's particular
+activity, you can make `PATCH` requests with the particular attribute
+you need to update. If you are making an update to your vendor
+properties, the `data` attribute, you must update the whole object.
+
+For the example of a JavaScript application, you will more than likely
+want to serialize your `data` in JSON. This most likely holds true for
+other programming languages as well.
+
+####Example Vendor Properties
+
+```
+{"wordList":[{"word":"Hello","definition":"Hello is a word"},{"word":"Soda","definition":"Sugary fizzy drink"},{"word":"Ello","definition":"New social network that is free and won't sell your information"},{"word":"Gmail","definition":"Web Email program"},{"word":"Turtle","definition":"An amphibian that has a shell"}],"prompt":"Hey this is an example prompt","requirements":{"needed":"4"}}
+```
