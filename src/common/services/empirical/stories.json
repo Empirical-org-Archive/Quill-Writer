@@ -20,7 +20,7 @@
     ],
     "prompt": "Team up with your partner to explain the watercycle in 4-7 sentences.",
     "name": "Watercycle Overview",
-    "description": "Write about the watercycle using these words: evaporation, condensation, precipitation, and collection."
+    "description": "Two students write a passage together using the following words: evaporation, condensation, precipitation, and collection."
   },
   "4": {
     "wordList": [
@@ -55,12 +55,12 @@
     ],
     "prompt": "How do you think we might be taking risks with our health and the health of the human world by being part of the industrial food chain?",
     "name": "Omnivore's Dilemma",
-    "description": "desc"
+    "description": "Two students write a passage together using the following words: government, pesticide, hybrid, ecological, fossil fuel, calorie, policy."
   },
   "1": {
     "wordList": [
       {
-        "word": "Deliberate",
+        "word": "deliberate",
         "definition": "done consciously and intentionally"
       },
       {
@@ -94,7 +94,7 @@
     ],
     "prompt": "You were awakened one morning by a talking parrot. \"I know where a treasure is buried,\" it squawked...",
     "name": "A Buried Treasure",
-    "description": "desc"
+    "description": "Two students write a passage together using the following words: deliberate, triumph, numb, tether, prod, disclose, culprit, and employ."
   },
   "3": {
     "wordList": [
@@ -133,7 +133,7 @@
     ],
     "prompt": "We believe in human rights because...",
     "name": "Human Rights",
-    "description": "desc"
+    "description": "Two students write a passage together using the following words:"
   },
   "2": {
     "wordList": [
@@ -160,7 +160,7 @@
     ],
     "prompt": "After eating the last s'more, I decided to go to bed. That is when I first heard...",
     "name": "The Woods at Night",
-    "description": "desc"
+    "description": "Two students write a passage together using the following words:"
   },
   "5": {
     "wordList": [
@@ -214,7 +214,7 @@
       }
     ],
     "prompt": "You wake up in a garden full of elves and fairies. An elf begins to chase you....",
-    "name": "name",
-    "description": "desc"
+    "name": "Vocab list",
+    "description": "Two students write a passage together using the following words:"
   }
 }
