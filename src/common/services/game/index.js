@@ -94,6 +94,7 @@ angular.module("sf.services.game", [
     }
 
     gameModel.closeGame = function(gameId) {
+      $analytics.eventTrack('Quill-Writer Submit Story to Teacher');
       console.log("Close game %s", gameId);
     };
 
