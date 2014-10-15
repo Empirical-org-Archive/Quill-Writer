@@ -54,4 +54,20 @@ Empirical Core via cookies or perhaps a Query String Parameter on your form URL.
 
 ###Module URL
 
+The module URL is where students and other users of your application
+will use. The module URL is loaded from Quill by setting an iframe src
+to the URL you provide.
+
+We really need to figure out how we want to pass data from
+Empirical-Core to apps?
+
+I like the idea passing values around via cookies but I think we might
+run into third party cookie issues perhaps?
+
+The other option is append Query String parameters.
+
+Regardless of how we get the information, we would like to assume that
+your application can access the activity uid, the activity session uid,
+and the current user of the iframe, aka your application.
+
 
