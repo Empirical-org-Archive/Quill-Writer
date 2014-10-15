@@ -70,4 +70,15 @@ Regardless of how we get the information, we would like to assume that
 your application can access the activity uid, the activity session uid,
 and the current user of the iframe, aka your application.
 
+Once you have the required parameters you can make requests to the
+Empirical-Core.
+
+To get details about an activity make a `GET /activites/:uid` where uid
+is your activities unique identifier. The UID for now is know to the
+Quill-Writer developers. In the future we will be passed this
+information.
+
+In the future, we plan to provide a JavaScript Client Library, and an
+Angular wrapper that will provide a clean SDK for client applications.
+
 
