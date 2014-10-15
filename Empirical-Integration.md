@@ -47,3 +47,11 @@ other programming languages as well.
 ```
 {"wordList":[{"word":"Hello","definition":"Hello is a word"},{"word":"Soda","definition":"Sugary fizzy drink"},{"word":"Ello","definition":"New social network that is free and won't sell your information"},{"word":"Gmail","definition":"Web Email program"},{"word":"Turtle","definition":"An amphibian that has a shell"}],"prompt":"Hey this is an example prompt","requirements":{"needed":"4"}}
 ```
+
+If you look at the required data, [here](http://empirical-core.readme.io/v1.0/docs/activities) you
+won't have the `activity_classification_id` or the `topic_id`. These will need to be passed from
+Empirical Core via cookies or perhaps a Query String Parameter on your form URL.
+
+###Module URL
+
+
