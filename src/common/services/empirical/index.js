@@ -10,36 +10,30 @@ angular.module(moduleName, [
   .service(serviceName, function($http, $q, empiricalBaseURL) {
     var empirical = this;
 
-    var staticWords = require('./stories.json');
     var staticUIDs = require('./stories.uids.json');
 
     var currentActivity = null;
-
-    empirical.getStaticActivity = function(activityId) {
-      if (staticWords[activityId]) {
-        return staticWords[activityId];
-      } else {
-        console.log("Error: %s not found, using default activity", activityId);
-        return staticWords[1];
-      }
-    };
 
     empirical.getUserInformation = function(userId, cb) {
 
     };
 
+    empirical.getCurrentActivityData = function() {
+      return currentActivity.data;
+    }
+
     empirical.getWordList = function(activityId, cb) {
-      cb(empirical.getStaticActivity(activityId).wordList);
+      cb(JSON.parse(empirical.getCurrentActivityData().wordList));
     };
 
     empirical.getStoryRequirements = function(activityId, cb) {
-      var activity = empirical.getStaticActivity(activityId);
+      var activity = empirical.getCurrentActivityData();
       var wordsLength = activity.wordList.length;
       cb({needed: wordsLength < 6 ? wordsLength : 6});
     };
 
     empirical.getPrompt = function(activityId, cb) {
-      cb(empirical.getStaticActivity(activityId).prompt);
+      cb(empirical.getCurrentActivityData().prompt);
     };
 
     empirical.flagSentence = function(sentence, cb) {
@@ -51,7 +45,11 @@ angular.module(moduleName, [
     };
 
     empirical.mapUIDs = function(tryThisId) {
-
+      if (staticUIDs[tryThisId]) {
+        return staticUIDs[tryThisId];
+      } else {
+        return tryThisId;
+      }
     }
 
     empirical.initializeGame = function(game, users, currentUser) {
@@ -79,7 +77,7 @@ angular.module(moduleName, [
 
       $http.get(empiricalBaseURL + '/activities/' + activityUID)
       .success(function(data) {
-        currentActivity = data;
+        currentActivity = data.activity;
         activityPromise.resolve();
       })
       .error(function(data) {
