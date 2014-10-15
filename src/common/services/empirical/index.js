@@ -7,10 +7,13 @@ angular.module(moduleName, [
     sfConstants
   ])
 
-  .service(serviceName, function($http, empiricalBaseURL) {
+  .service(serviceName, function($http, $q, empiricalBaseURL) {
     var empirical = this;
 
     var staticWords = require('./stories.json');
+    var staticUIDs = require('./stories.uids.json');
+
+    var currentActivity = null;
 
     empirical.getStaticActivity = function(activityId) {
       if (staticWords[activityId]) {
@@ -47,23 +50,44 @@ angular.module(moduleName, [
 
     };
 
+    empirical.mapUIDs = function(tryThisId) {
+
+    }
+
     empirical.initializeGame = function(game, users, currentUser) {
       var sessionId = currentUser.activityPrompt;
+      var activityUID = empirical.mapUIDs(sessionId);
+      empirical.loadActivity(activityUID)
+      .then(function() {
+        empirical.getPrompt(sessionId, function(p) {
+          game.prompt = p;
+        });
 
-      empirical.getPrompt(sessionId, function(p) {
-        game.prompt = p;
-      });
+        empirical.getWordList(sessionId, function(wordList) {
+          game.wordList = wordList;
+        });
 
-      empirical.getWordList(sessionId, function(wordList) {
-        game.wordList = wordList;
-      });
-
-      empirical.getStoryRequirements(sessionId, function(requirements) {
-        game.requirements = requirements;
+        empirical.getStoryRequirements(sessionId, function(requirements) {
+          game.requirements = requirements;
+        });
       });
 
     };
 
+    empirical.loadActivity = function(activityUID) {
+      var activityPromise = $q.defer();
+
+      $http.get(empiricalBaseURL + '/activities/' + activityUID)
+      .success(function(data) {
+        currentActivity = data;
+        activityPromise.resolve();
+      })
+      .error(function(data) {
+        activityPromise.reject(data);
+      });
+
+      return activityPromise.promise;
+    };
     //Activity Admin Things
     empirical.createActivity = function(activity, cb) {
       console.log("submitting this activity %s", JSON.stringify(activity));
