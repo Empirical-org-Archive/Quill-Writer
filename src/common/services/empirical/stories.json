@@ -11,7 +11,7 @@
       },
       {
         "word": "precipitation",
-        "definition": "any product of the condensation of atmospheric water vapour that falls under gravity"
+        "definition": "any product of the condensation of atmospheric water vapor that falls under gravity"
       },
       {
         "word": "collection",
@@ -55,7 +55,7 @@
     ],
     "prompt": "How do you think we might be taking risks with our health and the health of the human world by being part of the industrial food chain?",
     "name": "Omnivore's Dilemma",
-    "description": "Two students write a passage together using the following words: government, pesticide, hybrid, ecological, fossil fuel, calorie, policy."
+    "description": "Two students write a passage together using the following words: government, pesticide, hybrid, ecological, fossil fuel, calorie, and policy."
   },
   "1": {
     "wordList": [
@@ -133,7 +133,7 @@
     ],
     "prompt": "We believe in human rights because...",
     "name": "Human Rights",
-    "description": "Two students write a passage together using the following words:"
+    "description": "Two students write a passage together using the following words: fundamental, inalienable, charter, reaffirm, dignity, uphold, promote, and protect."
   },
   "2": {
     "wordList": [
@@ -160,7 +160,7 @@
     ],
     "prompt": "After eating the last s'more, I decided to go to bed. That is when I first heard...",
     "name": "The Woods at Night",
-    "description": "Two students write a passage together using the following words:"
+    "description": "Two students write a passage together using the following words: periphery, rucksack, dusk, slumber, and tremulous."
   },
   "5": {
     "wordList": [
@@ -215,6 +215,6 @@
     ],
     "prompt": "You wake up in a garden full of elves and fairies. An elf begins to chase you....",
     "name": "Ms. Wieland's Lesson",
-    "description": "Two students write a passage together using the following words:"
+    "description": "Two students write a passage together using the following words: blossom, collide, constant, content, distract, drought, foul, noble, policy, quiver, slight, tidy."
   }
 }
