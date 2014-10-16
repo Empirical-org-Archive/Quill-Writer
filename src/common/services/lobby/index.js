@@ -1,5 +1,6 @@
 var moduleName = 'sf.services.lobby';
 var serviceName = 'Lobby';
+var home = require('./../../../app/home/');
 
 var sfConstants = require('../../constants');
 
@@ -7,7 +8,7 @@ angular.module(moduleName, [
   sfConstants,
 ])
 
-.service(serviceName, function($firebase, baseFbUrl, $analytics, _) {
+.service(serviceName, function($firebase, baseFbUrl, Empirical, $analytics, _, $state) {
   var lobbyService = this;
   var lobbyRef = new Firebase(baseFbUrl + "/lobby");
   lobbyService.GROUP_SIZE = 2;
@@ -62,6 +63,11 @@ angular.module(moduleName, [
 
   lobbyService.startGameFor = function(group, student, lobbyId) {
     console.log("Starting game for %s %s %s", group.$id, student, lobbyId);
+    $state.go(home, {
+      uid: student.uuid,
+      sid: group.$id,
+      activityPrompt: group.activityPrompt
+    });
   };
 
   lobbyService.addStudentToGroup = function(student, lobbyId) {
@@ -82,7 +88,8 @@ angular.module(moduleName, [
         //need to make a new group with this student in it
         groups.$add({
           members: [student],
-          full: false
+          full: false,
+          activityPrompt: Empirical.getRandomPromptUID()
         }).then(function(ref) {
           lobbyService.localGroupWatcher(ref.name(), student, lobbyId);
         });
