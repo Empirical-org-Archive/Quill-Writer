@@ -27,6 +27,7 @@ angular.module("sf.services.game", [
         currentUser.name = "Player " + String(length + 1);
         currentUser.done = false;
         currentUser.isTheirTurn = currentUser.name === "Player 1";
+        currentUser.leader = currentUser.name === "Player 1";
         User.localUser = currentUser.name;
         gameUsers.$add(currentUser).then(function(newUserRef) {
           gameUsers.$loaded(function() {
@@ -93,8 +94,11 @@ angular.module("sf.services.game", [
       return $firebase(gameModel.getRef(gameId).child("sentences")).$asArray();
     }
 
-    gameModel.closeGame = function(gameId) {
-      $analytics.eventTrack('Quill-Writer Submit Story to Teacher');
+    gameModel.closeGame = function(gameId, currentUser) {
+      console.log(currentUser);
+      if (currentUser.leader) {
+        $analytics.eventTrack('Quill-Writer Submit Story to Teacher');
+      }
       console.log("Close game %s", gameId);
     };
 
@@ -168,7 +172,7 @@ angular.module("sf.services.game", [
                   user.finishMessageToShow.message = "You have completed this story!";
                   users.$save(user);
                 });
-                gameModel.closeGame();
+                gameModel.closeGame(gameId, currentUser);
               }
             });
           });
