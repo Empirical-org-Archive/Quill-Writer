@@ -7,7 +7,7 @@ angular.module(moduleName, [
     sfConstants
   ])
 
-  .service(serviceName, function($http, $q, empiricalBaseURL) {
+  .service(serviceName, function($http, $q, empiricalBaseURL, _) {
     var empirical = this;
 
     var staticUIDs = require('./stories.uids.json');
@@ -90,6 +90,10 @@ angular.module(moduleName, [
     empirical.createActivity = function(activity, cb) {
       console.log("submitting this activity %s", JSON.stringify(activity));
       cb();
+    };
+
+    empirical.getRandomPromptUID = function() {
+      return staticUIDs[_.random(1, _.size(staticUIDs))];
     };
 
   })
