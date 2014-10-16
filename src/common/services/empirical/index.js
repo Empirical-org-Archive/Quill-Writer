@@ -7,36 +7,33 @@ angular.module(moduleName, [
     sfConstants
   ])
 
-  .service(serviceName, function($http, empiricalBaseURL) {
+  .service(serviceName, function($http, $q, empiricalBaseURL) {
     var empirical = this;
 
-    var staticWords = require('./stories.json');
+    var staticUIDs = require('./stories.uids.json');
 
-    empirical.getStaticActivity = function(activityId) {
-      if (staticWords[activityId]) {
-        return staticWords[activityId];
-      } else {
-        console.log("Error: %s not found, using default activity", activityId);
-        return staticWords[1];
-      }
-    };
+    var currentActivity = null;
 
     empirical.getUserInformation = function(userId, cb) {
 
     };
 
+    empirical.getCurrentActivityData = function() {
+      return currentActivity.data;
+    }
+
     empirical.getWordList = function(activityId, cb) {
-      cb(empirical.getStaticActivity(activityId).wordList);
+      cb(JSON.parse(empirical.getCurrentActivityData().wordList));
     };
 
     empirical.getStoryRequirements = function(activityId, cb) {
-      var activity = empirical.getStaticActivity(activityId);
+      var activity = empirical.getCurrentActivityData();
       var wordsLength = activity.wordList.length;
       cb({needed: wordsLength < 6 ? wordsLength : 6});
     };
 
     empirical.getPrompt = function(activityId, cb) {
-      cb(empirical.getStaticActivity(activityId).prompt);
+      cb(empirical.getCurrentActivityData().prompt);
     };
 
     empirical.flagSentence = function(sentence, cb) {
@@ -47,23 +44,48 @@ angular.module(moduleName, [
 
     };
 
+    empirical.mapUIDs = function(tryThisId) {
+      if (staticUIDs[tryThisId]) {
+        return staticUIDs[tryThisId];
+      } else {
+        return tryThisId;
+      }
+    }
+
     empirical.initializeGame = function(game, users, currentUser) {
       var sessionId = currentUser.activityPrompt;
+      var activityUID = empirical.mapUIDs(sessionId);
+      empirical.loadActivity(activityUID)
+      .then(function() {
+        empirical.getPrompt(sessionId, function(p) {
+          game.prompt = p;
+        });
 
-      empirical.getPrompt(sessionId, function(p) {
-        game.prompt = p;
-      });
+        empirical.getWordList(sessionId, function(wordList) {
+          game.wordList = wordList;
+        });
 
-      empirical.getWordList(sessionId, function(wordList) {
-        game.wordList = wordList;
-      });
-
-      empirical.getStoryRequirements(sessionId, function(requirements) {
-        game.requirements = requirements;
+        empirical.getStoryRequirements(sessionId, function(requirements) {
+          game.requirements = requirements;
+        });
       });
 
     };
 
+    empirical.loadActivity = function(activityUID) {
+      var activityPromise = $q.defer();
+
+      $http.get(empiricalBaseURL + '/activities/' + activityUID)
+      .success(function(data) {
+        currentActivity = data.activity;
+        activityPromise.resolve();
+      })
+      .error(function(data) {
+        activityPromise.reject(data);
+      });
+
+      return activityPromise.promise;
+    };
     //Activity Admin Things
     empirical.createActivity = function(activity, cb) {
       console.log("submitting this activity %s", JSON.stringify(activity));
