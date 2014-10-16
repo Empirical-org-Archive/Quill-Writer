@@ -1,6 +1,7 @@
 var moduleName = 'sf.lobby';
 var fs = require('fs');
 var home = require('./../home');
+var lobbyService = require('./../../common/services/lobby/');
 
 angular.module(moduleName, [
   'ui.router'
@@ -19,7 +20,7 @@ angular.module(moduleName, [
     });
 })
 
-.controller('LobbyCtrl', function($state) {
+.controller('LobbyCtrl', function($state, Lobby) {
   var lobby = this;
   var lobbyId = $state.params.id;
   if (!lobbyId) {
@@ -28,6 +29,7 @@ angular.module(moduleName, [
   } else {
     lobby.id = lobbyId;
   }
+  Lobby.connectToLobby(lobby);
   return lobby;
 });
 
