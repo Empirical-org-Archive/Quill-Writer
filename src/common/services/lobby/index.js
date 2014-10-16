@@ -54,20 +54,26 @@ angular.module(moduleName, [
     var group = $firebase(groupRef).$asObject();
     group.$watch(function() {
       if (group.full) {
-        lobbyService.startGameFor(group, student, lobbyId);
+        lobbyService.startGameFor($firebase(groupsRef), group, student, lobbyId);
       } else {
         console.log('Group %s not full yet!', groupId);
       }
     });
   };
 
-  lobbyService.startGameFor = function(group, student, lobbyId) {
+  lobbyService.startGameFor = function(groups, group, student, lobbyId) {
     console.log("Starting game for %s %s %s", group.$id, student, lobbyId);
     $state.go(home, {
       uid: student.uuid,
       sid: group.$id,
       activityPrompt: group.activityPrompt
     });
+    if (student.leader) {
+      console.log('Student is the leader. Doing leader functions');
+      groups.$remove(group.$id).then(function(ref) {
+        console.log("Leader removed %s", ref.name());
+      });
+    }
   };
 
   lobbyService.addStudentToGroup = function(student, lobbyId) {
@@ -86,6 +92,7 @@ angular.module(moduleName, [
         }, 200);
       } else {
         //need to make a new group with this student in it
+        student.leader = true;
         groups.$add({
           members: [student],
           full: false,
