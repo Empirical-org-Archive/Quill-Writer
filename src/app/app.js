@@ -1,6 +1,7 @@
 var sfHome = require('./home/')
 var sfGame = require('./game/')
 var sfForm = require('./form/')
+var sfLobby = require('./lobby/');
 var sfCommon = require('./../common/');
 var sfConstants = require('./../common/constants');
 
@@ -9,6 +10,7 @@ angular.module('stories-with-friends', [
     // features
     sfHome,
     sfGame,
+    sfLobby,
 
     // admin features
     sfForm,
@@ -33,7 +35,8 @@ angular.module('stories-with-friends', [
     'underscore',
     'LocalStorageModule',
     'angulartics',
-    'angulartics.mixpanel'
+    'angulartics.mixpanel',
+    'uuid4'
   ])
 
   .config(function($stateProvider, $urlRouterProvider) {
