@@ -20,16 +20,19 @@ angular.module(moduleName, [
     });
 })
 
-.controller('LobbyCtrl', function($state, Lobby) {
+.controller('LobbyCtrl', function($state, $scope, Lobby) {
   var lobby = this;
   var lobbyId = $state.params.id;
   if (!lobbyId) {
     $state.go(home);
     return
-  } else {
-    lobby.id = lobbyId;
   }
-  Lobby.connectToLobby(lobby);
+  lobby.id = lobbyId;
+  lobby.room = Lobby.connectToLobby($scope, lobbyId);
+  lobby.localStudent = null;
+  lobby.addStudentToRoom = function() {
+    Lobby.addStudentToRoom(lobby.localStudent, lobbyId);
+  };
   return lobby;
 });
 

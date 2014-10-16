@@ -10,10 +10,10 @@ angular.module(moduleName, [
 .service(serviceName, function($firebase, baseFbUrl, $analytics) {
   var lobbyService = this;
 
-  var lobbyRef = new Firebase(baseFbUrl, "/lobby");
+  var lobbyRef = new Firebase(baseFbUrl + "/lobby");
 
   lobbyService.getRoomRef = function(lobbyId) {
-    return lobbyRef.child(lobbyId);
+    return lobbyRef.child(String(lobbyId));
   };
 
   lobbyService.getRoom = function(roomRef) {
@@ -26,8 +26,8 @@ angular.module(moduleName, [
     return roomMembers;
   };
 
-  lobbyService.connectToLobby = function($scope, lobby) {
-    var roomMembers = lobbyService.getRoomMembers(lobbyService.getRoomRef(lobby.id));
+  lobbyService.connectToLobby = function($scope, lobbyId) {
+    var roomMembers = lobbyService.getRoomMembers(lobbyService.getRoomRef(lobbyId));
     $scope.members = roomMembers;
     return $scope;
   };
@@ -36,9 +36,9 @@ angular.module(moduleName, [
 
   };
 
-  lobbyService.addUserIdToRoom = function(id, lobby) {
-    var roomMembers = lobbyService.getRoomMembers(lobbyService.getRoomRef(lobby.id));
-    roomMembers.$add(id);
+  lobbyService.addStudentToRoom = function(student, lobbyId) {
+    var roomMembers = lobbyService.getRoomMembers(lobbyService.getRoomRef(lobbyId));
+    roomMembers.$add(student);
   }
 });
 

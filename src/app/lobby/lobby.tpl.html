@@ -1,1 +1,14 @@
 <h2>Lobby {{lobby.id}}</h2>
+
+<h3>Lobby Members</h3>
+
+<ul>
+  <li ng-repeat='member in lobby.room.members'>{{member}}</li>
+</ul>
+
+<form ng-submit="lobby.addStudentToRoom()">
+  <label for="studentName">Your name</label>
+  <input ng-model="lobby.localStudent.name" type="text" id="studentName"></input>
+  <button type="button" class="btn btn-primary send" ng-click="lobby.addStudentToRoom()">Join Lobby {{lobby.id}}</button>
+</form>
+
