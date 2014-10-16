@@ -7,10 +7,10 @@ angular.module(moduleName, [
   sfConstants,
 ])
 
-.service(serviceName, function($firebase, baseFbUrl, $analytics) {
+.service(serviceName, function($firebase, baseFbUrl, $analytics, _) {
   var lobbyService = this;
-
   var lobbyRef = new Firebase(baseFbUrl + "/lobby");
+  lobbyService.GROUP_SIZE = 2;
 
   lobbyService.getRoomRef = function(lobbyId) {
     return lobbyRef.child(String(lobbyId));
@@ -32,14 +32,40 @@ angular.module(moduleName, [
     return $scope;
   };
 
-  lobbyService._intializeListeners = function() {
-
-  };
-
   lobbyService.addStudentToRoom = function(student, lobbyId) {
     var roomMembers = lobbyService.getRoomMembers(lobbyService.getRoomRef(lobbyId));
     roomMembers.$add(student);
-  }
+    lobbyService.addStudentToGroup(student, lobbyId);
+  };
+
+  lobbyService.getGroupsRef = function(roomRef) {
+    return roomRef.child("groups");
+  };
+
+  lobbyService.getGroups = function(roomRef) {
+    return $firebase(lobbyService.getGroupsRef(roomRef)).$asArray();
+  };
+
+  lobbyService.addStudentToGroup = function(student, lobbyId) {
+    var roomRef = lobbyService.getRoomRef(lobbyId);
+    var groups = lobbyService.getGroups(roomRef);
+    groups.$loaded().then(function(list) {
+      var slotAvailable = _.findWhere(list, {full : false});
+      if (slotAvailable) {
+        slotAvailable.members.push(student);
+        if (slotAvailable.members.length >= lobbyService.GROUP_SIZE) {
+          slotAvailable.full = true;
+        }
+        groups.$save(slotAvailable);
+      } else {
+        //need to make a new group with this student in it
+        groups.$add({
+          members: [student],
+          full: false
+        });
+      }
+    });
+  };
 });
 
 module.exports = moduleName;
