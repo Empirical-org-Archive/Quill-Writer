@@ -48,6 +48,20 @@ angular.module(moduleName, [
 
   lobbyService.localGroupWatcher = function(groupId, student, lobbyId) {
     console.log("Registering with the local group watcher with %s %s %s", groupId, student, lobbyId);
+    var groupsRef = lobbyService.getGroupsRef(lobbyService.getRoomRef(lobbyId));
+    var groupRef = groupsRef.child(groupId);
+    var group = $firebase(groupRef).$asObject();
+    group.$watch(function() {
+      if (group.full) {
+        lobbyService.startGameFor(group, student, lobbyId);
+      } else {
+        console.log('Group %s not full yet!', groupId);
+      }
+    });
+  };
+
+  lobbyService.startGameFor = function(group, student, lobbyId) {
+    console.log("Starting game for %s %s %s", group.$id, student, lobbyId);
   };
 
   lobbyService.addStudentToGroup = function(student, lobbyId) {
@@ -60,8 +74,10 @@ angular.module(moduleName, [
         if (slotAvailable.members.length >= lobbyService.GROUP_SIZE) {
           slotAvailable.full = true;
         }
-        groups.$save(slotAvailable);
         lobbyService.localGroupWatcher(slotAvailable.$id, student, lobbyId);
+        setTimeout(function() {
+          groups.$save(slotAvailable);
+        }, 200);
       } else {
         //need to make a new group with this student in it
         groups.$add({
