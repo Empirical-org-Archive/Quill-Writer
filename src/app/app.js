@@ -35,7 +35,8 @@ angular.module('stories-with-friends', [
     'underscore',
     'LocalStorageModule',
     'angulartics',
-    'angulartics.mixpanel'
+    'angulartics.mixpanel',
+    'uuid4'
   ])
 
   .config(function($stateProvider, $urlRouterProvider) {

@@ -20,7 +20,7 @@ angular.module(moduleName, [
     });
 })
 
-.controller('LobbyCtrl', function($state, $scope, Lobby) {
+.controller('LobbyCtrl', function($state, $scope, Lobby, uuid4) {
   var lobby = this;
   var lobbyId = $state.params.id;
   if (!lobbyId) {
@@ -31,7 +31,9 @@ angular.module(moduleName, [
   lobby.room = Lobby.connectToLobby($scope, lobbyId);
   lobby.localStudent = null;
   lobby.addStudentToRoom = function() {
+    lobby.localStudent.uuid = uuid4.generate();
     Lobby.addStudentToRoom(lobby.localStudent, lobbyId);
+    lobby.localStudent.added = true;
   };
   return lobby;
 });
