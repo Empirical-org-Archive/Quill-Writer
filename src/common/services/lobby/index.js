@@ -46,6 +46,10 @@ angular.module(moduleName, [
     return $firebase(lobbyService.getGroupsRef(roomRef)).$asArray();
   };
 
+  lobbyService.localGroupWatcher = function(groupId, student, lobbyId) {
+    console.log("Registering with the local group watcher with %s %s %s", groupId, student, lobbyId);
+  };
+
   lobbyService.addStudentToGroup = function(student, lobbyId) {
     var roomRef = lobbyService.getRoomRef(lobbyId);
     var groups = lobbyService.getGroups(roomRef);
@@ -57,11 +61,14 @@ angular.module(moduleName, [
           slotAvailable.full = true;
         }
         groups.$save(slotAvailable);
+        lobbyService.localGroupWatcher(slotAvailable.$id, student, lobbyId);
       } else {
         //need to make a new group with this student in it
         groups.$add({
           members: [student],
           full: false
+        }).then(function(ref) {
+          lobbyService.localGroupWatcher(ref.name(), student, lobbyId);
         });
       }
     });
