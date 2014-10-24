@@ -1,6 +1,9 @@
 Empirical Core API Notes
 ------------------------
 
+#Please see our [readme.io
+page](http://empirical-core.readme.io/v1.0/docs/quill-apps-empirical-core-integration-with-quill-w) for updated documentation
+
 These notes serve as a guide for interacting with the Empirical-Core API
 from a App perspective.
 
