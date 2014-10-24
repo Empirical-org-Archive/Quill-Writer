@@ -1,5 +1,7 @@
 # Quill Writer
 
+# Please see our [readme.io page](http://empirical-core.readme.io/v1.0/docs/quill-writer) for updated docs
+
 Quill Writer - Learn by Writing Together
 =======
 - **Getting Started:** [Start here with this doc.](https://github.com/empirical-org/Documentation/tree/master/Getting-Started) 
