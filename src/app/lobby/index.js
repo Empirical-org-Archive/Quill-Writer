@@ -10,7 +10,7 @@ angular.module(moduleName, [
 .config(function($stateProvider) {
   $stateProvider
     .state(moduleName, {
-      url: '/lobby?id',
+      url: '/lobby?id&name&userName',
       views: {
         'content@': {
           template: fs.readFileSync(__dirname + '/lobby.tpl.html'),

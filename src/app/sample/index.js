@@ -30,6 +30,11 @@ angular.module('sf.sample', [
       User.setCurrentUser(user);
       $state.go('sf.game');
     };
+
+    sample.next = function(p, un) {
+      p.id = p.name;
+      $state.go('sf.lobby', {id: p.id, name: p.name, userName: un});
+    };
   })
 
 ;
