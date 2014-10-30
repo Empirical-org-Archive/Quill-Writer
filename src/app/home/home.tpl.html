@@ -1,18 +1,19 @@
 <div class="jumbotron">
-  <h1>Welcome to <strong>Quill Writer</strong></h1>
+  <h1>Welcome to Quill Writer</h1>
+  <p>Quill Writer is a cooperative writing game. Two students will write
+  a passage  together using a shared list of story words.</p>
+
+  <div class="row text-center">
+    <p class="italic">The Quill Writer teams have created 10 activities for new users.</p>
+    <button type="button" class="btn btn-primary send" ng-click="home.trySampleActivity()">Try a Sample Activity</button>
+  </div>
+
+  <div class="row text-center">
+    <p class="italic">Teachers, create your own activities and then share the links with your students</p>
+    <button type="button" class="btn btn-primary send" ng-click="home.createNewActivity()">Create a New Activity</button>
+  </div>
+
+
+
 </div>
 
-<div class="row">
-  <div class="col-md-12 text-center">
-      <h4>Please type in your uid and sid, and then enter the game to wait for your partner.</h4><br>
-    <div class="col-xs-4 col-xs-offset-4">
-      <form name="form" class="css-form" novalidate>
-        <input type="text" class="form-control input-lg" ng-model='home.user.uid' placeholder='uid' required>
-        <input type="text" class="form-control input-lg" ng-model='home.user.sid' placeholder='sid' required>
-        <input type="text" class="form-control input-lg" ng-model='home.user.activityPrompt' placeholder='Activity Prompt' required>
-        <br>
-        <button class="btn btn-primary btn-lg" role="button" ng-click='home.setUser(home.user)' ng-disabled="form.$invalid">Enter Game</button>
-        </form>
-    </div>
-  </div>
-</div>
