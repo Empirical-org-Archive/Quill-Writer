@@ -23,11 +23,13 @@ angular.module(moduleName, [
 .controller('LobbyCtrl', function($state, $scope, Lobby, uuid4) {
   var lobby = this;
   var lobbyId = $state.params.id;
+  var lobbyName = $state.params.name;
   if (!lobbyId) {
     $state.go(home);
     return
   }
   lobby.id = lobbyId;
+  lobby.name = lobbyName;
   lobby.room = Lobby.connectToLobby($scope, lobbyId);
   lobby.localStudent = {};
 

@@ -96,7 +96,7 @@ angular.module(moduleName, [
         groups.$add({
           members: [student],
           full: false,
-          activityPrompt: Empirical.getRandomPromptUID()
+          activityPrompt: lobbyId
         }).then(function(ref) {
           lobbyService.localGroupWatcher(ref.name(), student, lobbyId);
         });

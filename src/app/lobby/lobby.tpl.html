@@ -11,7 +11,7 @@
   <input ng-model="lobby.localStudent.name" type="text" id="studentName"></input>
   <button type="button" class="btn btn-primary send" ng-click="lobby.addStudentToRoom()"
     ng-disabled="lobby.localStudent.added"
-    >Join Lobby {{lobby.id}}</button>
+    >Join Lobby {{lobby.name}}</button>
   <p>{{lobby.message}}</p>
 </form>
 
