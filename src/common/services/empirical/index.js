@@ -7,7 +7,7 @@ angular.module(moduleName, [
     sfConstants
   ])
 
-  .service(serviceName, function($http, $q, empiricalBaseURL, _) {
+  .service(serviceName, function($http, $q, $firebase, baseFbUrl, empiricalBaseURL, _) {
     var empirical = this;
 
     var staticUIDs = require('./stories.uids.json');
@@ -68,20 +68,26 @@ angular.module(moduleName, [
         empirical.getStoryRequirements(sessionId, function(requirements) {
           game.requirements = requirements;
         });
+      }, function(err){
+        alert(err);
       });
 
     };
 
+    var activitiesRef = new Firebase(baseFbUrl + "/activities");
+
     empirical.loadActivity = function(activityUID) {
       var activityPromise = $q.defer();
 
-      $http.get(empiricalBaseURL + '/activities/' + activityUID)
-      .success(function(data) {
-        currentActivity = data.activity;
-        activityPromise.resolve();
-      })
-      .error(function(data) {
-        activityPromise.reject(data);
+      var activity = $firebase(activitiesRef.child(activityUID)).$asObject();
+
+      activity.$loaded().then(function(a) {
+        if (a.prompt) {
+          currentActivity = a;
+          activityPromise.resolve();
+        } else {
+          activityPromise.reject(new Error("Activity UID didn't exist"));
+        }
       });
 
       return activityPromise.promise;
