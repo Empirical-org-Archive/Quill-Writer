@@ -106,6 +106,10 @@ angular.module(moduleName, [
       return staticUIDs[_.random(1, _.size(staticUIDs))];
     };
 
+    empirical.getAvailablePrompts = function() {
+      return $firebase(activitiesRef).$asArray();
+    };
+
   })
 
 ;
