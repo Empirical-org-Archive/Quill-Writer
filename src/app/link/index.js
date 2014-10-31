@@ -19,16 +19,21 @@ angular.module('sf.link', [
       });
   })
 
-  .controller('LinkCtrl', function($state, User, Empirical, _){
+  .controller('LinkCtrl', function($state, User, Empirical, _, uuid4){
     var link = this;
     var id = $state.params.id;
     var name = $state.params.name;
     var userName = $state.params.userName;
 
+    var sid = uuid4.generate();
+
     Empirical.getAvailablePrompts().$loaded().then(function(prompts) {
       prompts = _.each(prompts, function(p) {
         if (p.$id === id) {
           link.prompt = p;
+          if (!link.prompt.name) {
+            link.prompt.name = name;
+          }
           if (typeof link.prompt.wordList === 'string') {
             link.prompt.wordList = JSON.parse(link.prompt.wordList);
           }
@@ -45,7 +50,12 @@ angular.module('sf.link', [
       });
     });
 
-    link.next = function(uid, sid, activityUID) {
+    link.next = function() {
+      var uid = uuid4.generate();
+      link.stateChange(uid, sid, id);
+    }
+
+    link.stateChange = function(uid, sid, activityUID) {
       $state.go('sf.game', {uid: uid, sid: sid, activityPrompt: activityUID});
     };
   })
