@@ -29,12 +29,19 @@ angular.module(moduleName, [
   }
   lobby.id = lobbyId;
   lobby.room = Lobby.connectToLobby($scope, lobbyId);
-  lobby.localStudent = null;
+  lobby.localStudent = {};
+
   lobby.addStudentToRoom = function() {
     lobby.localStudent.uuid = uuid4.generate();
     Lobby.addStudentToRoom(lobby.localStudent, lobbyId);
     lobby.localStudent.added = true;
   };
+
+  if ($state.params.userName) {
+    lobby.localStudent.name = $state.params.userName;
+    lobby.addStudentToRoom();
+    lobby.message = "Thanks " + lobby.localStudent.name + ". You will be joined by your partner soon.";
+  }
   return lobby;
 });
 
