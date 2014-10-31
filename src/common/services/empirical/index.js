@@ -19,11 +19,15 @@ angular.module(moduleName, [
     };
 
     empirical.getCurrentActivityData = function() {
-      return currentActivity.data;
+      return currentActivity;
     }
 
     empirical.getWordList = function(activityId, cb) {
-      cb(JSON.parse(empirical.getCurrentActivityData().wordList));
+      var wl = empirical.getCurrentActivityData().wordList;
+      if (typeof wl === "string") {
+        wl = JSON.parse(wl);
+      }
+      cb(wl);
     };
 
     empirical.getStoryRequirements = function(activityId, cb) {
@@ -86,7 +90,7 @@ angular.module(moduleName, [
           currentActivity = a;
           activityPromise.resolve();
         } else {
-          activityPromise.reject(new Error("Activity UID didn't exist"));
+          activityPromise.reject(new Error("Activity UID " + activityUID + " didn't exist"));
         }
       });
 
