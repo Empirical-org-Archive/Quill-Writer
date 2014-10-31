@@ -9,7 +9,7 @@ angular.module('sf.link', [
   .config(function($stateProvider) {
     $stateProvider
       .state('sf.link', {
-        url: '/link',
+        url: '/link?id&name&userName',
         views: {
           'content@': {
             template: fs.readFileSync(__dirname + '/link.tpl.html'),
@@ -21,21 +21,32 @@ angular.module('sf.link', [
 
   .controller('LinkCtrl', function($state, User, Empirical, _){
     var link = this;
+    var id = $state.params.id;
+    var name = $state.params.name;
+    var userName = $state.params.userName;
 
     Empirical.getAvailablePrompts().$loaded().then(function(prompts) {
       prompts = _.each(prompts, function(p) {
-        p.id = p.$id;
+        if (p.$id === id) {
+          link.prompt = p;
+          if (typeof link.prompt.wordList === 'string') {
+            link.prompt.wordList = JSON.parse(link.prompt.wordList);
+          }
+          link.wordList = "";
+          _.each(link.prompt.wordList, function(w) {
+            if (link.wordList !== "") {
+              link.wordList = link.wordList + ", " + w.word + "";
+            } else {
+              link.wordList = link.wordList + w.word;
+            }
+          });
+          link.wordList = link.wordList + ".";
+        }
       });
-      link.availablePrompts = prompts;
     });
 
-    link.setUser = function(user) {
-      User.setCurrentUser(user);
-      $state.go('sf.game');
-    };
-
-    link.next = function(p, un) {
-      $state.go('sf.lobby', {id: p.id, name: p.name, userName: un});
+    link.next = function(uid, sid, activityUID) {
+      $state.go('sf.game', {uid: uid, sid: sid, activityPrompt: activityUID});
     };
   })
 

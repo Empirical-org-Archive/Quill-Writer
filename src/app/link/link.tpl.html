@@ -3,17 +3,15 @@
   <p>Quill Writer is a cooperative writing game. Two students will write
   a passage  together using a shared list of story words.</p>
 
-  <div class="row text-center">
-    <p>Select a sample activity</p>
-    <select ng-model="sample.thePrompt" ng-options="prompt.name for prompt in sample.availablePrompts"></select>
-    <br/>
-    <input placeholder="Your name" ng-model="sample.userName" type=text"></input>
-    <br/>
-    <button type="button" class="btn btn-primary send" ng-click="sample.next(sample.thePrompt, sample.userName)">Next</button>
-    <p class="italic">If your teacher has created an activity, ask your teacher to share the link.</p>
+  <div class="row">
+    <div class="row">
+      <h2>Your Prompt</h2>
+      <h3>{{link.prompt.name}}</h3>
+      <p class="italic">{{link.prompt.prompt}}
+      Using the following words
+      {{link.wordList}}
+      </p>
+    </div>
   </div>
-
-
-
 </div>
 
