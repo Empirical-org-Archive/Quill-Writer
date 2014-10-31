@@ -29,13 +29,8 @@ angular.module('sf.sample', [
       sample.availablePrompts = prompts;
     });
 
-    sample.setUser = function(user) {
-      User.setCurrentUser(user);
-      $state.go('sf.game');
-    };
-
     sample.next = function(p, un) {
-      $state.go('sf.lobby', {id: p.id, name: p.name, userName: un});
+      $state.go('sf.link', {id: p.id, name: p.name, userName: un});
     };
   })
 
