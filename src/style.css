@@ -13,6 +13,11 @@ p.striked {
   text-decoration: line-through;
 }
 
+p.italic {
+  font-style: italic;
+  font-size: 12px;
+}
+
 .boxsizingBorder {
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
