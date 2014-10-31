@@ -19,10 +19,13 @@ angular.module('sf.sample', [
       });
   })
 
-  .controller('SampleCtrl', function($state, User, Empirical){
+  .controller('SampleCtrl', function($state, User, Empirical, _){
     var sample = this;
 
     Empirical.getAvailablePrompts().$loaded().then(function(prompts) {
+      prompts = _.each(prompts, function(p) {
+        p.id = p.$id;
+      });
       sample.availablePrompts = prompts;
     });
 
@@ -32,7 +35,6 @@ angular.module('sf.sample', [
     };
 
     sample.next = function(p, un) {
-      p.id = p.name;
       $state.go('sf.lobby', {id: p.id, name: p.name, userName: un});
     };
   })
