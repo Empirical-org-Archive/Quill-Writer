@@ -1,4 +1,5 @@
 var User = require('./../../common/services/user/');
+var Empirical = require('./../../common/services/empirical/');
 var fs = require('fs');
 
 angular.module('sf.sample', [
@@ -18,13 +19,12 @@ angular.module('sf.sample', [
       });
   })
 
-  .controller('SampleCtrl', function($state, User){
+  .controller('SampleCtrl', function($state, User, Empirical){
     var sample = this;
 
-    sample.availablePrompts = [
-      {name: 'hello'},
-      {name: 'sample 1'},
-    ];
+    Empirical.getAvailablePrompts().$loaded().then(function(prompts) {
+      sample.availablePrompts = prompts;
+    });
 
     sample.setUser = function(user) {
       User.setCurrentUser(user);
