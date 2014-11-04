@@ -31,7 +31,7 @@ angular.module('sf.form', [
         if (err) {
           form.message = err;
         } else {
-          form.message = refName;
+          form.link = "https://quill-writer.firebaseapp.com/#/myactivity/" + refName;
         }
       });
     }
