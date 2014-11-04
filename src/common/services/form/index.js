@@ -3,11 +3,19 @@ angular.module('sf.services.form', [
   sfConstants,
 ])
 
-.service("Form", function(baseFbUrl ) {
+.service("Form", function(baseFbUrl, $firebase ) {
   var form = this;
 
-  form.submit = function(f, cb) {
+  var activitesRef = new Firebase(baseFbUrl + "/activities");
 
+  form.submit = function(f, cb) {
+    //Mark any created stories as private
+    f.private = true;
+    var activities = $firebase(activitesRef).$asArray();
+    activities.$add(f).then(function(ref) {
+      console.log(ref.name());
+      cb(null, ref.name());
+    });
   }
 })
 
