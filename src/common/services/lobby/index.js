@@ -1,6 +1,6 @@
 var moduleName = 'sf.services.lobby';
 var serviceName = 'Lobby';
-var home = require('./../../../app/home/');
+var game = require('./../../../app/game/');
 
 var sfConstants = require('../../constants');
 
@@ -63,7 +63,7 @@ angular.module(moduleName, [
 
   lobbyService.startGameFor = function(groups, group, student, lobbyId) {
     console.log("Starting game for %s %s %s", group.$id, student, lobbyId);
-    $state.go(home, {
+    $state.go(game, {
       uid: student.uuid,
       sid: group.$id,
       activityPrompt: group.activityPrompt
@@ -96,7 +96,7 @@ angular.module(moduleName, [
         groups.$add({
           members: [student],
           full: false,
-          activityPrompt: Empirical.getRandomPromptUID()
+          activityPrompt: lobbyId
         }).then(function(ref) {
           lobbyService.localGroupWatcher(ref.name(), student, lobbyId);
         });

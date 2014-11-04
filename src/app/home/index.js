@@ -41,7 +41,15 @@ angular.module('sf.home', [
       }
     }
 
-    continueWithValidSession();
+    home.trySampleActivity = function() {
+      $state.go('sf.sample');
+    };
+
+    home.createNewActivity = function() {
+      $state.go('sf.form');
+    };
+
+    //continueWithValidSession();
   })
 
 ;

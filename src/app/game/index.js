@@ -27,6 +27,13 @@ angular.module('sf.game', [
     var game = this;
 
     var currentUser = User.currentUser;
+    if ($state.params.uid && $state.params.sid && $state.params.activityPrompt) {
+      User.setCurrentUser({
+        uid: $state.params.uid,
+        sid: $state.params.sid,
+        activityPrompt: $state.params.activityPrompt
+      });
+    }
     if (!currentUser) {
       currentUser = User.getUserFromLocalStorage();
       if (currentUser) {
