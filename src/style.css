@@ -24,6 +24,11 @@ p.italic {
             box-sizing: border-box;
 }
 
+.row.tight {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
 .navbar {
   background-color: #599CC3;
 }

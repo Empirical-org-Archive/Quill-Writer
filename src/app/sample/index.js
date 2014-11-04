@@ -1,4 +1,5 @@
 var User = require('./../../common/services/user/');
+var Empirical = require('./../../common/services/empirical/');
 var fs = require('fs');
 
 angular.module('sf.sample', [
@@ -18,22 +19,18 @@ angular.module('sf.sample', [
       });
   })
 
-  .controller('SampleCtrl', function($state, User){
+  .controller('SampleCtrl', function($state, User, Empirical, _){
     var sample = this;
 
-    sample.availablePrompts = [
-      {name: 'hello'},
-      {name: 'sample 1'},
-    ];
-
-    sample.setUser = function(user) {
-      User.setCurrentUser(user);
-      $state.go('sf.game');
-    };
+    Empirical.getAvailablePrompts().$loaded().then(function(prompts) {
+      prompts = _.each(prompts, function(p) {
+        p.id = p.$id;
+      });
+      sample.availablePrompts = prompts;
+    });
 
     sample.next = function(p, un) {
-      p.id = p.name;
-      $state.go('sf.lobby', {id: p.id, name: p.name, userName: un});
+      $state.go('sf.link', {id: p.id, name: p.name, userName: un});
     };
   })
 
