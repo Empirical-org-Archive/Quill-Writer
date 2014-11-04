@@ -48,6 +48,7 @@ p.italic {
 .well.side-bar {
   background-color: #F3F4F4;
   font-size: 16px;
+  max-width: 300px;
 }
 
 ul.no-points {
