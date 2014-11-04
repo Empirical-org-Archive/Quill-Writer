@@ -3,6 +3,7 @@ var sfGame = require('./game/')
 var sfForm = require('./form/')
 var sfLobby = require('./lobby/');
 var sfSample = require('./sample/');
+var sfMyactivity = require('./myactivity/');
 var sfLink = require('./link/');
 var sfCommon = require('./../common/');
 var sfConstants = require('./../common/constants');
@@ -15,6 +16,7 @@ angular.module('stories-with-friends', [
     sfLobby,
     sfSample,
     sfLink,
+    sfMyactivity,
 
     // admin features
     sfForm,
