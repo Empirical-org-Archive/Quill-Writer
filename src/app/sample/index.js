@@ -26,6 +26,9 @@ angular.module('sf.sample', [
       prompts = _.each(prompts, function(p) {
         p.id = p.$id;
       });
+      prompts = _.filter(prompts, function(p) {
+        return !p.private;
+      });
       sample.availablePrompts = prompts;
     });
 
