@@ -26,8 +26,13 @@ angular.module('sf.form', [
     form.currentForm.wordList = [{}];
 
     form.submitForm = function(f) {
-      Form.submit(f, function(err) {
+      Form.submit(f, function(err, refName) {
         //do something sending the quill.js close form event thing
+        if (err) {
+          form.message = err;
+        } else {
+          form.link = "https://quill-writer.firebaseapp.com/#/myactivity/" + refName;
+        }
       });
     }
 

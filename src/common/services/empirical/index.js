@@ -80,10 +80,14 @@ angular.module(moduleName, [
 
     var activitiesRef = new Firebase(baseFbUrl + "/activities");
 
+    empirical.getActivity = function(activityUID) {
+      return $firebase(activitiesRef.child(activityUID)).$asObject();
+    };
+
     empirical.loadActivity = function(activityUID) {
       var activityPromise = $q.defer();
 
-      var activity = $firebase(activitiesRef.child(activityUID)).$asObject();
+      var activity = empirical.getActivity(activityUID);
 
       activity.$loaded().then(function(a) {
         if (a.prompt) {

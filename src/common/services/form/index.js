@@ -1,19 +1,21 @@
 var sfConstants = require('./../../constants');
-var empirical = require('./../empirical/');
 angular.module('sf.services.form', [
   sfConstants,
-  empirical
 ])
 
-.service("Form", function(Empirical) {
+.service("Form", function(baseFbUrl, $firebase ) {
   var form = this;
 
+  var activitesRef = new Firebase(baseFbUrl + "/activities");
+
   form.submit = function(f, cb) {
-    Empirical.createActivity(f, function(err) {
-      if (typeof cb === 'function') {
-        cb(err);
-      }
-    })
+    //Mark any created stories as private
+    f.private = true;
+    var activities = $firebase(activitesRef).$asArray();
+    activities.$add(f).then(function(ref) {
+      console.log(ref.name());
+      cb(null, ref.name());
+    });
   }
 })
 
