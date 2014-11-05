@@ -7,7 +7,7 @@ angular.module('sf.form.link', [
   .config(function($stateProvider) {
     $stateProvider
       .state('sf.form.link', {
-        url: '/form/link',
+        url: '/link',
         views: {
           'content@': {
             template: fs.readFileSync(__dirname + '/link.tpl.html'),
