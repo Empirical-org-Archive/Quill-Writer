@@ -17,7 +17,7 @@ angular.module('sf.form', [
       });
   })
 
-  .controller('FormCtrl', function(Form) {
+  .controller('FormCtrl', function($state, Form) {
     var form = this;
 
     form.currentForm = {};
@@ -32,6 +32,11 @@ angular.module('sf.form', [
           form.message = err;
         } else {
           form.link = "https://quill-writer.firebaseapp.com/#/myactivity/" + refName;
+          if (!$state.data) {
+            $state.data = {}
+          }
+          $state.data.link = form.link;
+          $state.transitionTo('sf.form.link');
         }
       });
     }
