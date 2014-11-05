@@ -17,8 +17,9 @@ angular.module('sf.form.link', [
       });
   })
 
-  .controller('FormLinkCtrl', function(Form) {
+  .controller('FormLinkCtrl', function($state) {
     var formLink = this;
+    formLink.link = $state.data.link;
   })
 
 ;
