@@ -44,10 +44,11 @@ angular.module('stories-with-friends', [
     'LocalStorageModule',
     'angulartics',
     'angulartics.mixpanel',
-    'uuid4'
+    'uuid4',
+    'ngClipboard',
   ])
 
-  .config(function($stateProvider, $urlRouterProvider) {
+  .config(function($stateProvider, $urlRouterProvider, ngClipProvider) {
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
@@ -65,6 +66,7 @@ angular.module('stories-with-friends', [
           }
         }
       });
+    ngClipProvider.setPath("//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.1.6/ZeroClipboard.swf");
 
   })
 
