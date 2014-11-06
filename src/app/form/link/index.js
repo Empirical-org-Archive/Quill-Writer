@@ -19,7 +19,13 @@ angular.module('sf.form.link', [
 
   .controller('FormLinkCtrl', function($state) {
     var formLink = this;
-    formLink.link = $state.data.link;
+
+    if (!$state.data || !$state.data.link) {
+      $state.go('sf.form');
+      return;
+    } else {
+      formLink.link = $state.data.link;
+    }
 
     formLink.getLink = function() {
       console.log("Going to copy %s", formLink.link);
