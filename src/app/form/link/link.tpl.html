@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="row well">
+    <h2>My Created Activity</h2>
+    <p>Share this link with your students. When a student opens the link,
+    the student generates a second link for the partner. The student must
+    share the link with the partner to play together."</p>
+    <p class="italic">This is a temporary system while we integrate
+    Quill Writer into Quill.org</p>
+    <a href="{{formLink.link}}">{{formLink.link}}</a>
+    <br/>
+    <button class="btn btn-primary btn-submit" clip-copy="formLink.getLink()"
+      clip-click="formLink.getLink()"
+      clip-click-fallback="formLink.fallback(formLink.getLink())">Copy Link</button>
+  </div>
+</div>

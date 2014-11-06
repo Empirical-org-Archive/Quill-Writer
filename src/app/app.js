@@ -1,6 +1,7 @@
 var sfHome = require('./home/')
 var sfGame = require('./game/')
 var sfForm = require('./form/')
+var sfFormLink = require('./form/link/');
 var sfLobby = require('./lobby/');
 var sfSample = require('./sample/');
 var sfMyactivity = require('./myactivity/');
@@ -20,6 +21,7 @@ angular.module('stories-with-friends', [
 
     // admin features
     sfForm,
+    sfFormLink,
 
     // common, including components and services
     sfCommon,
@@ -42,10 +44,11 @@ angular.module('stories-with-friends', [
     'LocalStorageModule',
     'angulartics',
     'angulartics.mixpanel',
-    'uuid4'
+    'uuid4',
+    'ngClipboard',
   ])
 
-  .config(function($stateProvider, $urlRouterProvider) {
+  .config(function($stateProvider, $urlRouterProvider, ngClipProvider) {
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
@@ -63,6 +66,7 @@ angular.module('stories-with-friends', [
           }
         }
       });
+    ngClipProvider.setPath("//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.1.6/ZeroClipboard.swf");
 
   })
 
