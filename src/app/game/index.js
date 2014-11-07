@@ -23,7 +23,7 @@ angular.module('sf.game', [
         }
       });
   })
-  .controller('GameCtrl', function($scope, $state, Game, User, ProfanityFilter, Punctuation) {
+  .controller('GameCtrl', function($scope, $state, Game, User, ProfanityFilter, Punctuation, Partner) {
     var game = this;
 
     var currentUser = User.currentUser;
@@ -46,6 +46,8 @@ angular.module('sf.game', [
     }
 
     game.currentGame = Game.getGameByUser(User, $scope);
+
+    game.currentGame.partnerURL = Partner.getPartnerURL();
 
     var gameId = User.currentUser.sid;
 
