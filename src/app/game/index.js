@@ -48,6 +48,7 @@ angular.module('sf.game', [
     game.currentGame = Game.getGameByUser(User, $scope);
 
     game.currentGame.partnerURL = Partner.getPartnerURL();
+    game.currentGame.partnerDivShow = true;
 
     game.getPartnerURL = function() {
       return game.currentGame.partnerURL;
@@ -55,6 +56,10 @@ angular.module('sf.game', [
 
     game.fallback = function(copy) {
       window.prompt('Press cmd+c(Mac) or ctrl-c(Windows) to copy the text below.', copy);
+    };
+
+    game.closePartnerURLDiv = function() {
+      game.currentGame.partnerDivShow = false;
     };
 
     var gameId = User.currentUser.sid;
