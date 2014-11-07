@@ -49,6 +49,14 @@ angular.module('sf.game', [
 
     game.currentGame.partnerURL = Partner.getPartnerURL();
 
+    game.getPartnerURL = function() {
+      return game.currentGame.partnerURL;
+    };
+
+    game.fallback = function(copy) {
+      window.prompt('Press cmd+c(Mac) or ctrl-c(Windows) to copy the text below.', copy);
+    };
+
     var gameId = User.currentUser.sid;
 
     game.currentGame.newSentence = "";
