@@ -21,6 +21,19 @@
     </div>
   </div>
   <div class="col-md-offset-1 col-md-7">
+    <div class="well invite-partner" ng-show="game.currentGame.partnerDivShow">
+      <span class="close" ng-click="game.closePartnerURLDiv()">X</span>
+      <h2>Invite Your Partner</h2>
+      <p>Send this link to your partner so that you and your partner can join the same game.
+      One person should share the link, and the other person should press the start game button.</p>
+      <a href="{{game.currentGame.partnerURL}}">{{game.currentGame.partnerURL}}</a>
+      <br/>
+      <br/>
+      <button class="btn btn-copy" clip-copy="game.currentGame.partnerURL"
+        clip-click="game.getPartnerURL()"
+        clip-click-fallback="game.fallback(game.getPartnerURL())">Copy Link</button>
+    </div>
+
     <h2>Continue this story:</h2>
     <p>{{game.currentGame.prompt}}</p>
     <div class="well story">

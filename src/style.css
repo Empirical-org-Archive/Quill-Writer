@@ -50,6 +50,22 @@ p.italic {
   background-color: #FFFDE3;
 }
 
+.well.invite-partner {
+  background-color: #FFFDE3;
+}
+
+.btn-copy {
+  background: #24B93C;
+  border-color: #24B93C;
+  color: #fff;
+}
+
+.btn-copy:hover, .btn-copy:focus, .btn-copy:active {
+  background: #12BB1F;
+  border-color: #12BB1F;
+  color: #fff;
+}
+
 .well.side-bar {
   background-color: #F3F4F4;
   font-size: 16px;

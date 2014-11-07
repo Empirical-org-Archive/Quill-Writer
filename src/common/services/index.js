@@ -3,6 +3,7 @@ var Game = require('./game/');
 var Form = require('./form/');
 var Lobby = require('./lobby/');
 var Empirical = require('./empirical/');
+var Partner = require('./partner/');
 var ProfanityFilter = require('./profanity-filter/');
 var Punctuation = require('./punctuation/');
 
@@ -14,6 +15,7 @@ angular.module('sf.common.services', [
     Empirical,
     ProfanityFilter,
     Punctuation,
+    Partner,
   ])
 ;
 

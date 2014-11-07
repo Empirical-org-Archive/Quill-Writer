@@ -19,7 +19,7 @@ angular.module('sf.link', [
       });
   })
 
-  .controller('LinkCtrl', function($state, User, Empirical, _, uuid4){
+  .controller('LinkCtrl', function($state, User, Empirical, _, uuid4, Partner){
     var link = this;
     var id = $state.params.id;
     var name = $state.params.name;
@@ -65,6 +65,8 @@ angular.module('sf.link', [
     };
 
     link.partnerLink = link.generatePartnerLink(sid, id);
+    Partner.setPartnerURL(link.partnerLink);
+    link.next();
   })
 
 ;
