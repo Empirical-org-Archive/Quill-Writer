@@ -75,6 +75,11 @@ angular.module('sf.game', [
       game.currentGame.partnerDivShow = false;
     };
 
+    game.currentGame.instructionDivShow = true;
+    game.closeInstructionDiv = function() {
+      game.currentGame.instructionDivShow = false;
+    };
+
     var gameId = User.currentUser.sid;
 
     game.currentGame.newSentence = "";

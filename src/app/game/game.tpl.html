@@ -33,7 +33,13 @@
         clip-click="game.getPartnerURL()"
         clip-click-fallback="game.fallback(game.getPartnerURL())">Copy Link</button>
     </div>
-
+    <div class="well static-tutorial" ng-show="game.currentGame.instructionDivShow">
+      <span class="close" ng-click="game.closeInstructionDiv()">X</span>
+      <p>Take turns writing sentences using Story Words.</p>
+      <p>You can use the past, present, or future tense of Story Words.</p>
+      <p>Hover your cursor over (or if on mobile device, tap) the Story Words to see their definition.</p>
+      <p>After completing the goal, you may send your story to your teacher or continue working on it.</p>
+    </div>
     <h2>Continue this story:</h2>
     <p>{{game.currentGame.prompt}}</p>
     <div class="well story">
@@ -58,12 +64,6 @@
           <p ng-show="game.hasFinishMessageToShow()">{{game.currentGame.finishMessageToShow}}</p>
         </div>
       </div>
-    </div>
-    <div class="well static-tutorial">
-      <p>Take turns writing sentences using Story Words.</p>
-      <p>You can use the past, present, or future tense of Story Words.</p>
-      <p>Hover your cursor over (or if on mobile device, tap) the Story Words to see their definition.</p>
-      <p>After completing the goal, you may send your story to your teacher or continue working on it.</p>
     </div>
   </div>
   <div class="col-md-2"></div>
