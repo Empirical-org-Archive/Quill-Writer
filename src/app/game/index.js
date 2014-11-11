@@ -60,7 +60,7 @@ angular.module('sf.game', [
     game.currentGame.partnerDivShow = true;
 
     game.currentGame.defaultTextAreaPlaceHolder = "Type your sentence here. Move your mouse pointer over the story word to see the definition.";
-    game.currentGame.loadingTextAreaPlaceHolder = "Waiting for you partner to connect. Please share the link above.";
+    game.currentGame.loadingTextAreaPlaceHolder = "Waiting for your partner to connect. Please share the link above.";
     game.currentGame.textAreaPlaceHolder = game.currentGame.loadingTextAreaPlaceHolder;
 
     game.getPartnerURL = function() {
