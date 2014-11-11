@@ -180,6 +180,23 @@ angular.module("sf.services.game", [
       });
     }
 
+    gameModel.onBothPlayersReady = function(gameId, cb) {
+      var game = gameModel.getRef(gameId);
+      var users = $firebase(game.child("users")).$asArray();
+      users.$loaded().then(function(){
+        if (users.length >= 2) {
+          cb();
+        } else {
+          var unwatch = users.$watch(function() {
+            if (users.length >= 2) {
+              cb();
+              unwatch();
+            }
+          });
+        }
+      });
+    };
+
     gameModel.logWords = function(gameId, currentGame, sentence) {
       var gameRef = gameModel.getRef(gameId);
       var wordsUsed = $firebase(gameRef.child("wordsUsed")).$asArray();

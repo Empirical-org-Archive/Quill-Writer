@@ -59,6 +59,10 @@ angular.module('sf.game', [
     game.currentGame.partnerURL = generatePartnerURL();
     game.currentGame.partnerDivShow = true;
 
+    game.currentGame.defaultTextAreaPlaceHolder = "Type your sentence here. Move your mouse pointer over the story word to see the definition.";
+    game.currentGame.loadingTextAreaPlaceHolder = "Waiting for you partner to connect. Please share the link above.";
+    game.currentGame.textAreaPlaceHolder = game.currentGame.loadingTextAreaPlaceHolder;
+
     game.getPartnerURL = function() {
       return game.currentGame.partnerURL;
     };
@@ -175,6 +179,17 @@ angular.module('sf.game', [
     game.isYou = function(user) {
       return user.name === User.localUser;
     }
+
+    game.bothPlayersReady = false;
+
+    Game.onBothPlayersReady(gameId, function() {
+      game.bothPlayersReady = true;
+      game.currentGame.textAreaPlaceHolder = game.currentGame.defaultTextAreaPlaceHolder;
+    });
+
+    game.disableTextArea = function() {
+      return !game.isLocalPlayersTurn() || !game.bothPlayersReady;
+    };
   })
 
 ;

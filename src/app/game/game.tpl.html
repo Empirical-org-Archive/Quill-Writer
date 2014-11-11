@@ -45,8 +45,8 @@
       <div class="bottom-panel">
         <div class="row">
           <textarea type="text" class="form-control" ng-model="game.currentGame.newSentence"
-            ng-disabled="!game.isLocalPlayersTurn()"
-            placeholder="Type your sentence here. Move your mouse pointer over the story word to see the definition." >
+            ng-disabled="game.disableTextArea()"
+            placeholder="{{game.currentGame.textAreaPlaceHolder}}">
             </textarea>
         </div>
         <div class="row">
