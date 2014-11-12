@@ -193,7 +193,7 @@ angular.module('sf.game', [
     });
 
     game.disableTextArea = function() {
-      return !game.isLocalPlayersTurn() || !game.bothPlayersReady;
+      return !game.isLocalPlayersTurn();
     };
   })
 
