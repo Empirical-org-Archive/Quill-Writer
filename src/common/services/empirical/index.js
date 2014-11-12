@@ -31,9 +31,10 @@ angular.module(moduleName, [
     };
 
     empirical.getStoryRequirements = function(activityId, cb) {
-      var activity = empirical.getCurrentActivityData();
-      var wordsLength = activity.wordList.length;
-      cb({needed: wordsLength < 6 ? wordsLength : 6});
+      empirical.getWordList(activityId, function(wordList) {
+        var wordsLength = wordList.length;
+        cb({needed: wordsLength < 6 ? wordsLength : 6});
+      });
     };
 
     empirical.getPrompt = function(activityId, cb) {
