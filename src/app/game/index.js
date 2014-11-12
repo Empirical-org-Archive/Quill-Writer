@@ -23,7 +23,7 @@ angular.module('sf.game', [
         }
       });
   })
-  .controller('GameCtrl', function($scope, $state, Game, User, ProfanityFilter, Punctuation, Partner, uuid4) {
+  .controller('GameCtrl', function($scope, $state, Game, User, ProfanityFilter, Punctuation, Partner, uuid4, Link) {
     var game = this;
 
     var currentUser = User.currentUser;
@@ -47,16 +47,23 @@ angular.module('sf.game', [
 
     game.currentGame = Game.getGameByUser(User, $scope);
 
-    function generatePartnerURL () {
+    function generatePartnerUID () {
       var puid = Partner.getPartnerUID();
       if (!puid) {
         puid = uuid4.generate();
         Partner.setPartnerUID(puid);
       }
-      return "https://quill-writer.firebaseapp.com/#/games?uid=" + puid + "&sid=" + $state.params.sid + "&activityPrompt=" + $state.params.activityPrompt;
+      return puid;
     }
 
-    game.currentGame.partnerURL = generatePartnerURL();
+    Link.generateAndShortenPartnerURL({
+      partnerUID: generatePartnerUID(),
+      sid: $scope.params.sid,
+      activityPrompt: $scope.params.activityPrompt
+    }).then(function(url) {
+      game.currentGame.partnerURL = url;
+    });
+
     game.currentGame.partnerDivShow = true;
 
     game.currentGame.defaultTextAreaPlaceHolder = "Type your sentence here. Move your mouse pointer over the story word to see the definition.";
