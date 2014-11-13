@@ -60,7 +60,8 @@ angular.module('sf.game', [
       partnerUID: generatePartnerUID(),
       sid: $state.params.sid,
       activityPrompt: $state.params.activityPrompt
-    }).then(function(url) {
+    }).then(function(shortcode) {
+      var url = window.location.origin + "/#/" + shortcode;
       game.currentGame.partnerURL = url;
     });
 
