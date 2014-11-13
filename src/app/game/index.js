@@ -58,8 +58,8 @@ angular.module('sf.game', [
 
     Link.generateAndShortenPartnerURL({
       partnerUID: generatePartnerUID(),
-      sid: $scope.params.sid,
-      activityPrompt: $scope.params.activityPrompt
+      sid: $state.params.sid,
+      activityPrompt: $state.params.activityPrompt
     }).then(function(url) {
       game.currentGame.partnerURL = url;
     });
