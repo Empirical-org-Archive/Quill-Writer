@@ -24,7 +24,7 @@ angular.module(moduleName, [])
     links.$loaded().then(function() {
       links[potentialId] = params;
       links.$save().then(function() {
-        deferred.resolve();
+        deferred.resolve(potentialId);
       })
     });
     return deferred.promise;
