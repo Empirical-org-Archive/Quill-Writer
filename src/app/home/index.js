@@ -8,7 +8,7 @@ angular.module('sf.home', [
   .config(function($stateProvider) {
     $stateProvider
       .state('sf.home', {
-        url: '/?uid&sid&activityPrompt',
+        url: '/{shortcode:[a-z]{0,3}}?uid&sid&activityPrompt',
         views: {
           'content@': {
             template: fs.readFileSync(__dirname + '/home.tpl.html'),
