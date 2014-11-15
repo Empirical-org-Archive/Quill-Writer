@@ -29,6 +29,11 @@ angular.module(moduleName, [])
     });
     return deferred.promise;
   };
+
+  link.mapShortcode = function(shortcode) {
+    var deferred = $q.defer();
+    return deferred.promise;
+  }
 });
 
 module.exports = moduleName;

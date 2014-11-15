@@ -18,7 +18,7 @@ angular.module('sf.home', [
       });
   })
 
-  .controller('HomeCtrl', function($state, User){
+  .controller('HomeCtrl', function($state, User, Link){
     var home = this;
 
     home.setUser = function(user) {
@@ -49,7 +49,13 @@ angular.module('sf.home', [
       $state.go('sf.form');
     };
 
-    //continueWithValidSession();
+    if (typeof $state.params.shortcode !== 'undefined') {
+      var shortcode = $state.params.shortcode;
+      Link.mapShortcode(shortcode)
+      .then(function(params) {
+        console.log(params);
+      });
+    }
   })
 
 ;
