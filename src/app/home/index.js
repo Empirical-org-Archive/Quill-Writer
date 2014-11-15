@@ -54,6 +54,8 @@ angular.module('sf.home', [
       Link.mapShortcode(shortcode)
       .then(function(params) {
         console.log(params);
+      }, function() {
+        console.log('shortcode not found');
       });
     }
   })

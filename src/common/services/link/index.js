@@ -32,6 +32,14 @@ angular.module(moduleName, [])
 
   link.mapShortcode = function(shortcode) {
     var deferred = $q.defer();
+    var links = $firebase(ref).$asObject();
+    links.$loaded().then(function() {
+      if (typeof links[shortcode] !== 'undefined') {
+        deferred.resolve(links[shortcode]);
+      } else {
+        deferred.reject();
+      }
+    });
     return deferred.promise;
   }
 });
