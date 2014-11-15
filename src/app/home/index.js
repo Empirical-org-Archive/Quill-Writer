@@ -53,7 +53,11 @@ angular.module('sf.home', [
       var shortcode = $state.params.shortcode;
       Link.mapShortcode(shortcode)
       .then(function(params) {
-        console.log(params);
+        $state.go('sf.game', {
+          sid: params.sid,
+          uid: params.partnerUID,
+          activityPrompt: params.activityPrompt
+        });
       }, function() {
         console.log('shortcode not found');
       });
