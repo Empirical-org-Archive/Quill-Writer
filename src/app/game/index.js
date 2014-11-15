@@ -56,16 +56,19 @@ angular.module('sf.game', [
       return puid;
     }
 
-    Link.generateAndShortenPartnerURL({
-      partnerUID: generatePartnerUID(),
-      sid: $state.params.sid,
-      activityPrompt: $state.params.activityPrompt
-    }).then(function(shortcode) {
-      var url = window.location.origin + "/#/" + shortcode;
-      game.currentGame.partnerURL = url;
-    });
-
-    game.currentGame.partnerDivShow = true;
+    if (!Partner.IAmPartner()) {
+      Link.generateAndShortenPartnerURL({
+        partnerUID: generatePartnerUID(),
+        sid: $state.params.sid,
+        activityPrompt: $state.params.activityPrompt
+      }).then(function(shortcode) {
+        var url = window.location.origin + "/#/" + shortcode;
+        game.currentGame.partnerURL = url;
+      });
+      game.currentGame.partnerDivShow = true;
+    } else {
+      game.currentGame.partnerDivShow = false;
+    }
 
     game.currentGame.defaultTextAreaPlaceHolder = "Type your sentence here. Move your mouse pointer over the story word to see the definition.";
     game.currentGame.loadingTextAreaPlaceHolder = "Waiting for your partner to connect. Please share the link above.";

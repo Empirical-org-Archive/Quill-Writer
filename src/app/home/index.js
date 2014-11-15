@@ -18,7 +18,7 @@ angular.module('sf.home', [
       });
   })
 
-  .controller('HomeCtrl', function($state, User, Link){
+  .controller('HomeCtrl', function($state, User, Link, Partner){
     var home = this;
 
     home.setUser = function(user) {
@@ -53,6 +53,7 @@ angular.module('sf.home', [
       var shortcode = $state.params.shortcode;
       Link.mapShortcode(shortcode)
       .then(function(params) {
+        Partner.setIAmPartner(true);
         $state.go('sf.game', {
           sid: params.sid,
           uid: params.partnerUID,

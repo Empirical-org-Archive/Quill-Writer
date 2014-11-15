@@ -7,6 +7,7 @@ angular.module('sf.services.partner', [
   var partner = this;
   var key = "PartnerURL";
   var puidKey = "PartnerUID";
+  var partnerKey = "IAMPARTNER";
   partner.setPartnerURL = function(purl) {
     localStorageService.set(key, purl);
   }
@@ -18,6 +19,12 @@ angular.module('sf.services.partner', [
   }
   partner.getPartnerUID = function() {
     return localStorageService.get(puidKey);
+  };
+  partner.setIAmPartner = function(val) {
+    localStorageService.set(partnerKey, val);
+  };
+  partner.IAmPartner = function() {
+    return localStorageService.get(partnerKey);
   };
 })
 
