@@ -16,12 +16,19 @@ angular.module(moduleName, [])
     return randomString;
   }
 
+  function genIdAndCheck(len, links) {
+    var potentialId = genId(len);
+    while(typeof links[potentialId] !== 'undefined') {
+      potentialId = genId(len);
+    }
+    return potentialId;
+  }
 
   link.generateAndShortenPartnerURL = function(params) {
     var deferred = $q.defer();
-    var potentialId = genId(3);
     var links = $firebase(ref).$asObject();
     links.$loaded().then(function() {
+      var potentialId = genIdAndCheck(3, links);
       links[potentialId] = params;
       links.$save().then(function() {
         deferred.resolve(potentialId);
