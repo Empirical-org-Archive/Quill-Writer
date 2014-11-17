@@ -59,15 +59,8 @@ angular.module('sf.link', [
       $state.go('sf.game', {uid: uid, sid: sid, activityPrompt: activityUID});
     };
 
-    link.generatePartnerLink = function(sid, activityUID) {
-      var uid = uuid4.generate();
-      Partner.setPartnerUID(uid);
-      return "https://quill-writer.firebaseapp.com/#/games?uid=" + uid + "&sid=" + sid + "&activityPrompt=" + activityUID;
-    };
-
-    link.partnerLink = link.generatePartnerLink(sid, id);
-    Partner.setPartnerURL(link.partnerLink);
     link.next();
+    Partner.setIAmPartner(false);
   })
 
 ;

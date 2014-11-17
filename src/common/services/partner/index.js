@@ -24,7 +24,8 @@ angular.module('sf.services.partner', [
     localStorageService.set(partnerKey, val);
   };
   partner.IAmPartner = function() {
-    return localStorageService.get(partnerKey);
+    var sv = localStorageService.get(partnerKey);
+    return sv === 'true';
   };
 })
 

@@ -56,7 +56,9 @@ angular.module('sf.game', [
       return puid;
     }
 
-    if (!Partner.IAmPartner()) {
+    if (Partner.IAmPartner()) {
+      game.currentGame.partnerDivShow = false;
+    } else {
       Link.generateAndShortenPartnerURL({
         partnerUID: generatePartnerUID(),
         sid: $state.params.sid,
@@ -66,8 +68,6 @@ angular.module('sf.game', [
         game.currentGame.partnerURL = url;
       });
       game.currentGame.partnerDivShow = true;
-    } else {
-      game.currentGame.partnerDivShow = false;
     }
 
     game.currentGame.defaultTextAreaPlaceHolder = "Type your sentence here. Move your mouse pointer over the story word to see the definition.";
