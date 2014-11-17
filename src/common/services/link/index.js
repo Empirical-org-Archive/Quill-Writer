@@ -49,6 +49,16 @@ angular.module(moduleName, [])
     });
     return deferred.promise;
   }
+
+  link.removeShortCodeMapping = function(shortcode) {
+    var links = $firebase(ref).$asObject();
+    links.$loaded().then(function() {
+      if (links[shortcode]) {
+        delete links[shortcode];
+        links.$save();
+      }
+    });
+  }
 });
 
 module.exports = moduleName;
