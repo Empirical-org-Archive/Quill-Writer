@@ -162,8 +162,10 @@ angular.module("sf.services.game", [
           if (gameModel.isSameUser(user, currentUser)) {
             user.done = true
             user.finishMessageToShow.message = "You have submitted the story. Waiting for the other player to approve.";
+            user.isTheirTurn = false;
           } else {
             user.finishMessageToShow.message = "The other player has voted to submit to the story. Press submit to teacher when you feel the story is complete. You may continue to use words.";
+            user.isTheirTurn = true;
           }
           users.$save(user).then(function() {
             users.$loaded().then(function() {
