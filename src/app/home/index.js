@@ -59,6 +59,7 @@ angular.module('sf.home', [
           uid: params.partnerUID,
           activityPrompt: params.activityPrompt
         });
+        Link.removeShortCodeMapping(shortcode);
       }, function() {
         console.log('shortcode not found');
       });
