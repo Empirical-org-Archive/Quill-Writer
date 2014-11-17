@@ -23,7 +23,7 @@ angular.module('sf.game', [
         }
       });
   })
-  .controller('GameCtrl', function($scope, $state, Game, User, ProfanityFilter, Punctuation, Partner, uuid4, Link) {
+  .controller('GameCtrl', function($scope, $state, Game, User, ProfanityFilter, Punctuation, Partner, uuid4, Link, _) {
     var game = this;
 
     var currentUser = User.currentUser;
@@ -205,6 +205,20 @@ angular.module('sf.game', [
 
     game.disableTextArea = function() {
       return !game.isLocalPlayersTurn();
+    };
+
+    game.setStudentName = function(name) {
+      User.currentUser.displayName = name;
+      _.each(game.currentGame.users, function(user) {
+        if (user.uid === User.currentUser.uid) {
+          user.displayName = name;
+          game.currentGame.users.$save(user);
+        }
+      });
+    };
+
+    game.studentSetName = function() {
+      return typeof User.currentUser.displayName !== 'undefined';
     };
   })
 
