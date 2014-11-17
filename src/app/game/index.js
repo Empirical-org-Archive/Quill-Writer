@@ -202,6 +202,7 @@ angular.module('sf.game', [
       game.bothPlayersReady = true;
       game.currentGame.textAreaPlaceHolder = game.currentGame.defaultTextAreaPlaceHolder;
       game.closePartnerURLDiv();
+      Game.ensureItIsSomeonesTurn(gameId);
     });
 
     game.disableTextArea = function() {
