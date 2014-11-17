@@ -201,6 +201,7 @@ angular.module('sf.game', [
     Game.onBothPlayersReady(gameId, function() {
       game.bothPlayersReady = true;
       game.currentGame.textAreaPlaceHolder = game.currentGame.defaultTextAreaPlaceHolder;
+      game.closePartnerURLDiv();
     });
 
     game.disableTextArea = function() {
