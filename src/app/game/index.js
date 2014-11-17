@@ -23,7 +23,7 @@ angular.module('sf.game', [
         }
       });
   })
-  .controller('GameCtrl', function($scope, $state, Game, User, ProfanityFilter, Punctuation, Partner, uuid4) {
+  .controller('GameCtrl', function($scope, $state, Game, User, ProfanityFilter, Punctuation, Partner, uuid4, Link) {
     var game = this;
 
     var currentUser = User.currentUser;
@@ -47,17 +47,28 @@ angular.module('sf.game', [
 
     game.currentGame = Game.getGameByUser(User, $scope);
 
-    function generatePartnerURL () {
+    function generatePartnerUID () {
       var puid = Partner.getPartnerUID();
       if (!puid) {
         puid = uuid4.generate();
         Partner.setPartnerUID(puid);
       }
-      return "https://quill-writer.firebaseapp.com/#/games?uid=" + puid + "&sid=" + $state.params.sid + "&activityPrompt=" + $state.params.activityPrompt;
+      return puid;
     }
 
-    game.currentGame.partnerURL = generatePartnerURL();
-    game.currentGame.partnerDivShow = true;
+    if (!Partner.IAmPartner()) {
+      Link.generateAndShortenPartnerURL({
+        partnerUID: generatePartnerUID(),
+        sid: $state.params.sid,
+        activityPrompt: $state.params.activityPrompt
+      }).then(function(shortcode) {
+        var url = window.location.origin + "/#/" + shortcode;
+        game.currentGame.partnerURL = url;
+      });
+      game.currentGame.partnerDivShow = true;
+    } else {
+      game.currentGame.partnerDivShow = false;
+    }
 
     game.currentGame.defaultTextAreaPlaceHolder = "Type your sentence here. Move your mouse pointer over the story word to see the definition.";
     game.currentGame.loadingTextAreaPlaceHolder = "Waiting for your partner to connect. Please share the link above.";

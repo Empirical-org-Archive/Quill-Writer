@@ -6,6 +6,7 @@ var Empirical = require('./empirical/');
 var Partner = require('./partner/');
 var ProfanityFilter = require('./profanity-filter/');
 var Punctuation = require('./punctuation/');
+var Link = require('./link/');
 
 angular.module('sf.common.services', [
     User,
@@ -16,6 +17,7 @@ angular.module('sf.common.services', [
     ProfanityFilter,
     Punctuation,
     Partner,
+    Link,
   ])
 ;
 

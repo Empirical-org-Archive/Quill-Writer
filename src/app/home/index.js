@@ -8,7 +8,7 @@ angular.module('sf.home', [
   .config(function($stateProvider) {
     $stateProvider
       .state('sf.home', {
-        url: '/?uid&sid&activityPrompt',
+        url: '/{shortcode:[a-z]{0,3}}?uid&sid&activityPrompt',
         views: {
           'content@': {
             template: fs.readFileSync(__dirname + '/home.tpl.html'),
@@ -18,7 +18,7 @@ angular.module('sf.home', [
       });
   })
 
-  .controller('HomeCtrl', function($state, User){
+  .controller('HomeCtrl', function($state, User, Link, Partner){
     var home = this;
 
     home.setUser = function(user) {
@@ -49,7 +49,20 @@ angular.module('sf.home', [
       $state.go('sf.form');
     };
 
-    //continueWithValidSession();
+    if (typeof $state.params.shortcode !== 'undefined') {
+      var shortcode = $state.params.shortcode;
+      Link.mapShortcode(shortcode)
+      .then(function(params) {
+        Partner.setIAmPartner(true);
+        $state.go('sf.game', {
+          sid: params.sid,
+          uid: params.partnerUID,
+          activityPrompt: params.activityPrompt
+        });
+      }, function() {
+        console.log('shortcode not found');
+      });
+    }
   })
 
 ;
