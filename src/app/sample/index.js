@@ -33,7 +33,7 @@ angular.module('sf.sample', [
     });
 
     sample.next = function(p, un) {
-      $state.go('sf.link', {id: p.id, name: p.name, userName: un});
+      $state.go('sf.link', {id: p.id, name: p.name});
     };
   })
 

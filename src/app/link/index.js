@@ -9,7 +9,7 @@ angular.module('sf.link', [
   .config(function($stateProvider) {
     $stateProvider
       .state('sf.link', {
-        url: '/link?id&name&userName',
+        url: '/link?id&name',
         views: {
           'content@': {
             template: fs.readFileSync(__dirname + '/link.tpl.html'),
@@ -23,7 +23,6 @@ angular.module('sf.link', [
     var link = this;
     var id = $state.params.id;
     var name = $state.params.name;
-    var userName = $state.params.userName;
 
     var sid = uuid4.generate();
 

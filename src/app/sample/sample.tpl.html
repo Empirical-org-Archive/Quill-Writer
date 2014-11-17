@@ -8,10 +8,7 @@
     <select ng-model="sample.thePrompt" ng-options="prompt.name for prompt in sample.availablePrompts"></select>
     <br/>
     <br/>
-    <input placeholder="Your name" ng-model="sample.userName" type=text"></input>
-    <br/>
-    <br/>
-    <button type="button" class="btn btn-primary send" ng-click="sample.next(sample.thePrompt, sample.userName)">Next</button>
+    <button type="button" class="btn btn-primary send" ng-click="sample.next(sample.thePrompt)">Next</button>
     <br/>
     <p class="italic">If your teacher has created an activity, ask your teacher to share the link.</p>
   </div>
