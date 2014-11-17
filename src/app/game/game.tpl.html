@@ -4,7 +4,7 @@
       <h3>Authors</h3>
       <ul class="no-points">
         <li ng-repeat='user in game.currentGame.users'>
-          <p ng-class="{'active': user.isTheirTurn}">{{user.name}} <span ng-show="game.isYou(user)">(You)</span></p>
+          <p ng-class="{'active': user.isTheirTurn}">{{user.displayName || user.name}} <span ng-show="game.isYou(user)">(You)</span></p>
         </li>
       </ul>
       <h3>Story Words</h3>
@@ -21,6 +21,13 @@
     </div>
   </div>
   <div class="col-md-offset-1 col-md-7">
+    <div class="well" ng-show="!game.studentSetName()"/>
+      <h2>Enter Your Name</h2>
+      <input type="text" ng-model="game.currentGame.tempName" placeholder="Name"</input>
+      </br>
+      </br>
+      <button class="btn btn-primary" ng-click="game.setStudentName(game.currentGame.tempName)">Confirm Name</button>
+    </div>
     <div class="well invite-partner" ng-show="game.currentGame.partnerDivShow">
       <span class="close" ng-click="game.closePartnerURLDiv()">X</span>
       <h2>Invite Your Partner</h2>
