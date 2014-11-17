@@ -203,6 +203,34 @@ angular.module("sf.services.game", [
       });
     };
 
+    /**
+     * TODO This contains logic that assumes two players.
+     */
+    gameModel.ensureItIsSomeonesTurn = function(gameId) {
+      var game = gameModel.getRef(gameId);
+      var users = $firebase(game.child("users")).$asArray();
+      users.$loaded().then(function(){
+        var isSomeonesTurn = false;
+        _.each(users, function(u) {
+          if (u.isTheirTurn) {
+            isSomeonesTurn = u.isTheirTurn;
+          }
+        });
+        if (!isSomeonesTurn) {
+          var sentences = gameModel.getSentences(gameId);
+          sentences.$loaded().then(function() {
+            var index = 0;
+            if (sentences.length > 0) {
+              index = 1;
+            }
+            var user = users[index];
+            user.isTheirTurn = true;
+            users.$save(user);
+          });
+        }
+      });
+    }
+
     gameModel.logWords = function(gameId, currentGame, sentence) {
       var gameRef = gameModel.getRef(gameId);
       var wordsUsed = $firebase(gameRef.child("wordsUsed")).$asArray();
