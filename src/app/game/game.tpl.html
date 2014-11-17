@@ -24,7 +24,9 @@
     <div class="well" ng-show="!game.studentSetName()"/>
       <h2>Enter Your Name</h2>
       <input type="text" ng-model="game.currentGame.tempName" placeholder="Name"</input>
-      <button class="btn btn-submit" ng-click="game.setStudentName(game.currentGame.tempName)">Confirm Name</button>
+      </br>
+      </br>
+      <button class="btn btn-primary" ng-click="game.setStudentName(game.currentGame.tempName)">Confirm Name</button>
     </div>
     <div class="well invite-partner" ng-show="game.currentGame.partnerDivShow">
       <span class="close" ng-click="game.closePartnerURLDiv()">X</span>

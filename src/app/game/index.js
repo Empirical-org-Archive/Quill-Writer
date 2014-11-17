@@ -218,7 +218,17 @@ angular.module('sf.game', [
     };
 
     game.studentSetName = function() {
-      return typeof User.currentUser.displayName !== 'undefined';
+      if (typeof User.currentUser.displayName !== 'undefined') {
+        return true;
+      } else {
+        var t = false;
+        _.each(game.currentGame.users, function(user) {
+          if (user.uid === User.currentUser.uid && typeof user.displayName !== 'undefined') {
+            t = true;
+          }
+        });
+        return t;
+      }
     };
   })
 
