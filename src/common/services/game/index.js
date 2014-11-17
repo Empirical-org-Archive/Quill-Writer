@@ -49,16 +49,22 @@ angular.module("sf.services.game", [
       function findCurrentUser() {
         var localUser = currentUser;
         var returnUser = null;
+        var index = 0;
         _.each(gameUsers, function(gameUser) {
+          console.log(gameModel.isSameUser(gameUser, localUser));
           if (gameModel.isSameUser(gameUser, localUser)) {
-            returnUser = gameUser;
+            returnUser = index;
           }
+          index++;
         });
-        return returnUser;
+        console.log(gameUsers)
+        console.log(returnUser);
+        return gameUsers[returnUser];
       }
       gameUsers.$loaded(function() {
         var length = gameUsers.length;
         var gameUser = findCurrentUser();
+        console.log(gameUser);
         if (gameUser) {
           currentUser = gameUser;
           User.localUser = currentUser.name;
@@ -145,7 +151,7 @@ angular.module("sf.services.game", [
     }
 
     gameModel.isSameUser = function(u1, u2) {
-      return ((u1.sid === u2.sid) && (u1.uid === u2.uid) && (u1.name === u2.name));
+      return ((u1.sid === u2.sid) && (u1.uid === u2.uid));
     }
 
     gameModel.imDone = function(gameId, currentGame, currentUser) {
