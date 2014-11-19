@@ -115,6 +115,22 @@ angular.module(moduleName, [
       return $firebase(activitiesRef).$asArray();
     };
 
+    empirical.getGroupedByPublicPromptsAndSubject = function() {
+      var deferred = $q.defer();
+
+      var prompts = empirical.getAvailablePrompts();
+      prompts.$loaded().then(function() {
+        var publicPrompts = _.filter(prompts, function(p) {
+          return !p.private;
+        });
+        var groupedBySubjectPrompts = _.groupBy(publicPrompts, 'subject');
+        console.log(groupedBySubjectPrompts);
+        deferred.resolve(groupedBySubjectPrompts);
+      });
+
+      return deferred.promise;
+    }
+
   })
 
 ;

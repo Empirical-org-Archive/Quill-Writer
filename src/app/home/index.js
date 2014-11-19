@@ -18,7 +18,7 @@ angular.module('sf.home', [
       });
   })
 
-  .controller('HomeCtrl', function($state, User, Link, Partner){
+  .controller('HomeCtrl', function($state, User, Link, Partner, Empirical){
     var home = this;
 
     home.setUser = function(user) {
@@ -49,7 +49,7 @@ angular.module('sf.home', [
       $state.go('sf.form');
     };
 
-    if (typeof $state.params.shortcode !== 'undefined') {
+    if (typeof $state.params.shortcode !== 'undefined' && $state.params.shortcode !== "") {
       var shortcode = $state.params.shortcode;
       Link.mapShortcode(shortcode)
       .then(function(params) {
@@ -62,6 +62,14 @@ angular.module('sf.home', [
         Link.removeShortCodeMapping(shortcode);
       }, function() {
         console.log('shortcode not found');
+      });
+    } else {
+      runActivityLoader();
+    }
+
+    function runActivityLoader() {
+      Empirical.getGroupedByPublicPromptsAndSubject().then(function(prompts) {
+        home.prompts = prompts;
       });
     }
   })
