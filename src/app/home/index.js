@@ -18,7 +18,7 @@ angular.module('sf.home', [
       });
   })
 
-  .controller('HomeCtrl', function($state, User, Link, Partner, Empirical){
+  .controller('HomeCtrl', function($state, User, Link, Partner, Empirical, _){
     var home = this;
 
     home.setUser = function(user) {
@@ -70,8 +70,13 @@ angular.module('sf.home', [
     function runActivityLoader() {
       Empirical.getGroupedByPublicPromptsAndSubject().then(function(prompts) {
         home.prompts = prompts;
+        home.subjects = _.keys(prompts);
       });
     }
+
+    home.changeSubject = function(subject) {
+      console.log("show this subject %s", subject);
+    };
   })
 
 ;
