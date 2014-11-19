@@ -10,12 +10,12 @@
 
   <div class="row text-center">
     <h2>Play Quill Writer Now</h2>
+    <select ng-options="subject for subject in home.subjects"
+      ng-change="home.changeSubject(home.subject)" ng-model="home.subject"></select>
   </div>
 
   <div class="row text-center">
     <p class="italic">If your teacher has created an activity, ask your teacher to share the link.</p>
-    <select ng-options="subject for subject in home.subjects"
-      ng-change="home.changeSubject(home.subject)" ng-model="home.subject"></select>
   </div>
 
 </div>
