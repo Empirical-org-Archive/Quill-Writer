@@ -75,8 +75,16 @@ angular.module('sf.home', [
     }
 
     home.changeSubject = function(subject) {
-      console.log("show this subject %s", subject);
+      if (home.prompts[subject]) {
+        home.activities = home.prompts[subject];
+      }
     };
+
+    home.selectActivity = function(activity) {
+      $state.go('sf.link', {
+        id: activity.$id
+      });
+    }
   })
 
 ;
