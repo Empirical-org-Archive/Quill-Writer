@@ -12,11 +12,13 @@
     <h2>Play Quill Writer Now</h2>
     <select ng-options="subject for subject in home.subjects"
       ng-change="home.changeSubject(home.subject)" ng-model="home.subject"></select>
-    <div class="well select-activity" ng-show="home.activities">
-      <ul>
-        <li ng-repeat="activity in home.activities" ng-click="home.selectActivity(activity)">{{activity.name}}</li>
-      </ul>
-    </div>
+    <br/>
+    <br/>
+    <select ng-show="home.activities" ng-model="home.activity"
+      ng-options="activity.name for activity in home.activities"></select>
+    <br/>
+    <br/>
+    <button type="button" class="btn btn-primary send" ng-click="home.selectActivity(home.activity)">Play it Now</button>
   </div>
 
   <div class="row text-center">
