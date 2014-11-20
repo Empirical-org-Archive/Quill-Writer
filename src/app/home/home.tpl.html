@@ -1,22 +1,33 @@
 <div class="jumbotron">
-  <h1>Welcome to Quill Writer</h1>
   <p>Quill Writer is a cooperative writing game. Two students will write
   a passage  together using a shared list of story words.</p>
 
   <div class="row text-center">
-    <p class="italic">The Quill Writer teams have created 10 activities for new users.</p>
-    <button type="button" class="btn btn-primary send" ng-click="home.trySampleActivity()">Try a Sample Activity</button>
-  </div>
-
-  <br/>
-  <br/>
-
-  <div class="row text-center">
-    <p class="italic">Teachers, create your own activities and then share the links with your students</p>
+    <h2>Teachers, create your own activities.</h2>
+    <br/>
     <button type="button" class="btn btn-primary send" ng-click="home.createNewActivity()">Create a New Activity</button>
   </div>
 
+  <div class="row text-center">
+    <h2>Play Quill Writer Now</h2>
+    <select ng-options="subject for subject in home.subjects"
+      ng-change="home.changeSubject(home.subject)" ng-model="home.subject"></select>
+    <br/>
+    <br/>
+    <select ng-show="home.activities" ng-model="home.activity"
+      ng-options="activity.name for activity in home.activities"></select>
+    <br/>
+    <br/>
+    <button ng-show="home.activity" type="button" class="btn btn-primary send" ng-click="home.selectActivity(home.activity)">Play it Now</button>
+  </div>
 
+  <div class="row text-center">
+    <p class="italic">If your teacher has created an activity, ask your teacher to share the link.</p>
+  </div>
 
+</div>
+
+<div class="row text-center">
+  <iframe width="853" height="480" src="//www.youtube.com/embed/adAd4VTX3v0" frameborder="0" allowfullscreen></iframe>
 </div>
 
