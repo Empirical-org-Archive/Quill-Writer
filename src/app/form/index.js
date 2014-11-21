@@ -17,7 +17,7 @@ angular.module('sf.form', [
       });
   })
 
-  .controller('FormCtrl', function($state, Form) {
+  .controller('FormCtrl', function($state, Form, Empirical) {
     var form = this;
 
     form.currentForm = {};
@@ -49,6 +49,11 @@ angular.module('sf.form', [
       var index = form.currentForm.wordList.indexOf(wordTup);
       form.currentForm.wordList.splice(index, 1);
     }
+
+    Empirical.getGroupedByPublicPromptsAndSubject().then(function(prompts) {
+      form.subjects = _.keys(prompts);
+    });
+
   })
 
 ;

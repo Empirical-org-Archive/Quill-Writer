@@ -1,8 +1,11 @@
 <div class="row">
   <form class="css-form" novalidate>
-    <input type="text" class="form-control input-lg" ng-model="form.currentForm.name" placeholder="Name" />
+    <input type="text" class="form-control input-lg" ng-model="form.currentForm.name" placeholder="Activity Name" />
     <br/>
-    <input type="text" class="form-control input-lg" ng-model="form.currentForm.prompt" placeholder="Prompt" />
+    <input type="text" class="form-control input-lg" ng-model="form.currentForm.prompt" placeholder="Activity Prompt" />
+    <h3>Select Subject</h3>
+    <select ng-options="subject for subject in form.subjects" ng-model="form.currentForm.subject"></select>
+    <input type="text"  ng-model="form.currentForm.subject" placeholder="Add Your Own Subject" />
     <h3>Words with Definition</h3>
     <div class="col-md-offset-1">
       <div ng-repeat="wordTup in form.currentForm.wordList">
