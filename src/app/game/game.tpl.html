@@ -69,6 +69,11 @@
               >Submit Story to Teacher</button>
           </div>
         </div>
+        <div class="review-panel" ng-show="game.hasPartnerSubmissionToReview()">
+          <p><span ng-bind-html="game.sentenceToReview"></span></p>
+          <button type="button" class="btn btn-primary send" ng-click="game.sentenceIsOK()">Correct Use</button>
+          <button type="button" class="btn btn-primary send" ng-click="game.sentenceIsNotOK()">Incorrect Use</button>
+        </div>
         <div class="row">
           <p ng-show="game.hasFinishMessageToShow()">{{game.currentGame.finishMessageToShow}}</p>
         </div>

@@ -232,6 +232,21 @@ angular.module('sf.game', [
         return t;
       }
     };
+
+    /*
+     * Review Functions and setup
+     */
+    game.hasPartnerSubmissionToReview = function() {
+      return game.sentenceToReview;
+    };
+
+    game.sentenceIsOK = function() {
+
+    };
+
+    game.sentenceIsNotOK = function() {
+
+    };
   })
 
 ;
