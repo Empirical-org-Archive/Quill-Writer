@@ -206,7 +206,7 @@ angular.module('sf.game', [
     });
 
     game.disableTextArea = function() {
-      return !game.isLocalPlayersTurn();
+      return !game.isLocalPlayersTurn() || game.hasPartnerSubmissionToReview();
     };
 
     game.setStudentName = function(name) {
@@ -237,16 +237,22 @@ angular.module('sf.game', [
      * Review Functions and setup
      */
     game.hasPartnerSubmissionToReview = function() {
-      return game.sentenceToReview;
+      return typeof game.sentenceToReview === 'string';
     };
 
     game.sentenceIsOK = function() {
-
+      game.sentenceToReview = null;
     };
 
     game.sentenceIsNotOK = function() {
-
+      Game.flagSentenceForReview(gameId, User.currentUser, game.sentenceToReview, function() {
+        game.sentenceToReview = null;
+      });
     };
+
+    Game.onOtherPlayerSubmission(gameId, User.currentUser, function(submission) {
+      game.sentenceToReview = submission;
+    });
   })
 
 ;

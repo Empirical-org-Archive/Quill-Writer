@@ -205,6 +205,21 @@ angular.module("sf.services.game", [
       });
     };
 
+    gameModel.onOtherPlayerSubmission = function(gameId, currentUser, cb) {
+      var sentences = gameModel.getSentences(gameId);
+      sentences.$watch(function(e) {
+        if (e.event === "child_added") {
+          var sentence = sentences.$getRecord(e.key);
+          if (sentence) {
+            var sUser = sentence.user;
+            if (!gameModel.isSameUser(currentUser, sUser)) {
+              cb(sentence.entry);
+            }
+          }
+        }
+      });
+    };
+
     /**
      * TODO This contains logic that assumes two players.
      */
@@ -258,6 +273,10 @@ angular.module("sf.services.game", [
         });
       });
     }
+
+    gameModel.flagSentenceForReview = function(gameId, currentUser, sentence, cb) {
+      cb();
+    };
   })
 
 ;
