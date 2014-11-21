@@ -3,12 +3,6 @@
   a passage  together using a shared list of story words.</p>
 
   <div class="row text-center">
-    <h2>Teachers, create your own activities.</h2>
-    <br/>
-    <button type="button" class="btn btn-primary send" ng-click="home.createNewActivity()">Create a New Activity</button>
-  </div>
-
-  <div class="row text-center">
     <h2>Play Quill Writer Now</h2>
     <select ng-options="subject for subject in home.subjects"
       ng-change="home.changeSubject(home.subject)" ng-model="home.subject"></select>
@@ -19,6 +13,12 @@
     <br/>
     <br/>
     <button ng-show="home.activity" type="button" class="btn btn-primary send" ng-click="home.selectActivity(home.activity)">Play it Now</button>
+  </div>
+
+  <div class="row text-center">
+    <h2>Teachers, create your own activities.</h2>
+    <br/>
+    <button type="button" class="btn btn-primary send" ng-click="home.createNewActivity()">Create a New Activity</button>
   </div>
 
   <div class="row text-center">
