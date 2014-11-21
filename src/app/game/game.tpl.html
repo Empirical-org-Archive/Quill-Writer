@@ -56,16 +56,26 @@
     </div>
     <div class="well">
       <div class="bottom-panel">
-        <div class="row">
-          <textarea type="text" class="form-control" ng-model="game.currentGame.newSentence"
-            ng-disabled="game.disableTextArea()"
-            placeholder="{{game.currentGame.textAreaPlaceHolder}}">
-            </textarea>
+        <div class="submit-panel" ng-show="!game.disableTextArea()">
+          <div class="row">
+            <textarea type="text" class="form-control" ng-model="game.currentGame.newSentence"
+              ng-disabled="game.disableTextArea()"
+              placeholder="{{game.currentGame.textAreaPlaceHolder}}">
+              </textarea>
+          </div>
+          <div class="row">
+            <button type="button" class="btn btn-primary send" ng-click="game.submitEntry()">Send Sentence</button>
+            <button type="button" class="btn btn-primary" ng-click="game.finish()" ng-show="game.isReadyToSubmit()"
+              >Submit Story to Teacher</button>
+          </div>
         </div>
-        <div class="row">
-          <button type="button" class="btn btn-primary send" ng-click="game.submitEntry()">Send Sentence</button>
-          <button type="button" class="btn btn-primary" ng-click="game.finish()" ng-show="game.isReadyToSubmit()"
-            >Submit Story to Teacher</button>
+        <div class="review-panel" ng-show="game.hasPartnerSubmissionToReview()">
+          <h3>Peer Review</h3>
+          <p><span ng-bind-html="game.sentenceToReview"></span></p>
+          <button type="button" class="btn btn-primary send" ng-click="game.sentenceIsOK()">Correct Use</button>
+          <button type="button" class="btn btn-primary send" ng-click="game.sentenceIsNotOK()">Incorrect Use</button>
+          <br/>
+          <p>Please review your partner's sentence for correct or incorrect usage.</p>
         </div>
         <div class="row">
           <p ng-show="game.hasFinishMessageToShow()">{{game.currentGame.finishMessageToShow}}</p>
