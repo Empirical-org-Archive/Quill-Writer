@@ -9,8 +9,6 @@ angular.module('sf.services.form', [
   var activitesRef = new Firebase(baseFbUrl + "/activities");
 
   form.submit = function(f, cb) {
-    //Mark any created stories as private
-    f.private = true;
     var activities = $firebase(activitesRef).$asArray();
     activities.$add(f).then(function(ref) {
       console.log(ref.name());
