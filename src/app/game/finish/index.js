@@ -32,6 +32,10 @@ angular.module('sf.game.finish', [
       return user.name === User.localUser;
     }
 
+    finish.useColor1 = function(user) {
+      return user.leader;
+    }
+
     /**
      * Init
      */

@@ -4,7 +4,8 @@
       <h3>Authors</h3>
       <ul class="no-points">
         <li ng-repeat='user in finish.game.users'>
-          <p>{{user.displayName || user.name}} <span ng-show="finish.isYou(user)">(You)</span></p>
+          <p ng-class="{ 'storyColor1': finish.useColor1(user), 'storyColor2': !finish.useColor1(user) }"
+          >{{user.displayName || user.name}}</p>
         </li>
       </ul>
       <h3>Story Words</h3>
@@ -22,7 +23,9 @@
     <div class="well story">
       <p class="story">
         <span ng-repeat='sentence in finish.game.sentences'>
-          <span ng-bind-html="sentence.entry"></span>
+          <span
+            ng-class="{ 'storyColor1': finish.useColor1(sentence.user), 'storyColor2': !finish.useColor1(sentence.user) }"
+            ng-bind-html="sentence.entry"></span>
         </span>
       </p>
     </div>
