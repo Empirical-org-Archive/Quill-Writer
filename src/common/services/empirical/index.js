@@ -79,6 +79,26 @@ angular.module(moduleName, [
 
     };
 
+    empirical.loadFinishedGame = function(game, id) {
+      var activityUID = empirical.mapUIDs(id);
+      empirical.loadActivity(activityUID)
+      .then(function() {
+        empirical.getPrompt(id, function(p) {
+          game.prompt = p;
+        });
+
+        empirical.getWordList(id, function(wordList) {
+          game.wordList = wordList;
+        });
+
+        empirical.getStoryRequirements(id, function(requirements) {
+          game.requirements = requirements;
+        });
+      }, function(err){
+        alert(err);
+      });
+    }
+
     var activitiesRef = new Firebase(baseFbUrl + "/activities");
 
     empirical.getActivity = function(activityUID) {

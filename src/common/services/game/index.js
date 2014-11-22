@@ -96,6 +96,24 @@ angular.module("sf.services.game", [
       return $scope;
     };
 
+    gameModel.getFinishedGame = function(gameId) {
+      var game = gameModel.get(gameId).$asObject();
+      var gameRef = gameModel.getRef(gameId);
+      var wordsUsed = $firebase(gameRef.child("wordsUsed")).$asArray();
+      var sentences = $firebase(gameRef.child("sentences")).$asArray();
+      var wordsUsedLength = $firebase(gameRef.child("wordsUsedLength")).$asObject();
+      var gameUsers = $firebase(gameRef.child("users")).$asArray();
+      game.wordsUsedLength = wordsUsed;
+      game.sentences = sentences;
+      game.wordsUsedLength = wordsUsedLength;
+      game.users = gameUsers;
+      game.users.$loaded().then(function() {
+        var activityUID = game.users[0].activityPrompt;
+        Empirical.loadFinishedGame(game, activityUID);
+      });
+      return game;
+    };
+
     gameModel.getSentences = function(gameId) {
       return $firebase(gameModel.getRef(gameId).child("sentences")).$asArray();
     }
@@ -154,7 +172,7 @@ angular.module("sf.services.game", [
       return ((u1.sid === u2.sid) && (u1.uid === u2.uid));
     }
 
-    gameModel.imDone = function(gameId, currentGame, currentUser) {
+    gameModel.imDone = function(gameId, currentGame, currentUser, onDone) {
       var game = gameModel.getRef(gameId);
       var users = $firebase(game.child("users")).$asArray();
       users.$loaded().then(function(){
@@ -179,6 +197,7 @@ angular.module("sf.services.game", [
                 angular.forEach(users, function(user) {
                   user.finishMessageToShow.message = "You have completed this story!";
                   users.$save(user);
+                  onDone();
                 });
                 gameModel.closeGame(gameId, currentUser);
               }

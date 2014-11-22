@@ -177,7 +177,11 @@ angular.module('sf.game', [
     }
 
     game.finish = function() {
-      Game.imDone(gameId, game.currentGame, User.currentUser);
+      Game.imDone(gameId, game.currentGame, User.currentUser, function onDone() {
+        $state.go('sf.game.finish', {
+          gameId: gameId
+        });
+      });
     }
 
     game.isReadyToSubmit = function() {

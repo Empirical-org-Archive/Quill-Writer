@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="well side-bar">
+      <h3>Authors</h3>
+      <ul class="no-points">
+        <li ng-repeat='user in finish.game.users'>
+          <p>{{user.displayName || user.name}} <span ng-show="finish.isYou(user)">(You)</span></p>
+        </li>
+      </ul>
+      <h3>Story Words</h3>
+      <ul class="no-points">
+        <li ng-repeat='item in finish.game.wordList'
+           bs-tooltip>
+          <p ng-class="{'striked': game.isWordUsed(item.word)}">{{item.word}}</p>
+        </li>
+        </ul>
+      <h3>Goals</h3>
+      <p >Words used {{finish.game.wordsUsedLength.length}} of {{finish.game.requirements.needed}}</p>
+    </div>
+  </div>
+  <div class="col-md-offset-1 col-md-7">
+    {{finish.game.story}}
+  </div>
+</div>
