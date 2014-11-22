@@ -179,7 +179,8 @@ angular.module('sf.game', [
     game.finish = function() {
       Game.imDone(gameId, game.currentGame, User.currentUser, function onDone() {
         $state.go('sf.game.finish', {
-          gameId: gameId
+          gameId: gameId,
+          uid: $state.params.uid
         });
       });
     }

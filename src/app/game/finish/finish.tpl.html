@@ -11,7 +11,7 @@
       <ul class="no-points">
         <li ng-repeat='item in finish.game.wordList'
            bs-tooltip>
-          <p ng-class="{'striked': game.isWordUsed(item.word)}">{{item.word}}</p>
+          <p ng-class="{'striked': finish.isWordUsed(item.word)}">{{item.word}}</p>
         </li>
         </ul>
       <h3>Goals</h3>
@@ -19,6 +19,12 @@
     </div>
   </div>
   <div class="col-md-offset-1 col-md-7">
-    {{finish.game.story}}
+    <div class="well story">
+      <p class="story">
+        <span ng-repeat='sentence in finish.game.sentences'>
+          <span ng-bind-html="sentence.entry"></span>
+        </span>
+      </p>
+    </div>
   </div>
 </div>

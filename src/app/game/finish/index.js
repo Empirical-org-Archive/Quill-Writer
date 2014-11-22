@@ -16,7 +16,7 @@ angular.module('sf.game.finish', [
         }
       });
   })
-  .controller('FinishCtrl', function(_, Game, $state) {
+  .controller('FinishCtrl', function(_, Game, $state, User) {
     var finish = this;
     finish.isWordUsed = function(word) {
       var wordUsed = false;
@@ -27,6 +27,14 @@ angular.module('sf.game.finish', [
       });
       return wordUsed;
     }
+
+    finish.isYou = function(user) {
+      return user.name === User.localUser;
+    }
+
+    /**
+     * Init
+     */
 
     if ($state.params.gameId) {
       finish.game = Game.getFinishedGame($state.params.gameId);
