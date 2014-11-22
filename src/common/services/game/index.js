@@ -51,20 +51,16 @@ angular.module("sf.services.game", [
         var returnUser = null;
         var index = 0;
         _.each(gameUsers, function(gameUser) {
-          console.log(gameModel.isSameUser(gameUser, localUser));
           if (gameModel.isSameUser(gameUser, localUser)) {
             returnUser = index;
           }
           index++;
         });
-        console.log(gameUsers)
-        console.log(returnUser);
         return gameUsers[returnUser];
       }
       gameUsers.$loaded(function() {
         var length = gameUsers.length;
         var gameUser = findCurrentUser();
-        console.log(gameUser);
         if (gameUser) {
           currentUser = gameUser;
           User.localUser = currentUser.name;
@@ -119,11 +115,9 @@ angular.module("sf.services.game", [
     }
 
     gameModel.closeGame = function(gameId, currentUser) {
-      console.log(currentUser);
       if (currentUser.leader) {
         $analytics.eventTrack('Quill-Writer Submit Story to Teacher');
       }
-      console.log("Close game %s", gameId);
     };
 
     gameModel.sendSentence = function(gameId, currentGame, sentence, currentUser) {

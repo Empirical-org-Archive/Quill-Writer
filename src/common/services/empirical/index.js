@@ -123,7 +123,6 @@ angular.module(moduleName, [
     };
     //Activity Admin Things
     empirical.createActivity = function(activity, cb) {
-      console.log("submitting this activity %s", JSON.stringify(activity));
       cb();
     };
 
@@ -144,7 +143,6 @@ angular.module(moduleName, [
           return !p.private;
         });
         var groupedBySubjectPrompts = _.groupBy(publicPrompts, 'subject');
-        console.log(groupedBySubjectPrompts);
         deferred.resolve(groupedBySubjectPrompts);
       });
 
