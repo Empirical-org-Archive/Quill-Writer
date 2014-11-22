@@ -179,6 +179,14 @@ angular.module("sf.services.game", [
             user.finishMessageToShow.message = "The other player has voted to submit to the story. Press submit to teacher when you feel the story is complete. You may continue to use words.";
             user.isTheirTurn = true;
           }
+          var gameObj = $firebase(game).$asObject();
+          var unwatch = gameObj.$watch(function() {
+            console.log(unwatch);
+            if (gameObj.isDone) {
+              onDone();
+              unwatch();
+            }
+          })
           users.$save(user).then(function() {
             users.$loaded().then(function() {
               var allDone = true;
@@ -191,7 +199,9 @@ angular.module("sf.services.game", [
                 angular.forEach(users, function(user) {
                   user.finishMessageToShow.message = "You have completed this story!";
                   users.$save(user);
-                  onDone();
+                  var isDone = $firebase(game.child("isDone")).$asObject();
+                  isDone.value = true;
+                  isDone.$save();
                 });
                 gameModel.closeGame(gameId, currentUser);
               }
