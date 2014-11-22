@@ -277,6 +277,14 @@ angular.module("sf.services.game", [
       var wordsToUse = currentGame.wordList;
       var wordsInSentence = sentence.split(" ");
       var wordsToAdd = [];
+      var normalizedSentence = sentence.toLowerCase();
+      _.each(wordsToUse, function(wordToUse) {
+        var wordToUseNormalized = wordToUse.word.toLowerCase();
+        var tokens = normalizedSentence.split(wordToUseNormalized);
+        if (tokens.length > 1) {
+          wordsToAdd.push(wordToUse.word);
+        }
+      });
       wordsInSentence.forEach(function(cased_word) {
         var word = cased_word.toLowerCase();
         for (var i = 0; i < wordsToUse.length; i++) {
