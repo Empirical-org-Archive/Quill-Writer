@@ -51,20 +51,16 @@ angular.module("sf.services.game", [
         var returnUser = null;
         var index = 0;
         _.each(gameUsers, function(gameUser) {
-          console.log(gameModel.isSameUser(gameUser, localUser));
           if (gameModel.isSameUser(gameUser, localUser)) {
             returnUser = index;
           }
           index++;
         });
-        console.log(gameUsers)
-        console.log(returnUser);
         return gameUsers[returnUser];
       }
       gameUsers.$loaded(function() {
         var length = gameUsers.length;
         var gameUser = findCurrentUser();
-        console.log(gameUser);
         if (gameUser) {
           currentUser = gameUser;
           User.localUser = currentUser.name;
@@ -96,16 +92,32 @@ angular.module("sf.services.game", [
       return $scope;
     };
 
+    gameModel.getFinishedGame = function(gameId) {
+      var game = gameModel.get(gameId).$asObject();
+      var gameRef = gameModel.getRef(gameId);
+      var wordsUsed = $firebase(gameRef.child("wordsUsed")).$asArray();
+      var sentences = $firebase(gameRef.child("sentences")).$asArray();
+      var wordsUsedLength = $firebase(gameRef.child("wordsUsedLength")).$asObject();
+      var gameUsers = $firebase(gameRef.child("users")).$asArray();
+      game.wordsUsedLength = wordsUsed;
+      game.sentences = sentences;
+      game.wordsUsedLength = wordsUsedLength;
+      game.users = gameUsers;
+      game.users.$loaded().then(function() {
+        var activityUID = game.users[0].activityPrompt;
+        Empirical.loadFinishedGame(game, activityUID);
+      });
+      return game;
+    };
+
     gameModel.getSentences = function(gameId) {
       return $firebase(gameModel.getRef(gameId).child("sentences")).$asArray();
     }
 
     gameModel.closeGame = function(gameId, currentUser) {
-      console.log(currentUser);
       if (currentUser.leader) {
         $analytics.eventTrack('Quill-Writer Submit Story to Teacher');
       }
-      console.log("Close game %s", gameId);
     };
 
     gameModel.sendSentence = function(gameId, currentGame, sentence, currentUser) {
@@ -154,7 +166,7 @@ angular.module("sf.services.game", [
       return ((u1.sid === u2.sid) && (u1.uid === u2.uid));
     }
 
-    gameModel.imDone = function(gameId, currentGame, currentUser) {
+    gameModel.imDone = function(gameId, currentGame, currentUser, onDone) {
       var game = gameModel.getRef(gameId);
       var users = $firebase(game.child("users")).$asArray();
       users.$loaded().then(function(){
@@ -179,6 +191,7 @@ angular.module("sf.services.game", [
                 angular.forEach(users, function(user) {
                   user.finishMessageToShow.message = "You have completed this story!";
                   users.$save(user);
+                  onDone();
                 });
                 gameModel.closeGame(gameId, currentUser);
               }

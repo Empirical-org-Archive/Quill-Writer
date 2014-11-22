@@ -117,6 +117,15 @@ p.story {
   line-height: 2.5;
 }
 
+.storyColor1 {
+  border-bottom: 1px solid green;
+}
+
+.storyColor2 {
+  border-bottom: 1px solid goldenrod;
+}
+
+
 .well.story {
   margin-right: -40px;
   margin-left: -40px;

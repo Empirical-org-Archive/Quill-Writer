@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="well side-bar">
+      <h3>Authors</h3>
+      <ul class="no-points">
+        <li ng-repeat='user in finish.game.users'>
+          <p ng-class="{ 'storyColor1': finish.useColor1(user), 'storyColor2': !finish.useColor1(user) }"
+          >{{user.displayName || user.name}}</p>
+        </li>
+      </ul>
+      <h3>Story Words</h3>
+      <ul class="no-points">
+        <li ng-repeat='item in finish.game.wordList'
+           bs-tooltip>
+          <p ng-class="{'striked': finish.isWordUsed(item.word)}">{{item.word}}</p>
+        </li>
+        </ul>
+      <h3>Goals</h3>
+      <p >Words used {{finish.game.wordsUsedLength.length}} of {{finish.game.requirements.needed}}</p>
+    </div>
+  </div>
+  <div class="col-md-offset-1 col-md-7">
+    <h2>Story Review</h2>
+    <div class="well story">
+      <p class="story">
+        <span ng-repeat='sentence in finish.game.sentences'>
+          <span
+            ng-class="{ 'storyColor1': finish.useColor1(sentence.user), 'storyColor2': !finish.useColor1(sentence.user) }"
+            ng-bind-html="sentence.entry"></span>
+        </span>
+      </p>
+    </div>
+    <h3>Thanks for trying Quill Writer!</h3>
+    <div class="well">
+      <p>Click <a href="https://www.quill.org/account/new">here</a> to set up a quill.org account to share them with your teachers.</p>
+    </div>
+  </div>
+</div>

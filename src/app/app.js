@@ -1,5 +1,6 @@
 var sfHome = require('./home/')
 var sfGame = require('./game/')
+var sfGameFinish = require('./game/finish/');
 var sfForm = require('./form/')
 var sfFormLink = require('./form/link/');
 var sfLobby = require('./lobby/');
@@ -14,6 +15,7 @@ angular.module('stories-with-friends', [
     // features
     sfHome,
     sfGame,
+    sfGameFinish,
     sfLobby,
     sfSample,
     sfLink,
