@@ -136,19 +136,11 @@ angular.module("sf.services.game", [
 
     gameModel.highlightWords = function(gameId, currentGame, sentence) {
       var wordsToUse = currentGame.wordList;
-      var wordsInSentence = sentence.split(" ");
-      var returnedSentences = [];
-      wordsInSentence.forEach(function(cased_word) {
-        var word = cased_word.toLowerCase();
-        for (var i = 0; i < wordsToUse.length; i++) {
-          var wordToLookAt = wordsToUse[i].word.toLowerCase();
-          if (word === wordToLookAt || word.indexOf(wordToLookAt) !== -1) {
-            cased_word = "<b>" + cased_word + "</b>";
-          }
-        }
-        returnedSentences.push(cased_word);
-      });
-      return returnedSentences.join(" ");
+      _.each(wordsToUse, function(w) {
+        var exp = new RegExp("(" + w.word + ")", "gi");
+        sentence = sentence.replace(exp, '<b>$1</b>');
+      })
+      return sentence;
     }
 
     gameModel.takeTurns = function(gameId) {
