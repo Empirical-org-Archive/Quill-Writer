@@ -1,21 +1,17 @@
-# Quill Writer
-
-# Please see our [readme.io page](http://empirical-core.readme.io/v1.0/docs/quill-writer) for updated docs
 
 Quill Writer - Learn by Writing Together
 =======
 - **Quill Community:** [Our community HQ](http://community.quill.org)
 - **Real Time Chat:** [Join us in the public chat room.](http://community.quill.org/chat)
-- **Documentation:** [Install docs](http://empirical-core.readme.io/)
-- **Additional docs:** [Supporting documents.](https://github.com/empirical-org/Documentation/tree/master/Getting-Started)
-- 
+- **Documentation:** [Docs + Install Guide](http://empirical-core.readme.io/)
+
 
 # Play Quill Writer Now!
 View the [work in progress site
 here](https://quill-writer.firebaseapp.com/#/)
 
 
-##Compass Activity Specification
+## Compass Activity Specification (Old Install Guide)
 
 ###Module URL
 
