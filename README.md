@@ -4,16 +4,16 @@
 
 Quill Writer - Learn by Writing Together
 =======
-- **Getting Started:** [Start here with this doc.](https://github.com/empirical-org/Documentation/tree/master/Getting-Started) 
-- **CLA:** [Please sign our CLA before contributing.] (https://www.clahub.com/agreements/empirical-org/Documentation)
-- **Mailing List:** [Empirical Core developers mailing list.](https://groups.google.com/forum/#!forum/empirical-core)
-- **Real Time Chat:** [Join us in the Empirical Core Gitter room.](https://gitter.im/empirical-org)
+- **Quill Community:** [Our community HQ](http://community.quill.org)
+- **Real Time Chat:** [Join us in the public chat room.](http://community.quill.org/chat)
+- **Documentation:** [Install docs](http://empirical-core.readme.io/)
+- **Additional docs:** [Supporting documents.](https://github.com/empirical-org/Documentation/tree/master/Getting-Started)
+- 
 
-
+# Play Quill Writer Now!
 View the [work in progress site
 here](https://quill-writer.firebaseapp.com/#/)
 
-Check out the [wiki](https://github.com/empirical-org/Quill-Writer/wiki) for more information about the project and how to contribute.
 
 ##Compass Activity Specification
 
