@@ -47,6 +47,11 @@ angular.module(moduleName, [
     return $firebase(lobbyService.getGroupsRef(roomRef)).$asArray();
   };
 
+  /*
+   * Each student in a group needs to know when their group is full. Full means
+   * they can start game play. In addStudentToGroup, each student will be passed
+   * to this function to register the watcher functions.
+   */
   lobbyService.localGroupWatcher = function(groupId, student, lobbyId) {
     console.log("Registering with the local group watcher with %s %s %s", groupId, student, lobbyId);
     var groupsRef = lobbyService.getGroupsRef(lobbyService.getRoomRef(lobbyId));
@@ -76,6 +81,15 @@ angular.module(moduleName, [
     }
   };
 
+  /*
+   * addStudentToGroup has a lot going on. The algorithm is attempting
+   * to group students together. It checks to see if there are any slots
+   * available. If there are, that student is in that group. If there
+   * are no slots available, that student become the leader of the new group.
+   * This has no effect on actual game play. When this group is ready to start,
+   * the group leader's browser will run some extra code to clean up the firebase
+   * objects.
+   */
   lobbyService.addStudentToGroup = function(student, lobbyId) {
     var roomRef = lobbyService.getRoomRef(lobbyId);
     var groups = lobbyService.getGroups(roomRef);
