@@ -5,6 +5,9 @@ angular.module("sf.services.game", [
     sfEmpirical,
   ])
 
+  /*
+   * The Game is service is responsible for initializing games
+   */
   .service("Game", function($firebase, baseFbUrl, Empirical, _, $analytics) {
     var gameModel = this;
 
@@ -18,6 +21,13 @@ angular.module("sf.services.game", [
       return gamesRef.child(id);
     }
 
+    /*
+     * getGameByUser is essentially a init like function. It is based an
+     * Angular scope and all of the firebase refs are attached to it.
+     * This auto syncs current games in progress. It creates new users
+     * if required. It establishes some watch functions that update the messages
+     * on certain events.
+     */
     gameModel.getGameByUser = function(User, $scope) {
       var currentUser = User.currentUser;
       var gameRef = gameModel.getRef(currentUser.sid);
@@ -67,6 +77,8 @@ angular.module("sf.services.game", [
         } else if (length < 2) {
           makeNewUser(length)
         }
+        //We pass everything to initialize game
+        //This is where the game prompts, word lists, requirements are loaded
         Empirical.initializeGame($scope, gameUsers, currentUser);
       }).then(function() {
         $scope.users = gameUsers;
@@ -92,6 +104,7 @@ angular.module("sf.services.game", [
       return $scope;
     };
 
+    //This returns a finished game for the summary page.
     gameModel.getFinishedGame = function(gameId) {
       var game = gameModel.get(gameId).$asObject();
       var gameRef = gameModel.getRef(gameId);
@@ -143,6 +156,12 @@ angular.module("sf.services.game", [
       return sentence;
     }
 
+    /*
+     * Toggles the isTheirTurn property on each user.
+     * This only works for two player games. If we ever expand to more
+     * players, this logic needs to change.
+     * TODO
+     */
     gameModel.takeTurns = function(gameId) {
       var game = gameModel.getRef(gameId);
       var users = $firebase(game.child("users")).$asArray();
