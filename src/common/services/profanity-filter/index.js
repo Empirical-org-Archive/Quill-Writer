@@ -1,6 +1,14 @@
 angular.module('sf.services.profanity-filter', [
 ])
 
+/*
+ * Profanity Filter implements the made up error protocol for Quill-Writer.
+ * If there are no errors, return null.
+ * If there are errors, return an array of strings that will be used as
+ * display messages.
+ *
+ * Don't mind any of the mean words below ;)
+ */
 .service("ProfanityFilter", function() {
   var pFilter = this;
 
