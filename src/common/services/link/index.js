@@ -2,6 +2,12 @@ var moduleName = 'sf.services.link';
 
 angular.module(moduleName, [])
 
+/*
+ * The link service provides methods to save a partner game in Firebase,
+ * generate a valid unused 3 character shortcode (easy to type in if necessary)
+ * and delete the shortcode once that particular game is loaded.
+ */
+
 .service("Link", function($q, $firebase, baseFbUrl) {
   var link = this;
   var ref = new Firebase(baseFbUrl + "/shortLinks");
