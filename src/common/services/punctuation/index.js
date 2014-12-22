@@ -2,6 +2,11 @@ var moduleName = 'sf.services.punctuation';
 
 angular.module(moduleName, [])
 
+/*
+ * Punctuation checks that sentences have the correct ending tokens.
+ * Return null, if the sentence passes all the requirements.
+ * Return an array of display strings if the sentence fails the requirements.
+ */
 .service("Punctuation", function(_) {
   var punctuation = this;
 
