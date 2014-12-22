@@ -3,6 +3,10 @@ angular.module('sf.services.partner', [
   sfConstants,
 ])
 
+/*
+ * This Partner service provides convenience methods to
+ * store things into local storage.
+ */
 .service("Partner", function(localStorageService) {
   var partner = this;
   var key = "PartnerURL";
