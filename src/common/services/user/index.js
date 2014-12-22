@@ -1,5 +1,8 @@
 angular.module('sf.services.user', [])
 
+/*
+ * Abstracts away the local storage and send some analytics events
+ */
   .service('User', function(localStorageService, $analytics) {
     var user = this;
 
