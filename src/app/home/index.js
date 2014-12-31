@@ -8,8 +8,8 @@ angular.module('sf.home', [
   .config(function($stateProvider) {
     $stateProvider
       .state('sf.home', {
-        // Parameters: uid = activity UID, student = activity session UID
-        url: '/{shortcode:[a-z]{0,3}}?uid&student',
+        // Parameters: uid = activity UID, student = activity session UID, form = flag to show the admin form
+        url: '/{shortcode:[a-z]{0,3}}?uid&student&form',
         views: {
           'content@': {
             template: fs.readFileSync(__dirname + '/home.tpl.html'),
@@ -56,9 +56,15 @@ angular.module('sf.home', [
       startGameFromShortcode();
     } else if (!_.isUndefined($state.params.student)) {
       startGameFromLms();
-    }else {
+    } else if ($state.params.form === "true") {
+      goToAdminForm();
+    } else {
       // FIXME: This home page should be unreachable for now.
       runActivityLoader();
+    }
+
+    function goToAdminForm() {
+      $state.go('sf.form', {uid: $state.params.uid});
     }
 
     function startGameFromShortcode() {
