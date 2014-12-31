@@ -5,7 +5,7 @@ Quill Writer - Learn by Writing Together
 - **Real Time Chat:** [Join us in the public chat room.](http://community.quill.org/chat)
 - **Documentation:** [Docs + Install Guide](http://empirical-core.readme.io/)
 
-
+ 
 # Play Quill Writer Now!
 View the [work in progress site
 here](https://quill-writer.firebaseapp.com/#/)
