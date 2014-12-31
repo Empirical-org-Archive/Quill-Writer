@@ -20,13 +20,31 @@ angular.module('sf.form', [
   .controller('FormCtrl', function($state, Form, Empirical) {
     var form = this;
 
-    form.currentForm = {};
+    // FIXME: Form should not be empty if the form was previously saved.
+    var activityUID = $state.params.uid;
+    var activity = Empirical.getActivity(activityUID);
+    activity.$loaded().then(function(a) {
+      // If the activity exists, load the values for current form.
+      if (a.prompt) {
+        form.currentForm = {
+          name: a.name,
+          prompt: a.prompt,
+          requirements: a.requirements,
+          subject: a.subject,
+          wordList: a.wordList
+        }; 
+      } else {
+        console.log('activity was not found');
+        form.currentForm = {};
 
-    //Initialize the empty word list
-    form.currentForm.wordList = [{}];
+        //Initialize the empty word list
+        form.currentForm.wordList = [{}];        
+      }
+    });
+
 
     form.submitForm = function(f) {
-      Form.submit(f, function(err, refName) {
+      Form.submit(activityUID, f, function(err, refName) {
         //do something sending the quill.js close form event thing
         if (err) {
           form.message = err;

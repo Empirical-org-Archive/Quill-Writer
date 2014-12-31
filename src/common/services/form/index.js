@@ -8,11 +8,11 @@ angular.module('sf.services.form', [
 
   var activitesRef = new Firebase(baseFbUrl + "/activities");
 
-  form.submit = function(f, cb) {
-    var activities = $firebase(activitesRef).$asArray();
-    activities.$add(f).then(function(ref) {
-      console.log(ref.name());
-      cb(null, ref.name());
+  form.submit = function(activityUid, f, cb) {
+    // Ensure that activities are keyed to the activity's original UID
+    // so that we can look it up later.
+    activitesRef.child(activityUid).set(angular.copy(f), function(ref) {
+      cb(null, activityUid);
     });
   }
 })
