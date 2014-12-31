@@ -21,6 +21,7 @@ angular.module('sf.game', [
   .config(function($stateProvider) {
     $stateProvider
       .state('sf.game', {
+        // Parameters: uid = game UID, sid = activity session UID, activityPrompt = activity UID
         url: '/games?uid&sid&activityPrompt',
         views: {
           'content@': {

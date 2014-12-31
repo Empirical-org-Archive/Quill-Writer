@@ -58,6 +58,7 @@ angular.module(moduleName, [
     }
 
     empirical.initializeGame = function(game, users, currentUser) {
+      // FIXME: What is this session ID parameter?
       var sessionId = currentUser.activityPrompt;
       var activityUID = empirical.mapUIDs(sessionId);
       empirical.loadActivity(activityUID)
@@ -105,6 +106,7 @@ angular.module(moduleName, [
       return $firebase(activitiesRef.child(activityUID)).$asObject();
     };
 
+    // FIXME: Quill Writer should be able to handle custom activities (not just static list). 
     empirical.loadActivity = function(activityUID) {
       var activityPromise = $q.defer();
 
@@ -126,6 +128,7 @@ angular.module(moduleName, [
       cb();
     };
 
+    // FIXME: Remove this, appears to be unused.
     empirical.getRandomPromptUID = function() {
       return staticUIDs[_.random(1, _.size(staticUIDs))];
     };

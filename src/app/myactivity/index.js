@@ -2,6 +2,8 @@ var User = require('./../../common/services/user/');
 var Empirical = require('./../../common/services/empirical/');
 var fs = require('fs');
 
+// FIXME: Remove this (and template). There is no longer a need to share 
+// links to the activity, activity should only be started via the LMS.
 angular.module('sf.myactivity', [
     'ui.router'
   ])
@@ -29,6 +31,7 @@ angular.module('sf.myactivity', [
     });
 
     myactivity.next = function(un) {
+      // FIXME: userName field appears to be unused in LinkCtrl.
       $state.go('sf.link', {id: id, name: myactivity.activity.name, userName: un});
     };
   })

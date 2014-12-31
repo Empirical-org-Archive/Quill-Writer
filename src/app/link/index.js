@@ -9,7 +9,9 @@ angular.module('sf.link', [
   .config(function($stateProvider) {
     $stateProvider
       .state('sf.link', {
-        url: '/link?id&name',
+        // FIXME: Remove 'name' parameter from this list because the activity name is not customizable.
+        // Parameters: id = activity ID, name = activity name, activitySessionUid = activity session ID
+        url: '/link?id&name&activitySessionUid',
         views: {
           'content@': {
             template: fs.readFileSync(__dirname + '/link.tpl.html'),
@@ -24,7 +26,7 @@ angular.module('sf.link', [
     var id = $state.params.id;
     var name = $state.params.name;
 
-    var sid = uuid4.generate();
+    var sid = $state.params.activitySessionUid;
 
     Empirical.getAvailablePrompts().$loaded().then(function(prompts) {
       prompts = _.each(prompts, function(p) {
