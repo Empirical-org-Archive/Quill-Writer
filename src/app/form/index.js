@@ -20,7 +20,6 @@ angular.module('sf.form', [
   .controller('FormCtrl', function($state, Form, Empirical) {
     var form = this;
 
-    // FIXME: Form should not be empty if the form was previously saved.
     var activityUID = $state.params.uid;
     var activity = Empirical.getActivity(activityUID);
     activity.$loaded().then(function(a) {

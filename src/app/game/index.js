@@ -53,6 +53,7 @@ angular.module('sf.game', [
       }
     }
 
+    // FIXME: currentGame is a Scope.
     game.currentGame = Game.getGameByUser(User, $scope);
 
     function generatePartnerUID () {
@@ -222,6 +223,9 @@ angular.module('sf.game', [
       return !game.isLocalPlayersTurn() || game.hasPartnerSubmissionToReview();
     };
 
+    /*
+     * Set and save the display name for the current user.
+     */
     game.setStudentName = function(name) {
       User.currentUser.displayName = name;
       _.each(game.currentGame.users, function(user) {

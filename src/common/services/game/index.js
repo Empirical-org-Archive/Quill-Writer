@@ -57,16 +57,9 @@ angular.module("sf.services.game", [
         User.setCurrentUser(currentUser);
       }
       function findCurrentUser() {
-        var localUser = currentUser;
-        var returnUser = null;
-        var index = 0;
-        _.each(gameUsers, function(gameUser) {
-          if (gameModel.isSameUser(gameUser, localUser)) {
-            returnUser = index;
-          }
-          index++;
+        return _.find(gameUsers, function(gameUser) {
+          return gameModel.isSameUser(gameUser, currentUser);
         });
-        return gameUsers[returnUser];
       }
       gameUsers.$loaded(function() {
         var length = gameUsers.length;
