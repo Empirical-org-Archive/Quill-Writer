@@ -1,5 +1,6 @@
 var sfConstants = require('../../constants');
 var sfEmpirical = require('../empirical');
+
 angular.module("sf.services.game", [
     sfConstants,
     sfEmpirical,

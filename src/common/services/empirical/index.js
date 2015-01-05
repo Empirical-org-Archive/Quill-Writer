@@ -7,6 +7,8 @@ angular.module(moduleName, [
     sfConstants
   ])
 
+  .service('ActivitySession', require('./activity_session'))
+
   .service(serviceName, function($http, $q, $firebase, baseFbUrl, empiricalBaseURL, _) {
     var empirical = this;
 
