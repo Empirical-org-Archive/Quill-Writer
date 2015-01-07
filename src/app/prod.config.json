@@ -1,0 +1,4 @@
+{
+  "environment": "production",
+  "firebaseUrl": "https://quillgrammar.firebaseio.com/"
+}
