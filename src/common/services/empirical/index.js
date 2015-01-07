@@ -8,6 +8,7 @@ angular.module(moduleName, [
   ])
 
   .service('ActivitySession', require('./activity_session'))
+  .service('ConceptTagResult', require('./concept_tag_result'))
 
   .service(serviceName, function($http, $q, $firebase, baseFbUrl, empiricalBaseURL, _) {
     var empirical = this;

@@ -1,6 +1,6 @@
 module.exports =
 
-['$http', 'empiricalBaseURL', function ActivitySession($http, empiricalBaseURL) {
+['$http', 'empiricalBaseURL', '_', function ActivitySession($http, empiricalBaseURL, _) {
   var activitySession = this;
 
   function activitySessionUrl(id) {
@@ -8,31 +8,25 @@ module.exports =
   }
 
   function update(id, putData, cb) {
-    $http.put(activitySessionUrl(id), putData).then(function(response) {
-      // TODO: Pass back an error if status != 200
-      cb(null, response);
-    });
+    return $http.put(activitySessionUrl(id), putData);
   }
 
   /*
-   * Mark the activity session as finished. The callback receives
+   * Mark the activity session as finished. The promise receives
    * the activity session JSON returned from the LMS.
    * 
    * Example:       
-   * ActivitySession.finish(User.currentUser.sid, function next(err, activitySession) {
+   * ActivitySession.finish(User.currentUser.sid).then(function next(activitySession) {
    *   // Do stuff here
    * });
    * 
    * TODO: Serialize concept tag results and send as part of the 
    * request body.
    */
-  activitySession.finish = function(sessionId, cb) {
-    update(sessionId, {
-      state: 'finished' 
-    }, function next(err, response) {
-          if (!err) {
-            cb(null, response.data.activity_session);
-          }
+  activitySession.finish = function(sessionId, putData, cb) {
+    putData = _.extend(putData, {state: 'finished'});
+    return update(sessionId, putData).then(function next(response) {
+      return response.data.activity_session;
     });
   }
 }]
