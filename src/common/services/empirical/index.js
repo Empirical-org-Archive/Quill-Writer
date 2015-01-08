@@ -1,6 +1,6 @@
 var sfConstants = require('./../../constants');
 
-var moduleName = 'sf.services.empirical';
+var moduleName = 'quill-writer.services.empirical';
 var serviceName = 'Empirical';
 
 angular.module(moduleName, [

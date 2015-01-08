@@ -1,4 +1,4 @@
-var moduleName = 'sf.services.link';
+var moduleName = 'quill-writer.services.link';
 
 angular.module(moduleName, [])
 

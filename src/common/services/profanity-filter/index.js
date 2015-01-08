@@ -1,4 +1,4 @@
-angular.module('sf.services.profanity-filter', [
+angular.module('quill-writer.services.profanity-filter', [
 ])
 
 /*
@@ -490,4 +490,4 @@ angular.module('sf.services.profanity-filter', [
   };
 
 })
-module.exports = 'sf.services.profanity-filter';
+module.exports = 'quill-writer.services.profanity-filter';
