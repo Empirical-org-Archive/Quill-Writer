@@ -9,7 +9,7 @@ var game = require('./../../common/services/game/');
  * modules, services etc and glues them together nicely.
  */
 
-angular.module('sf.game', [
+angular.module('quill-writer.game', [
     'ui.router',
     profanityFilter,
     punctuation,
@@ -18,7 +18,7 @@ angular.module('sf.game', [
 
   .config(function($stateProvider) {
     $stateProvider
-      .state('sf.game', {
+      .state('quill-writer.game', {
         // Parameters: uid = game UID, sid = activity session UID, activityPrompt = activity UID
         url: '/games?uid&sid&activityPrompt',
         views: {
@@ -46,7 +46,7 @@ angular.module('sf.game', [
         User.setCurrentUser(currentUser);
       } else {
         console.log("There is no current user. Redirecting to sf.home");
-        $state.go('sf.home');
+        $state.go('quill-writer.home');
         return;
       }
     }
@@ -186,7 +186,7 @@ angular.module('sf.game', [
     game.finish = function() {
       Game.imDone(gameId, game.currentGame, User.currentUser, function onDone() {
         finishActivitySession().then(function() {
-          $state.go('sf.game.finish', {
+          $state.go('quill-writer.game.finish', {
             gameId: gameId,
             uid: $state.params.uid
           });
@@ -289,4 +289,4 @@ angular.module('sf.game', [
 
 ;
 
-module.exports = 'sf.game';
+module.exports = 'quill-writer.game';

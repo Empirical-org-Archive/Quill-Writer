@@ -1,13 +1,13 @@
 var User = require('./../../common/services/user/');
 var Empirical = require('./../../common/services/empirical/');
 
-angular.module('sf.link', [
+angular.module('quill-writer.link', [
     'ui.router'
   ])
 
   .config(function($stateProvider) {
     $stateProvider
-      .state('sf.link', {
+      .state('quill-writer.link', {
         // FIXME: Remove 'name' parameter from this list because the activity name is not customizable.
         // Parameters: id = activity ID, name = activity name, activitySessionUid = activity session ID
         url: '/link?id&name&activitySessionUid',
@@ -56,7 +56,7 @@ angular.module('sf.link', [
     }
 
     link.stateChange = function(uid, sid, activityUID) {
-      $state.go('sf.game', {uid: uid, sid: sid, activityPrompt: activityUID});
+      $state.go('quill-writer.game', {uid: uid, sid: sid, activityPrompt: activityUID});
     };
 
     link.next();
@@ -65,4 +65,4 @@ angular.module('sf.link', [
 
 ;
 
-module.exports = 'sf.link';
+module.exports = 'quill-writer.link';

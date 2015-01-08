@@ -1,4 +1,4 @@
-var moduleName = 'sf.lobby';
+var moduleName = 'quill-writer.lobby';
 var fs = require('fs');
 var home = require('./../home');
 var lobbyService = require('./../../common/services/lobby/');

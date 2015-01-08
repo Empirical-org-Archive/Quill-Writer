@@ -53,7 +53,7 @@ angular.module('quill-writer', [
     });
 
     $stateProvider
-      .state('sf', {
+      .state('quill-writer', {
         abstract: true,
         views: {
           'header': {

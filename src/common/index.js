@@ -1,7 +1,7 @@
 var sfServices = require('./services/');
-angular.module('sf.common', [
+angular.module('quill-writer.common', [
     sfServices
   ])
 
 ;
-module.exports = 'sf.common';
+module.exports = 'quill-writer.common';

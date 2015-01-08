@@ -1,12 +1,12 @@
 var fs = require('fs');
 
-angular.module('sf.form.link', [
+angular.module('quill-writer.form.link', [
     'ui.router'
   ])
 
   .config(function($stateProvider) {
     $stateProvider
-      .state('sf.form.link', {
+      .state('quill-writer.form.link', {
         url: '/link',
         views: {
           'content@': {
@@ -21,7 +21,7 @@ angular.module('sf.form.link', [
     var formLink = this;
 
     if (!$state.data || !$state.data.link) {
-      $state.go('sf.form');
+      $state.go('quill-writer.form');
       return;
     } else {
       formLink.link = $state.data.link;
@@ -38,4 +38,4 @@ angular.module('sf.form.link', [
 
 ;
 
-module.exports = 'sf.form.link';
+module.exports = 'quill-writer.form.link';
