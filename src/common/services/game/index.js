@@ -9,7 +9,7 @@ angular.module("quill-writer.services.game", [
   /*
    * The Game is service is responsible for initializing games
    */
-  .service("Game", function($firebase, baseFbUrl, Empirical, _, $analytics) {
+  .service("Game", function($firebase, baseFbUrl, Empirical, _, $analytics, ConceptTagResult, TypingSpeed) {
     var gameModel = this;
 
     var gamesRef = new Firebase(baseFbUrl + "/games");
@@ -125,6 +125,18 @@ angular.module("quill-writer.services.game", [
       if (currentUser.leader) {
         $analytics.eventTrack('Quill-Writer Submit Story to Teacher');
       }
+    };
+
+    // TODO: This should probably also save the user ID (userName?) of the 
+    // player who wrote the sentence.
+    gameModel.saveWordsPerMinute = function(sessionId) {
+      return ConceptTagResult.save(sessionId, {
+        concept_tag: 'Typing Speed',
+        wpm: TypingSpeed.wordsPerMinute
+      }).then(function() {
+        TypingSpeed.reset();
+        console.log('saved typing speed concept tag');
+      });
     };
 
     gameModel.sendSentence = function(gameId, currentGame, sentence, currentUser) {

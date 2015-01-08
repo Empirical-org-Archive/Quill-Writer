@@ -120,6 +120,7 @@ angular.module('quill-writer.game', [
       }
       var errors = game.validateSentence(sentence);
       if (errors.length === 0) {
+        Game.saveWordsPerMinute(gameId);
         Game.sendSentence(gameId, game.currentGame, sentence, User.currentUser);
         Game.logWords(gameId, game.currentGame, sentence);
         Game.takeTurns(gameId);

@@ -59,6 +59,7 @@
         <div class="submit-panel" ng-show="!game.disableTextArea()">
           <div class="row">
             <textarea type="text" class="form-control" ng-model="game.currentGame.newSentence"
+              typing-speed
               ng-disabled="game.disableTextArea()"
               placeholder="{{game.currentGame.textAreaPlaceHolder}}">
               </textarea>
