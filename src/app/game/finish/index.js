@@ -1,16 +1,14 @@
-var fs = require('fs');
-
-angular.module('sf.game.finish', [
+angular.module('quill-writer.game.finish', [
     'ui.router',
   ])
 
   .config(function($stateProvider) {
     $stateProvider
-      .state('sf.game.finish', {
+      .state('quill-writer.game.finish', {
         url: '/finish/:gameId',
         views: {
           'content@': {
-            template: fs.readFileSync(__dirname + "/finish.tpl.html"),
+            templateUrl: "finish.tpl.html",
             controller: 'FinishCtrl as finish'
           }
         }
@@ -44,11 +42,11 @@ angular.module('sf.game.finish', [
       finish.game = Game.getFinishedGame($state.params.gameId);
     } else {
       console.log('going home');
-      $state.go('sf.home');
+      $state.go('quill-writer.home');
     }
 
   })
 
 ;
 
-module.exports = 'sf.game.finish';
+module.exports = 'quill-writer.game.finish';

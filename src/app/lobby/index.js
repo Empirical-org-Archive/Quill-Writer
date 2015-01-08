@@ -1,4 +1,4 @@
-var moduleName = 'sf.lobby';
+var moduleName = 'quill-writer.lobby';
 var fs = require('fs');
 var home = require('./../home');
 var lobbyService = require('./../../common/services/lobby/');
@@ -13,7 +13,7 @@ angular.module(moduleName, [
       url: '/lobby?id&name&userName',
       views: {
         'content@': {
-          template: fs.readFileSync(__dirname + '/lobby.tpl.html'),
+          templateUrl: 'lobby.tpl.html',
           controller: 'LobbyCtrl as lobby'
         }
       }
@@ -26,7 +26,7 @@ angular.module(moduleName, [
   var lobbyName = $state.params.name;
   if (!lobbyId) {
     $state.go(home);
-    return
+    return;
   }
   lobby.id = lobbyId;
   lobby.name = lobbyName;

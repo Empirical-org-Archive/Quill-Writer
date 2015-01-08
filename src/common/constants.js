@@ -1,4 +1,4 @@
-angular.module("sf.constants", [])
+angular.module("quill-writer.constants", [])
 
   .constant("appName", "Quill Writer")
   .constant("tagLine", "Learn by Writing Together")
@@ -10,4 +10,4 @@ angular.module("sf.constants", [])
   .constant("empiricalBaseURL", "http://localhost:3000/api/v1")
 ;
 
-module.exports = 'sf.constants';
+module.exports = 'quill-writer.constants';

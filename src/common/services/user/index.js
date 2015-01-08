@@ -1,4 +1,4 @@
-angular.module('sf.services.user', [])
+angular.module('quill-writer.services.user', [])
 
 /*
  * Abstracts away the local storage and send some analytics events
@@ -25,4 +25,4 @@ angular.module('sf.services.user', [])
 
 ;
 
-module.exports = 'sf.services.user';
+module.exports = 'quill-writer.services.user';

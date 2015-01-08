@@ -2,8 +2,6 @@ var profanityFilter = require('./../../common/services/profanity-filter/');
 var punctuation = require('./../../common/services/punctuation/');
 var game = require('./../../common/services/game/');
 
-var fs = require('fs');
-
 /*
  * sf.game is a module with _a lot_ going on. We should split the individual components
  * into directives with their own controllers, services etc. Most of the action is in the game.
@@ -11,7 +9,7 @@ var fs = require('fs');
  * modules, services etc and glues them together nicely.
  */
 
-angular.module('sf.game', [
+angular.module('quill-writer.game', [
     'ui.router',
     profanityFilter,
     punctuation,
@@ -20,12 +18,12 @@ angular.module('sf.game', [
 
   .config(function($stateProvider) {
     $stateProvider
-      .state('sf.game', {
+      .state('quill-writer.game', {
         // Parameters: uid = game UID, sid = activity session UID, activityPrompt = activity UID
         url: '/games?uid&sid&activityPrompt',
         views: {
           'content@': {
-            template: fs.readFileSync(__dirname + "/game.tpl.html"),
+            templateUrl: "game.tpl.html",
             controller: 'GameCtrl as game'
           }
         }
@@ -48,7 +46,7 @@ angular.module('sf.game', [
         User.setCurrentUser(currentUser);
       } else {
         console.log("There is no current user. Redirecting to sf.home");
-        $state.go('sf.home');
+        $state.go('quill-writer.home');
         return;
       }
     }
@@ -188,7 +186,7 @@ angular.module('sf.game', [
     game.finish = function() {
       Game.imDone(gameId, game.currentGame, User.currentUser, function onDone() {
         finishActivitySession().then(function() {
-          $state.go('sf.game.finish', {
+          $state.go('quill-writer.game.finish', {
             gameId: gameId,
             uid: $state.params.uid
           });
@@ -291,4 +289,4 @@ angular.module('sf.game', [
 
 ;
 
-module.exports = 'sf.game';
+module.exports = 'quill-writer.game';

@@ -1,5 +1,5 @@
 var sfConstants = require('./../../constants');
-angular.module('sf.services.form', [
+angular.module('quill-writer.services.form', [
   sfConstants,
 ])
 
@@ -17,4 +17,4 @@ angular.module('sf.services.form', [
   }
 })
 
-module.exports = 'sf.services.form';
+module.exports = 'quill-writer.services.form';
