@@ -55,16 +55,15 @@ angular.module('quill-writer', [
     $stateProvider
       .state('sf', {
         abstract: true,
-        templateUrl: 'index.html',
         views: {
           'header': {
-            template: '<sf-header></sf-header>'
+            templateUrl: 'header.html'
           },
           'content': {
             template: '<div>Main Content</div>'
           },
           'footer': {
-            template: '<sf-footer></sf-footer>'
+            template: 'footer.html'
           }
         }
       });
