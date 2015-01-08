@@ -63,7 +63,7 @@ angular.module('quill-writer', [
             template: '<div>Main Content</div>'
           },
           'footer': {
-            template: 'footer.html'
+            templateUrl: 'footer.html'
           }
         }
       });
