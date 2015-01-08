@@ -4,17 +4,17 @@ var fs = require('fs');
 
 // FIXME: Remove this (and template). There is no longer a need to share 
 // links to the activity, activity should only be started via the LMS.
-angular.module('sf.myactivity', [
+angular.module('quill-writer.myactivity', [
     'ui.router'
   ])
 
   .config(function($stateProvider) {
     $stateProvider
-      .state('sf.myactivity', {
+      .state('quill-writer.myactivity', {
         url: '/myactivity/:id',
         views: {
           'content@': {
-            template: fs.readFileSync(__dirname + '/myactivity.tpl.html'),
+            templateUrl: 'myactivity.tpl.html',
             controller: 'MyactivityCtrl as myactivity'
           }
         }
@@ -32,10 +32,10 @@ angular.module('sf.myactivity', [
 
     myactivity.next = function(un) {
       // FIXME: userName field appears to be unused in LinkCtrl.
-      $state.go('sf.link', {id: id, name: myactivity.activity.name, userName: un});
+      $state.go('quill-writer.link', {id: id, name: myactivity.activity.name, userName: un});
     };
   })
 
 ;
 
-module.exports = 'sf.myactivity';
+module.exports = 'quill-writer.myactivity';

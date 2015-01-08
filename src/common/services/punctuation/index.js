@@ -1,4 +1,4 @@
-var moduleName = 'sf.services.punctuation';
+var moduleName = 'quill-writer.services.punctuation';
 
 angular.module(moduleName, [])
 

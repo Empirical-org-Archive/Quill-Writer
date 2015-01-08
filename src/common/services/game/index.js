@@ -1,7 +1,7 @@
 var sfConstants = require('../../constants');
 var sfEmpirical = require('../empirical');
 
-angular.module("sf.services.game", [
+angular.module("quill-writer.services.game", [
     sfConstants,
     sfEmpirical,
   ])
@@ -317,4 +317,4 @@ angular.module("sf.services.game", [
 
 ;
 
-module.exports = 'sf.services.game';
+module.exports = 'quill-writer.services.game';

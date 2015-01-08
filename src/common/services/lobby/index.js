@@ -1,4 +1,4 @@
-var moduleName = 'sf.services.lobby';
+var moduleName = 'quill-writer.services.lobby';
 var serviceName = 'Lobby';
 var game = require('./../../../app/game/');
 

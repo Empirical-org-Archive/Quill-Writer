@@ -1,5 +1,5 @@
 var sfConstants = require('./../../constants');
-angular.module('sf.services.partner', [
+angular.module('quill-writer.services.partner', [
   sfConstants,
 ])
 
@@ -33,4 +33,4 @@ angular.module('sf.services.partner', [
   };
 })
 
-module.exports = 'sf.services.partner';
+module.exports = 'quill-writer.services.partner';

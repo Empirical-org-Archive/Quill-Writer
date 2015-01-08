@@ -8,7 +8,7 @@ var ProfanityFilter = require('./profanity-filter/');
 var Punctuation = require('./punctuation/');
 var Link = require('./link/');
 
-angular.module('sf.common.services', [
+angular.module('quill-writer.common.services', [
     User,
     Game,
     Form,
@@ -21,4 +21,4 @@ angular.module('sf.common.services', [
   ])
 ;
 
-module.exports = 'sf.common.services';
+module.exports = 'quill-writer.common.services';

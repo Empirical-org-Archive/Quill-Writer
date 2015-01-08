@@ -1,18 +1,17 @@
 var User = require('./../../common/services/user/');
 var Empirical = require('./../../common/services/empirical/');
-var fs = require('fs');
 
-angular.module('sf.sample', [
+angular.module('quill-writer.sample', [
     'ui.router'
   ])
 
   .config(function($stateProvider) {
     $stateProvider
-      .state('sf.sample', {
+      .state('quill-writer.sample', {
         url: '/sample',
         views: {
           'content@': {
-            template: fs.readFileSync(__dirname + '/sample.tpl.html'),
+            templateUrl: 'sample.tpl.html',
             controller: 'SampleCtrl as sample'
           }
         }
@@ -33,10 +32,10 @@ angular.module('sf.sample', [
     });
 
     sample.next = function(p, un) {
-      $state.go('sf.link', {id: p.id, name: p.name});
+      $state.go('quill-writer.link', {id: p.id, name: p.name});
     };
   })
 
 ;
 
-module.exports = 'sf.sample';
+module.exports = 'quill-writer.sample';
