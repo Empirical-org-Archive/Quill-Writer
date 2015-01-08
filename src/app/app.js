@@ -31,6 +31,9 @@ angular.module('quill-writer', [
     // common, including components and services
     sfCommon,
     sfConstants,
+
+    require('empirical-angular').name,
+
     // third party modules
     // These will not be browserified
     'firebase',
