@@ -1,6 +1,5 @@
 var User = require('./../../common/services/user/');
 var Empirical = require('./../../common/services/empirical/');
-var fs = require('fs');
 
 angular.module('sf.sample', [
     'ui.router'
@@ -12,7 +11,7 @@ angular.module('sf.sample', [
         url: '/sample',
         views: {
           'content@': {
-            template: fs.readFileSync(__dirname + '/sample.tpl.html'),
+            templateUrl: 'sample.tpl.html',
             controller: 'SampleCtrl as sample'
           }
         }

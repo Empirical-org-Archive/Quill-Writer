@@ -14,7 +14,7 @@ angular.module('sf.myactivity', [
         url: '/myactivity/:id',
         views: {
           'content@': {
-            template: fs.readFileSync(__dirname + '/myactivity.tpl.html'),
+            templateUrl: 'myactivity.tpl.html',
             controller: 'MyactivityCtrl as myactivity'
           }
         }

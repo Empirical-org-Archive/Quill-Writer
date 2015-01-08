@@ -10,7 +10,7 @@ angular.module('sf.form', [
         url: '/form?uid',
         views: {
           'content@': {
-            template: fs.readFileSync(__dirname + '/form.tpl.html'),
+            templateUrl: 'form.tpl.html',
             controller: 'FormCtrl as form'
           }
         }

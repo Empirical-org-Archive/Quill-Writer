@@ -1,5 +1,4 @@
 var User = require('./../../common/services/user/');
-var fs = require('fs');
 
 angular.module('sf.home', [
     'ui.router'
@@ -12,7 +11,7 @@ angular.module('sf.home', [
         url: '/{shortcode:[a-z]{0,3}}?uid&student&form',
         views: {
           'content@': {
-            template: fs.readFileSync(__dirname + '/home.tpl.html'),
+            templateUrl: 'home.tpl.html',
             controller: 'HomeCtrl as home'
           }
         }

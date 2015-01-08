@@ -1,6 +1,5 @@
 var User = require('./../../common/services/user/');
 var Empirical = require('./../../common/services/empirical/');
-var fs = require('fs');
 
 angular.module('sf.link', [
     'ui.router'
@@ -14,7 +13,7 @@ angular.module('sf.link', [
         url: '/link?id&name&activitySessionUid',
         views: {
           'content@': {
-            template: fs.readFileSync(__dirname + '/link.tpl.html'),
+            templateUrl: 'link.tpl.html',
             controller: 'LinkCtrl as link'
           }
         }

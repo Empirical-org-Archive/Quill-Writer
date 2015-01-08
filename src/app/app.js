@@ -10,7 +10,10 @@ var sfLink = require('./link/');
 var sfCommon = require('./../common/');
 var sfConstants = require('./../common/constants');
 
-angular.module('stories-with-friends', [
+angular.module('quill-writer', [
+    'ui.router',
+    require('../../.tmp/config').name,
+    require('../../.tmp/templates').name,
 
     // features
     sfHome,
@@ -28,19 +31,10 @@ angular.module('stories-with-friends', [
     // common, including components and services
     sfCommon,
     sfConstants,
-
-    // template modules
-    // templates-app
-    // templates-common
-
-    // angular modules
-    // ngResource // if desired
-
     // third party modules
     // These will not be browserified
     'firebase',
     //'ui.bootstrap',
-    'ui.router',
     'mgcrea.ngStrap',
     'underscore',
     'LocalStorageModule',
@@ -61,6 +55,7 @@ angular.module('stories-with-friends', [
     $stateProvider
       .state('sf', {
         abstract: true,
+        templateUrl: 'index.html',
         views: {
           'header': {
             template: '<sf-header></sf-header>'

@@ -2,8 +2,6 @@ var profanityFilter = require('./../../common/services/profanity-filter/');
 var punctuation = require('./../../common/services/punctuation/');
 var game = require('./../../common/services/game/');
 
-var fs = require('fs');
-
 /*
  * sf.game is a module with _a lot_ going on. We should split the individual components
  * into directives with their own controllers, services etc. Most of the action is in the game.
@@ -25,7 +23,7 @@ angular.module('sf.game', [
         url: '/games?uid&sid&activityPrompt',
         views: {
           'content@': {
-            template: fs.readFileSync(__dirname + "/game.tpl.html"),
+            templateUrl: "game.tpl.html",
             controller: 'GameCtrl as game'
           }
         }

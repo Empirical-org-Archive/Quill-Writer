@@ -10,7 +10,7 @@ angular.module('sf.form.link', [
         url: '/link',
         views: {
           'content@': {
-            template: fs.readFileSync(__dirname + '/link.tpl.html'),
+            templateUrl: 'link.tpl.html',
             controller: 'FormLinkCtrl as formLink'
           }
         }

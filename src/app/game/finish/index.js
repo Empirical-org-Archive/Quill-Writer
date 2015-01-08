@@ -1,5 +1,3 @@
-var fs = require('fs');
-
 angular.module('sf.game.finish', [
     'ui.router',
   ])
@@ -10,7 +8,7 @@ angular.module('sf.game.finish', [
         url: '/finish/:gameId',
         views: {
           'content@': {
-            template: fs.readFileSync(__dirname + "/finish.tpl.html"),
+            templateUrl: "finish.tpl.html",
             controller: 'FinishCtrl as finish'
           }
         }
