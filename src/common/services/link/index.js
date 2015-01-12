@@ -1,6 +1,4 @@
-var moduleName = 'quill-writer.services.link';
-
-angular.module(moduleName, [])
+var linkModule = angular.module('quill-writer.services.link', [])
 
 /*
  * The link service provides methods to save a partner game in Firebase,
@@ -8,7 +6,7 @@ angular.module(moduleName, [])
  * and delete the shortcode once that particular game is loaded.
  */
 
-.service("Link", function($q, $firebase, baseFbUrl) {
+linkModule.service("Link", function($q, $firebase, baseFbUrl) {
   var link = this;
   var ref = new Firebase(baseFbUrl + "/shortLinks");
 
@@ -67,5 +65,5 @@ angular.module(moduleName, [])
   }
 });
 
-module.exports = moduleName;
+module.exports = linkModule;
 

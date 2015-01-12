@@ -1,9 +1,5 @@
-var User = require('./../../common/services/user/');
-var Empirical = require('./../../common/services/empirical/');
-var fs = require('fs');
+module.exports = 
 
-// FIXME: Remove this (and template). There is no longer a need to share 
-// links to the activity, activity should only be started via the LMS.
 angular.module('quill-writer.myactivity', [
     'ui.router'
   ])
@@ -37,5 +33,3 @@ angular.module('quill-writer.myactivity', [
   })
 
 ;
-
-module.exports = 'quill-writer.myactivity';

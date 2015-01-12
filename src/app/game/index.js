@@ -1,7 +1,4 @@
-var profanityFilter = require('./../../common/services/profanity-filter/');
-var punctuation = require('./../../common/services/punctuation/');
-var game = require('./../../common/services/game/');
-
+'use strict';
 /*
  * sf.game is a module with _a lot_ going on. We should split the individual components
  * into directives with their own controllers, services etc. Most of the action is in the game.
@@ -9,10 +6,12 @@ var game = require('./../../common/services/game/');
  * modules, services etc and glues them together nicely.
  */
 
+module.exports = 
+
 angular.module('quill-writer.game', [
     'ui.router',
-    profanityFilter,
-    punctuation,
+    require('./../../common/services/profanity-filter/').name,
+    require('./../../common/services/punctuation/').name,
     'ngSanitize'
   ])
 
@@ -297,5 +296,3 @@ angular.module('quill-writer.game', [
   })
 
 ;
-
-module.exports = 'quill-writer.game';

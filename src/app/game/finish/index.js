@@ -1,3 +1,5 @@
+module.exports = 
+
 angular.module('quill-writer.game.finish', [
     'ui.router',
   ])
@@ -48,5 +50,3 @@ angular.module('quill-writer.game.finish', [
   })
 
 ;
-
-module.exports = 'quill-writer.game.finish';

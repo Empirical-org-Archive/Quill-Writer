@@ -1,4 +1,4 @@
-angular.module('quill-writer.services.form', [])
+var formModule = angular.module('quill-writer.services.form', [])
 
 .service("Form", function(baseFbUrl, $firebase ) {
   var form = this;
@@ -14,4 +14,4 @@ angular.module('quill-writer.services.form', [])
   }
 })
 
-module.exports = 'quill-writer.services.form';
+module.exports = formModule;

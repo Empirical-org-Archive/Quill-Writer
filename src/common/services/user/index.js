@@ -1,9 +1,9 @@
-angular.module('quill-writer.services.user', [])
+var userModule = angular.module('quill-writer.services.user', []);
 
 /*
  * Abstracts away the local storage and send some analytics events
  */
-  .service('User', function(localStorageService, $analytics) {
+userModule.service('User', function(localStorageService, $analytics) {
     var user = this;
 
     user.currentUser = null;
@@ -25,4 +25,4 @@ angular.module('quill-writer.services.user', [])
 
 ;
 
-module.exports = 'quill-writer.services.user';
+module.exports = userModule;

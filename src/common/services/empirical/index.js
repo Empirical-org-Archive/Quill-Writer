@@ -1,9 +1,6 @@
-var moduleName = 'quill-writer.services.empirical';
-var serviceName = 'Empirical';
+var empiricalModule = angular.module('quill-writer.services.empirical', [])
 
-angular.module(moduleName, [])
-
-  .service(serviceName, function($http, $q, $firebase, baseFbUrl, empiricalBaseURL, _) {
+  .service('Empirical', function($http, $q, $firebase, baseFbUrl, empiricalBaseURL, _) {
     var empirical = this;
 
     var staticUIDs = require('./stories.uids.json');
@@ -151,4 +148,4 @@ angular.module(moduleName, [])
   })
 
 ;
-module.exports = moduleName;
+module.exports = empiricalModule;

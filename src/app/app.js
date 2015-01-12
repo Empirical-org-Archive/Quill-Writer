@@ -1,34 +1,23 @@
-var sfHome = require('./home/')
-var sfGame = require('./game/')
-var sfGameFinish = require('./game/finish/');
-var sfForm = require('./form/')
-var sfFormLink = require('./form/link/');
-var sfLobby = require('./lobby/');
-var sfSample = require('./sample/');
-var sfMyactivity = require('./myactivity/');
-var sfLink = require('./link/');
-var sfCommon = require('./../common/');
-
 angular.module('quill-writer', [
     'ui.router',
     require('../../.tmp/config').name,
     require('../../.tmp/templates').name,
 
     // features
-    sfHome,
-    sfGame,
-    sfGameFinish,
-    sfLobby,
-    sfSample,
-    sfLink,
-    sfMyactivity,
+    require('./home/').name,
+    require('./game/').name,
+    require('./game/finish/').name,
+    require('./lobby/').name,
+    require('./sample/').name,
+    require('./link/').name,
+    require('./myactivity/').name,
 
     // admin features
-    sfForm,
-    sfFormLink,
+    require('./form/').name,
+    require('./form/link/').name,
 
     // common, including services
-    sfCommon,
+    require('./../common/').name,
 
     require('empirical-angular').name,
 

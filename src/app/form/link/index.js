@@ -1,5 +1,7 @@
 var fs = require('fs');
 
+module.exports =
+
 angular.module('quill-writer.form.link', [
     'ui.router'
   ])
@@ -37,5 +39,3 @@ angular.module('quill-writer.form.link', [
   })
 
 ;
-
-module.exports = 'quill-writer.form.link';

@@ -1,4 +1,4 @@
-var User = require('./../../common/services/user/');
+module.exports = 
 
 angular.module('quill-writer.home', [
     'ui.router'
@@ -112,5 +112,3 @@ angular.module('quill-writer.home', [
   })
 
 ;
-
-module.exports = 'quill-writer.home';

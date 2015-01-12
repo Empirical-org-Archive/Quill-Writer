@@ -1,11 +1,6 @@
-var moduleName = 'quill-writer.services.lobby';
-var serviceName = 'Lobby';
-var game = require('./../../../app/game/');
+var lobbyModule = angular.module('quill-writer.services.lobby', [])
 
-
-angular.module(moduleName, [])
-
-.service(serviceName, function($firebase, baseFbUrl, Empirical, $analytics, _, $state) {
+.service('Lobby', function($firebase, baseFbUrl, Empirical, $analytics, _, $state) {
   var lobbyService = this;
   var lobbyRef = new Firebase(baseFbUrl + "/lobby");
   lobbyService.GROUP_SIZE = 2;
@@ -65,7 +60,7 @@ angular.module(moduleName, [])
 
   lobbyService.startGameFor = function(groups, group, student, lobbyId) {
     console.log("Starting game for %s %s %s", group.$id, student, lobbyId);
-    $state.go(game, {
+    $state.go('quill-writer.game', {
       uid: student.uuid,
       sid: group.$id,
       activityPrompt: group.activityPrompt
@@ -116,4 +111,4 @@ angular.module(moduleName, [])
   };
 });
 
-module.exports = moduleName;
+module.exports = lobbyModule;

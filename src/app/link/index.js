@@ -1,5 +1,4 @@
-var User = require('./../../common/services/user/');
-var Empirical = require('./../../common/services/empirical/');
+module.exports = 
 
 angular.module('quill-writer.link', [
     'ui.router'
@@ -78,5 +77,3 @@ angular.module('quill-writer.link', [
   })
 
 ;
-
-module.exports = 'quill-writer.link';

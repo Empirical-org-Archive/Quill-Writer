@@ -1,15 +1,12 @@
-var moduleName = 'quill-writer.lobby';
 var fs = require('fs');
-var home = require('./../home');
-var lobbyService = require('./../../common/services/lobby/');
 
-angular.module(moduleName, [
+module.exports = angular.module('quill-writer.lobby', [
   'ui.router'
 ])
 
 .config(function($stateProvider) {
   $stateProvider
-    .state(moduleName, {
+    .state('quill-writer.lobby', {
       url: '/lobby?id&name&userName',
       views: {
         'content@': {
@@ -46,5 +43,3 @@ angular.module(moduleName, [
   }
   return lobby;
 });
-
-module.exports = moduleName;

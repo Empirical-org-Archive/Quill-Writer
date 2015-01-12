@@ -1,7 +1,5 @@
-var sfEmpirical = require('../empirical');
-
-angular.module("quill-writer.services.game", [
-    sfEmpirical,
+var gameModule = angular.module("quill-writer.services.game", [
+    require('../empirical').name,
   ])
 
   /*
@@ -327,4 +325,4 @@ angular.module("quill-writer.services.game", [
 
 ;
 
-module.exports = 'quill-writer.services.game';
+module.exports = gameModule;

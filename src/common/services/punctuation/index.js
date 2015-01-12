@@ -1,13 +1,11 @@
-var moduleName = 'quill-writer.services.punctuation';
-
-angular.module(moduleName, [])
+var punctuationModule = angular.module('quill-writer.services.punctuation', []);
 
 /*
  * Punctuation checks that sentences have the correct ending tokens.
  * Return null, if the sentence passes all the requirements.
  * Return an array of display strings if the sentence fails the requirements.
  */
-.service("Punctuation", function(_) {
+punctuationModule.service("Punctuation", function(_) {
   var punctuation = this;
 
   punctuation.properPunctuationString = function(tokens) {
@@ -39,5 +37,5 @@ angular.module(moduleName, [])
 
 });
 
-module.exports = moduleName;
+module.exports = punctuationModule;
 

@@ -1,24 +1,14 @@
-var User = require('./user/');
-var Game = require('./game/');
-var Form = require('./form/');
-var Lobby = require('./lobby/');
-var Empirical = require('./empirical/');
-var Partner = require('./partner/');
-var ProfanityFilter = require('./profanity-filter/');
-var Punctuation = require('./punctuation/');
-var Link = require('./link/');
+module.exports = 
 
 angular.module('quill-writer.common.services', [
-    User,
-    Game,
-    Form,
-    Lobby,
-    Empirical,
-    ProfanityFilter,
-    Punctuation,
-    Partner,
-    Link,
+    require('./user/').name,
+    require('./game/').name,
+    require('./form/').name,
+    require('./lobby/').name,
+    require('./empirical/').name,
+    require('./profanity-filter/').name,
+    require('./punctuation/').name,
+    require('./partner/').name,
+    require('./link/').name,
   ])
 ;
-
-module.exports = 'quill-writer.common.services';
