@@ -25,7 +25,18 @@ angular.module('quill-writer.link', [
     var id = $state.params.id;
     var name = $state.params.name;
 
-    var sid = $state.params.activitySessionUid;
+    function getSessionId() {
+      if ($state.params.activitySessionUid) {
+        return $state.params.activitySessionUid;
+      } else {
+        console.log('generating session ID');
+        return uuid4.generate();
+      }
+    }
+
+    // IMPORTANT: This session ID may be randomly generated if the 
+    // user has not started the game via the LMS.
+    var sid = getSessionId();
 
     Empirical.getAvailablePrompts().$loaded().then(function(prompts) {
       prompts = _.each(prompts, function(p) {
