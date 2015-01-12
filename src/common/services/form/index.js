@@ -1,7 +1,4 @@
-var sfConstants = require('./../../constants');
-angular.module('quill-writer.services.form', [
-  sfConstants,
-])
+angular.module('quill-writer.services.form', [])
 
 .service("Form", function(baseFbUrl, $firebase ) {
   var form = this;

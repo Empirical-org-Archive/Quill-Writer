@@ -8,7 +8,6 @@ var sfSample = require('./sample/');
 var sfMyactivity = require('./myactivity/');
 var sfLink = require('./link/');
 var sfCommon = require('./../common/');
-var sfConstants = require('./../common/constants');
 
 angular.module('quill-writer', [
     'ui.router',
@@ -28,9 +27,8 @@ angular.module('quill-writer', [
     sfForm,
     sfFormLink,
 
-    // common, including components and services
+    // common, including services
     sfCommon,
-    sfConstants,
 
     require('empirical-angular').name,
 

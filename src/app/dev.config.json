@@ -1,4 +1,5 @@
 {
   "environment": "development",
-  "firebaseUrl": "https://quillgrammar.firebaseio.com/dev-safe-to-delete/"
+  "baseFbUrl": "https://quill-writer.firebaseio.com/",
+  "empiricalBaseURL": "http://localhost:3000/api/v1"
 }

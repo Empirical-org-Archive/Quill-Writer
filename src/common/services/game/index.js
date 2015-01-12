@@ -1,8 +1,6 @@
-var sfConstants = require('../../constants');
 var sfEmpirical = require('../empirical');
 
 angular.module("quill-writer.services.game", [
-    sfConstants,
     sfEmpirical,
   ])
 

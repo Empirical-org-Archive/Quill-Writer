@@ -1,11 +1,7 @@
-var sfConstants = require('./../../constants');
-
 var moduleName = 'quill-writer.services.empirical';
 var serviceName = 'Empirical';
 
-angular.module(moduleName, [
-    sfConstants
-  ])
+angular.module(moduleName, [])
 
   .service(serviceName, function($http, $q, $firebase, baseFbUrl, empiricalBaseURL, _) {
     var empirical = this;

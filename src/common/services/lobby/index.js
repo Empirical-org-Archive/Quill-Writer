@@ -2,11 +2,8 @@ var moduleName = 'quill-writer.services.lobby';
 var serviceName = 'Lobby';
 var game = require('./../../../app/game/');
 
-var sfConstants = require('../../constants');
 
-angular.module(moduleName, [
-  sfConstants,
-])
+angular.module(moduleName, [])
 
 .service(serviceName, function($firebase, baseFbUrl, Empirical, $analytics, _, $state) {
   var lobbyService = this;
