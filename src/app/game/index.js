@@ -185,15 +185,23 @@ angular.module('quill-writer.game', [
     }
 
     game.finish = function() {
+      function showFinishedGame() {
+        $state.go('quill-writer.game.finish', {
+          gameId: gameId,
+          uid: $state.params.uid
+        });        
+      }
+
       Game.imDone(gameId, game.currentGame, User.currentUser, function onDone() {
-        finishActivitySession().then(function() {
-          $state.go('quill-writer.game.finish', {
-            gameId: gameId,
-            uid: $state.params.uid
-          });
-        }).catch(function(error) {
-          console.log('failed to save the activity session', error);
-        });
+        if (User.isAnonymous) {
+          showFinishedGame();
+        } else {
+          finishActivitySession().then(function() {
+            showFinishedGame();
+          }).catch(function(error) {
+            console.log('failed to save the activity session', error);
+          });          
+        }
       });
     }
 

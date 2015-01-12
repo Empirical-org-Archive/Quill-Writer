@@ -25,11 +25,14 @@ angular.module('quill-writer.link', [
     var id = $state.params.id;
     var name = $state.params.name;
 
+    // This has the side effect of setting the User.isAnonymous flag if 
+    // it needs to generate a random session ID.
     function getSessionId() {
       if ($state.params.activitySessionUid) {
+        User.isAnonymous = false;
         return $state.params.activitySessionUid;
       } else {
-        console.log('generating session ID');
+        User.isAnonymous = true;
         return uuid4.generate();
       }
     }
