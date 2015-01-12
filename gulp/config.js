@@ -95,7 +95,8 @@ var configuration = {
   serve: {
     browserSync: {
       server: {baseDir: dest, middleware: [require('connect-history-api-fallback')]},
-      open: false
+      open: false,
+      ghostMode: false
     }
   },
   styles: {
