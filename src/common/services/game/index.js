@@ -193,7 +193,6 @@ module.exports =
           }
           var gameObj = $firebase(game).$asObject();
           var unwatch = gameObj.$watch(function() {
-            console.log(unwatch);
             if (gameObj.isDone) {
               onDone();
               unwatch();
