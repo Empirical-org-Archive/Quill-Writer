@@ -1,6 +1,6 @@
 module.exports =
 
-function Empirical($http, $q, $firebase, baseFbUrl, empiricalBaseURL, _) {
+function Empirical($http, $q, $firebase, firebaseUrl, empiricalBaseURL, _) {
     var empirical = this;
 
     var staticUIDs = require('./stories.uids.json');
@@ -93,7 +93,7 @@ function Empirical($http, $q, $firebase, baseFbUrl, empiricalBaseURL, _) {
       });
     }
 
-    var activitiesRef = new Firebase(baseFbUrl + "/activities");
+    var activitiesRef = new Firebase(firebaseUrl + "/activities");
 
     empirical.getActivity = function(activityUID) {
       return $firebase(activitiesRef.child(activityUID)).$asObject();

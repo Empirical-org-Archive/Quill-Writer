@@ -1,8 +1,8 @@
 module.exports =
 
-function Lobby($firebase, baseFbUrl, Empirical, $analytics, _, $state) {
+function Lobby($firebase, firebaseUrl, Empirical, $analytics, _, $state) {
   var lobbyService = this;
-  var lobbyRef = new Firebase(baseFbUrl + "/lobby");
+  var lobbyRef = new Firebase(firebaseUrl + "/lobby");
   lobbyService.GROUP_SIZE = 2;
 
   lobbyService.getRoomRef = function(lobbyId) {

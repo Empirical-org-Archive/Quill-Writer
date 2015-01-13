@@ -3,10 +3,10 @@ module.exports =
   /*
    * The Game is service is responsible for initializing games
    */
-  function Game($firebase, baseFbUrl, Empirical, _, $analytics, ConceptTagResult, TypingSpeed) {
+  function Game($firebase, firebaseUrl, Empirical, _, $analytics, ConceptTagResult, TypingSpeed) {
     var gameModel = this;
 
-    var gamesRef = new Firebase(baseFbUrl + "/games");
+    var gamesRef = new Firebase(firebaseUrl + "/games");
 
     gameModel.get = function(id) {
       return $firebase(gameModel.getRef(id));

@@ -6,9 +6,9 @@ module.exports =
  * and delete the shortcode once that particular game is loaded.
  */
 
-function Link($q, $firebase, baseFbUrl) {
+function Link($q, $firebase, firebaseUrl) {
   var link = this;
-  var ref = new Firebase(baseFbUrl + "/shortLinks");
+  var ref = new Firebase(firebaseUrl + "/shortLinks");
 
   function genId(len, charSet) {
     charSet = charSet || 'abcdefghijklmnopqrstuvwxyz';
