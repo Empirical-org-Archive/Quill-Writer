@@ -1,14 +1,14 @@
-module.exports = 
+module.exports =
 
-angular.module('quill-writer.common.services', [
-    require('./user/').name,
-    require('./game/').name,
-    require('./form/').name,
-    require('./lobby/').name,
-    require('./empirical/').name,
-    require('./profanity-filter/').name,
-    require('./punctuation/').name,
-    require('./partner/').name,
-    require('./link/').name,
-  ])
+angular.module('quill-writer.common.services', [])
+
+  .service('User', require('./user/'))
+  .service('Game', require('./game/'))
+  .service('Form', require('./form/'))
+  .service('Lobby', require('./lobby/'))
+  .service('Empirical', require('./empirical/'))
+  .service('ProfanityFilter', require('./profanity-filter/'))
+  .service('Punctuation', require('./punctuation/'))
+  .service('Partner', require('./partner/'))
+  .service('Link', require('./link/'))
 ;

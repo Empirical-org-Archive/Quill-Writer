@@ -1,11 +1,9 @@
-var gameModule = angular.module("quill-writer.services.game", [
-    require('../empirical').name,
-  ])
+module.exports =
 
   /*
    * The Game is service is responsible for initializing games
    */
-  .service("Game", function($firebase, baseFbUrl, Empirical, _, $analytics, ConceptTagResult, TypingSpeed) {
+  function Game($firebase, baseFbUrl, Empirical, _, $analytics, ConceptTagResult, TypingSpeed) {
     var gameModel = this;
 
     var gamesRef = new Firebase(baseFbUrl + "/games");
@@ -123,7 +121,7 @@ var gameModule = angular.module("quill-writer.services.game", [
       }
     };
 
-    // TODO: This should probably also save the user ID (userName?) of the 
+    // TODO: This should probably also save the user ID (userName?) of the
     // player who wrote the sentence.
     gameModel.saveWordsPerMinute = function(sessionId) {
       return ConceptTagResult.save(sessionId, {
@@ -321,8 +319,6 @@ var gameModule = angular.module("quill-writer.services.game", [
     gameModel.flagSentenceForReview = function(gameId, currentUser, sentence, cb) {
       cb();
     };
-  })
+  }
 
 ;
-
-module.exports = gameModule;

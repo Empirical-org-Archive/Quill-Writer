@@ -1,6 +1,6 @@
-var formModule = angular.module('quill-writer.services.form', [])
+module.exports =
 
-.service("Form", function(baseFbUrl, $firebase ) {
+function Form(baseFbUrl, $firebase ) {
   var form = this;
 
   var activitesRef = new Firebase(baseFbUrl + "/activities");
@@ -12,6 +12,4 @@ var formModule = angular.module('quill-writer.services.form', [])
       cb(null, activityUid);
     });
   }
-})
-
-module.exports = formModule;
+};

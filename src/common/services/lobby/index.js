@@ -1,6 +1,6 @@
-var lobbyModule = angular.module('quill-writer.services.lobby', [])
+module.exports =
 
-.service('Lobby', function($firebase, baseFbUrl, Empirical, $analytics, _, $state) {
+function Lobby($firebase, baseFbUrl, Empirical, $analytics, _, $state) {
   var lobbyService = this;
   var lobbyRef = new Firebase(baseFbUrl + "/lobby");
   lobbyService.GROUP_SIZE = 2;
@@ -109,6 +109,4 @@ var lobbyModule = angular.module('quill-writer.services.lobby', [])
       }
     });
   };
-});
-
-module.exports = lobbyModule;
+};

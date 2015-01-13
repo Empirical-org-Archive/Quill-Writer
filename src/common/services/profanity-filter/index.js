@@ -1,5 +1,4 @@
-var profanityModule = angular.module('quill-writer.services.profanity-filter', [
-]);
+module.exports =
 
 /*
  * Profanity Filter implements the made up error protocol for Quill-Writer.
@@ -9,7 +8,7 @@ var profanityModule = angular.module('quill-writer.services.profanity-filter', [
  *
  * Don't mind any of the mean words below ;)
  */
-profanityModule.service("ProfanityFilter", function() {
+function ProfanityFilter() {
   var pFilter = this;
 
   pFilter.checkSentence = function(sentence) {
@@ -489,5 +488,5 @@ profanityModule.service("ProfanityFilter", function() {
     xxx:1
   };
 
-})
-module.exports = profanityModule;
+}
+;

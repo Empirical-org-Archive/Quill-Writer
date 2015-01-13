@@ -1,10 +1,10 @@
-var partnerModule = angular.module('quill-writer.services.partner', []);
+module.exports =
 
 /*
  * This Partner service provides convenience methods to
  * store things into local storage.
  */
-partnerModule.service("Partner", function(localStorageService) {
+function Partner(localStorageService) {
   var partner = this;
   var key = "PartnerURL";
   var puidKey = "PartnerUID";
@@ -28,6 +28,5 @@ partnerModule.service("Partner", function(localStorageService) {
     var sv = localStorageService.get(partnerKey);
     return sv === 'true';
   };
-})
-
-module.exports = partnerModule;
+}
+;

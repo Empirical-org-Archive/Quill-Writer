@@ -6,12 +6,10 @@
  * modules, services etc and glues them together nicely.
  */
 
-module.exports = 
+module.exports =
 
 angular.module('quill-writer.game', [
     'ui.router',
-    require('./../../common/services/profanity-filter/').name,
-    require('./../../common/services/punctuation/').name,
     'ngSanitize'
   ])
 
@@ -188,7 +186,7 @@ angular.module('quill-writer.game', [
         $state.go('quill-writer.game.finish', {
           gameId: gameId,
           uid: $state.params.uid
-        });        
+        });
       }
 
       Game.imDone(gameId, game.currentGame, User.currentUser, function onDone() {
@@ -199,7 +197,7 @@ angular.module('quill-writer.game', [
             showFinishedGame();
           }).catch(function(error) {
             console.log('failed to save the activity session', error);
-          });          
+          });
         }
       });
     }

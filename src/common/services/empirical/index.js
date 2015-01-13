@@ -1,6 +1,6 @@
-var empiricalModule = angular.module('quill-writer.services.empirical', [])
+module.exports =
 
-  .service('Empirical', function($http, $q, $firebase, baseFbUrl, empiricalBaseURL, _) {
+function Empirical($http, $q, $firebase, baseFbUrl, empiricalBaseURL, _) {
     var empirical = this;
 
     var staticUIDs = require('./stories.uids.json');
@@ -99,7 +99,7 @@ var empiricalModule = angular.module('quill-writer.services.empirical', [])
       return $firebase(activitiesRef.child(activityUID)).$asObject();
     };
 
-    // FIXME: Quill Writer should be able to handle custom activities (not just static list). 
+    // FIXME: Quill Writer should be able to handle custom activities (not just static list).
     empirical.loadActivity = function(activityUID) {
       var activityPromise = $q.defer();
 
@@ -145,7 +145,6 @@ var empiricalModule = angular.module('quill-writer.services.empirical', [])
       return deferred.promise;
     }
 
-  })
+  }
 
 ;
-module.exports = empiricalModule;
