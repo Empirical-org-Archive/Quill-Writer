@@ -5,7 +5,7 @@ function($state, $scope, Lobby, uuid4) {
   var lobbyId = $state.params.id;
   var lobbyName = $state.params.name;
   if (!lobbyId) {
-    $state.go(home);
+    $state.go('quill-writer.home');
     return;
   }
   lobby.id = lobbyId;
