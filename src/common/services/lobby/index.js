@@ -68,7 +68,7 @@ function Lobby($firebase, firebaseUrl, Empirical, $analytics, _, $state) {
     if (student.leader) {
       console.log('Student is the leader. Doing leader functions');
       groups.$remove(group.$id).then(function(ref) {
-        console.log("Leader removed %s", ref.name());
+        console.log("Leader removed %s", ref.key());
       });
     }
   };
@@ -104,7 +104,7 @@ function Lobby($firebase, firebaseUrl, Empirical, $analytics, _, $state) {
           full: false,
           activityPrompt: lobbyId
         }).then(function(ref) {
-          lobbyService.localGroupWatcher(ref.name(), student, lobbyId);
+          lobbyService.localGroupWatcher(ref.key(), student, lobbyId);
         });
       }
     });

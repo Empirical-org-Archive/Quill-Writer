@@ -42,7 +42,7 @@ module.exports =
               $scope.finishMessageToShow = userFinishMessageToShow.message;
             });
             userFinishMessageToShow.$save().then(function() {
-              var newUser = gameUsers.$getRecord(newUserRef.name());
+              var newUser = gameUsers.$getRecord(newUserRef.key());
               newUser.finishMessageToShow = userFinishMessageToShow;
               gameUsers.$save(newUser);
               User.setCurrentUser(newUser);
