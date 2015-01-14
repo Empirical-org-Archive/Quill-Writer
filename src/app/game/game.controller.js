@@ -16,7 +16,6 @@ function($scope, $state, Game, User, ProfanityFilter, Punctuation, Partner, uuid
     if (currentUser) {
       User.setCurrentUser(currentUser);
     } else {
-      console.log("There is no current user. Redirecting to sf.home");
       $state.go('quill-writer.home');
       return;
     }
