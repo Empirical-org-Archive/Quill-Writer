@@ -192,6 +192,7 @@ module.exports =
             user.isTheirTurn = true;
           }
           var gameObj = $firebase(game).$asObject();
+          // FIXME: This watcher triggers twice, which causes activity session data to be submitted twice.
           var unwatch = gameObj.$watch(function() {
             if (gameObj.isDone) {
               onDone();
