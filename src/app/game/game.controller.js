@@ -250,6 +250,7 @@ function($scope, $state, Game, User, ProfanityFilter, Punctuation, Partner, uuid
     // Retrieve data from firebase, format it correctly, then send it off to the LMS.
     return ConceptTagResult.findAsJsonByActivitySessionId(activitySessionId).then(function formatRequestData(resultsJson) {
       var putData = {
+        percentage: 1,
         concept_tag_results: resultsJson
       };
       return ActivitySession.finish(activitySessionId, putData);
