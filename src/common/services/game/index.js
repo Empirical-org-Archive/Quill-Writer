@@ -181,45 +181,53 @@ module.exports =
     gameModel.imDone = function(gameId, currentGame, currentUser, onDone) {
       var game = gameModel.getRef(gameId);
       var users = $firebase(game.child("users")).$asArray();
+      watchForFinishedGame(game, onDone);
       users.$loaded().then(function(){
         angular.forEach(users, function(user) {
-          if (gameModel.isSameUser(user, currentUser)) {
-            user.done = true
-            user.finishMessageToShow.message = "You have submitted the story. Waiting for the other player to approve.";
-            user.isTheirTurn = false;
-          } else {
-            user.finishMessageToShow.message = "The other player has voted to submit to the story. Press submit to teacher when you feel the story is complete. You may continue to use words.";
-            user.isTheirTurn = true;
-          }
-          var gameObj = $firebase(game).$asObject();
-          // FIXME: This watcher triggers twice, which causes activity session data to be submitted twice.
-          var unwatch = gameObj.$watch(function() {
-            if (gameObj.isDone) {
-              onDone();
-              unwatch();
-            }
-          })
+          userSubmittedStory(user, currentUser);
           users.$save(user).then(function() {
             users.$loaded().then(function() {
-              var allDone = true;
-              angular.forEach(users, function(user) {
-                if (allDone && !user.done) {
-                  allDone = false;
-                }
-              });
+              var allDone = _.every(_.pluck(users, 'done')); // Done flag is set in userSubmittedStory().
               if (allDone) {
                 angular.forEach(users, function(user) {
                   user.finishMessageToShow.message = "You have completed this story!";
                   users.$save(user);
-                  var isDone = $firebase(game.child("isDone")).$asObject();
-                  isDone.value = true;
-                  isDone.$save();
+                  setGameIsDone(game);
                 });
                 gameModel.closeGame(gameId, currentUser);
               }
             });
           });
+
         });
+      });
+    }
+
+    function userSubmittedStory(user, currentUser) {
+      if (gameModel.isSameUser(user, currentUser)) {
+        user.done = true
+        user.finishMessageToShow.message = "You have submitted the story. Waiting for the other player to approve.";
+        user.isTheirTurn = false;
+      } else {
+        user.finishMessageToShow.message = "The other player has voted to submit to the story. Press submit to teacher when you feel the story is complete. You may continue to use words.";
+        user.isTheirTurn = true;
+      }
+    }
+
+    function setGameIsDone(game) {
+      var isDone = $firebase(game.child("isDone")).$asObject();
+      isDone.value = true;
+      isDone.$save();
+    }
+
+    function watchForFinishedGame(game, onDone) {
+      var gameObj = $firebase(game).$asObject();
+      // FIXME: This watcher triggers twice, which causes activity session data to be submitted twice.
+      var unwatch = gameObj.$watch(function() {
+        if (gameObj.isDone) {
+          onDone();
+          unwatch();
+        }
       });
     }
 
