@@ -18,7 +18,7 @@ module.exports = {
   },
   env: {
     isDev: function() {
-      return env === 'dev'
+      return env === 'development'
     },
     isProd: function() {
       return env === 'production'
