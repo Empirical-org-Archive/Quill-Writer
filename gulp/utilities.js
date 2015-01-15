@@ -21,7 +21,7 @@ module.exports = {
       return env === 'dev'
     },
     isProd: function() {
-      return env === 'prod'
+      return env === 'production'
     },
     getEnv: function() {
       return env;
