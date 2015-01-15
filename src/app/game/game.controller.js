@@ -1,6 +1,6 @@
 module.exports =
 
-function($scope, $state, Game, User, ProfanityFilter, Punctuation, Partner, uuid4, Link, _, ActivitySession, ConceptTagResult) {
+function($scope, $state, Game, User, ProfanityFilter, Punctuation, Partner, uuid4, Link, _, ConceptTagResult) {
   var game = this;
 
   var currentUser = User.currentUser;
@@ -164,15 +164,7 @@ function($scope, $state, Game, User, ProfanityFilter, Punctuation, Partner, uuid
     }
 
     Game.imDone(gameId, game.currentGame, User.currentUser, function onDone() {
-      if (User.isAnonymous) {
-        showFinishedGame();
-      } else {
-        finishActivitySession().then(function() {
-          showFinishedGame();
-        }).catch(function(error) {
-          console.log('failed to save the activity session', error);
-        });
-      }
+      showFinishedGame();
     });
   }
 
@@ -242,20 +234,6 @@ function($scope, $state, Game, User, ProfanityFilter, Punctuation, Partner, uuid
   game.sentenceIsOK = function() {
     game.sentenceToReview = null;
   };
-
-  // Returns a promise that receives the activity session response JSON from the LMS.
-  function finishActivitySession() {
-    var activitySessionId = User.currentUser.sid;
-
-    // Retrieve data from firebase, format it correctly, then send it off to the LMS.
-    return ConceptTagResult.findAsJsonByActivitySessionId(activitySessionId).then(function formatRequestData(resultsJson) {
-      var putData = {
-        percentage: 1,
-        concept_tag_results: resultsJson
-      };
-      return ActivitySession.finish(activitySessionId, putData);
-    });
-  }
 
   game.sentenceIsNotOK = function() {
     Game.flagSentenceForReview(gameId, User.currentUser, game.sentenceToReview, function() {

@@ -3,7 +3,7 @@ module.exports =
   /*
    * The Game is service is responsible for initializing games
    */
-  function Game($firebase, firebaseUrl, Empirical, _, $analytics, ConceptTagResult, TypingSpeed) {
+  function Game($firebase, firebaseUrl, Empirical, _, $analytics, ConceptTagResult, TypingSpeed, User, ActivitySession) {
     var gameModel = this;
 
     var gamesRef = new Firebase(firebaseUrl + "/games");
@@ -119,6 +119,12 @@ module.exports =
       if (currentUser.leader) {
         $analytics.eventTrack('Quill-Writer Submit Story to Teacher');
       }
+
+      if (!User.isAnonymous) {
+        finishActivitySession().catch(function(error) {
+          console.log('failed to save the activity session', error);
+        });
+      }
     };
 
     // TODO: This should probably also save the user ID (userName?) of the
@@ -220,9 +226,23 @@ module.exports =
       isDone.$save();
     }
 
+    // Returns a promise that receives the activity session response JSON from the LMS.
+    function finishActivitySession() {
+      var activitySessionId = User.currentUser.sid;
+
+      // Retrieve data from firebase, format it correctly, then send it off to the LMS.
+      return ConceptTagResult.findAsJsonByActivitySessionId(activitySessionId).then(function formatRequestData(resultsJson) {
+        var putData = {
+          percentage: 1,
+          concept_tag_results: resultsJson
+        };
+        return ActivitySession.finish(activitySessionId, putData);
+      });
+    }
+
+
     function watchForFinishedGame(game, onDone) {
       var gameObj = $firebase(game).$asObject();
-      // FIXME: This watcher triggers twice, which causes activity session data to be submitted twice.
       var unwatch = gameObj.$watch(function() {
         if (gameObj.isDone) {
           onDone();
