@@ -90,5 +90,5 @@ function($state, User, Link, Partner, Empirical, _){
     $state.go('quill-writer.link', {
       id: activity.$id
     });
-  }
-}
+  };
+};

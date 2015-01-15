@@ -47,7 +47,7 @@ function($state, User, Empirical, _, uuid4, Partner){
   link.next = function() {
     var uid = uuid4.generate();
     link.stateChange(uid, sid, id);
-  }
+  };
 
   link.stateChange = function(uid, sid, activityUID) {
     $state.go('quill-writer.game', {uid: uid, sid: sid, activityPrompt: activityUID});
@@ -55,4 +55,4 @@ function($state, User, Empirical, _, uuid4, Partner){
 
   link.next();
   Partner.setIAmPartner(false);
-}
+};

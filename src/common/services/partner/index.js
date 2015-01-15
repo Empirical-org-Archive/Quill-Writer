@@ -11,13 +11,13 @@ function Partner(localStorageService) {
   var partnerKey = "IAMPARTNER";
   partner.setPartnerURL = function(purl) {
     localStorageService.set(key, purl);
-  }
+  };
   partner.getPartnerURL = function() {
     return localStorageService.get(key);
-  }
+  };
   partner.setPartnerUID = function(puid) {
     localStorageService.set(puidKey, puid);
-  }
+  };
   partner.getPartnerUID = function() {
     return localStorageService.get(puidKey);
   };

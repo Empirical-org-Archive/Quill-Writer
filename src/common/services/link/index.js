@@ -36,7 +36,7 @@ function Link($q, $firebase, firebaseUrl) {
       links[potentialId] = params;
       links.$save().then(function() {
         deferred.resolve(potentialId);
-      })
+      });
     });
     return deferred.promise;
   };
@@ -52,7 +52,7 @@ function Link($q, $firebase, firebaseUrl) {
       }
     });
     return deferred.promise;
-  }
+  };
 
   link.removeShortCodeMapping = function(shortcode) {
     var links = $firebase(ref).$asObject();
@@ -62,6 +62,6 @@ function Link($q, $firebase, firebaseUrl) {
         links.$save();
       }
     });
-  }
+  };
 };
 

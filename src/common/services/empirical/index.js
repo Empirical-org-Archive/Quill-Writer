@@ -13,7 +13,7 @@ function Empirical($http, $q, $firebase, firebaseUrl, empiricalBaseURL, _) {
 
     empirical.getCurrentActivityData = function() {
       return currentActivity;
-    }
+    };
 
     empirical.getWordList = function(activityId, cb) {
       var wl = empirical.getCurrentActivityData().wordList;
@@ -48,7 +48,7 @@ function Empirical($http, $q, $firebase, firebaseUrl, empiricalBaseURL, _) {
       } else {
         return tryThisId;
       }
-    }
+    };
 
     empirical.initializeGame = function(game, users, currentUser) {
       // FIXME: What is this session ID parameter?
@@ -91,7 +91,7 @@ function Empirical($http, $q, $firebase, firebaseUrl, empiricalBaseURL, _) {
       }, function(err){
         alert(err);
       });
-    }
+    };
 
     var activitiesRef = new Firebase(firebaseUrl + "/activities");
 
@@ -143,7 +143,7 @@ function Empirical($http, $q, $firebase, firebaseUrl, empiricalBaseURL, _) {
       });
 
       return deferred.promise;
-    }
+    };
 
   }
 

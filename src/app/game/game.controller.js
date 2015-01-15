@@ -81,7 +81,7 @@ function($scope, $state, Game, User, ProfanityFilter, Punctuation, Partner, uuid
 
   game.getCurrentSentence = function() {
     return game.currentGame.newSentence;
-  }
+  };
 
   game.submitEntry = function() {
     //do some validation here
@@ -100,7 +100,7 @@ function($scope, $state, Game, User, ProfanityFilter, Punctuation, Partner, uuid
       game.showErrors(errors);
     }
 
-  }
+  };
 
   game.validateSentence = function(sentence) {
     var errors = [];
@@ -123,7 +123,7 @@ function($scope, $state, Game, User, ProfanityFilter, Punctuation, Partner, uuid
       });
     });
 
-    alert(eString.join("\n"))
+    alert(eString.join("\n"));
   };
 
   game.isLocalPlayersTurn = function() {
@@ -143,7 +143,7 @@ function($scope, $state, Game, User, ProfanityFilter, Punctuation, Partner, uuid
     } else {
       return false;
     }
-  }
+  };
 
   game.isWordUsed = function(word) {
     var wordUsed = false;
@@ -153,7 +153,7 @@ function($scope, $state, Game, User, ProfanityFilter, Punctuation, Partner, uuid
       }
     });
     return wordUsed;
-  }
+  };
 
   game.finish = function() {
     function showFinishedGame() {
@@ -166,7 +166,7 @@ function($scope, $state, Game, User, ProfanityFilter, Punctuation, Partner, uuid
     Game.imDone(gameId, game.currentGame, User.currentUser, function onDone() {
       showFinishedGame();
     });
-  }
+  };
 
   game.isReadyToSubmit = function() {
     if (game.currentGame.requirements) {
@@ -178,11 +178,11 @@ function($scope, $state, Game, User, ProfanityFilter, Punctuation, Partner, uuid
 
   game.hasFinishMessageToShow = function() {
     return game.currentGame.finishMessageToShow !== "";
-  }
+  };
 
   game.isYou = function(user) {
     return user.name === User.localUser;
-  }
+  };
 
   game.bothPlayersReady = false;
 
@@ -244,4 +244,4 @@ function($scope, $state, Game, User, ProfanityFilter, Punctuation, Partner, uuid
   Game.onOtherPlayerSubmission(gameId, User.currentUser, function(submission) {
     game.sentenceToReview = submission;
   });
-}
+};

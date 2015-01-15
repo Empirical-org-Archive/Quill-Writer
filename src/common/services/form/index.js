@@ -11,5 +11,5 @@ function Form(firebaseUrl, $firebase ) {
     activitesRef.child(activityUid).set(angular.copy(f), function(ref) {
       cb(null, activityUid);
     });
-  }
+  };
 };

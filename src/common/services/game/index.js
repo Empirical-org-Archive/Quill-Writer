@@ -14,7 +14,7 @@ module.exports =
 
     gameModel.getRef = function(id) {
       return gamesRef.child(id);
-    }
+    };
 
     /*
      * getGameByUser is essentially a init like function. It is based an
@@ -46,7 +46,7 @@ module.exports =
               newUser.finishMessageToShow = userFinishMessageToShow;
               gameUsers.$save(newUser);
               User.setCurrentUser(newUser);
-            })
+            });
           });
         });
         User.setCurrentUser(currentUser);
@@ -63,7 +63,7 @@ module.exports =
           currentUser = gameUser;
           User.localUser = currentUser.name;
         } else if (length < 2) {
-          makeNewUser(length)
+          makeNewUser(length);
         }
         //We pass everything to initialize game
         //This is where the game prompts, word lists, requirements are loaded
@@ -113,7 +113,7 @@ module.exports =
 
     gameModel.getSentences = function(gameId) {
       return $firebase(gameModel.getRef(gameId).child("sentences")).$asArray();
-    }
+    };
 
     gameModel.closeGame = function(gameId, currentUser) {
       if (currentUser.leader) {
@@ -152,16 +152,16 @@ module.exports =
         tokens.push(" ");
       }
       return tokens.join('');
-    }
+    };
 
     gameModel.highlightWords = function(gameId, currentGame, sentence) {
       var wordsToUse = currentGame.wordList;
       _.each(wordsToUse, function(w) {
         var exp = new RegExp("(" + w.word + ")", "gi");
         sentence = sentence.replace(exp, '<b>$1</b>');
-      })
+      });
       return sentence;
-    }
+    };
 
     /*
      * Toggles the isTheirTurn property on each user.
@@ -178,11 +178,11 @@ module.exports =
           users.$save(user);
         });
       });
-    }
+    };
 
     gameModel.isSameUser = function(u1, u2) {
       return ((u1.sid === u2.sid) && (u1.uid === u2.uid));
-    }
+    };
 
     gameModel.imDone = function(gameId, currentGame, currentUser, onDone) {
       var game = gameModel.getRef(gameId);
@@ -207,11 +207,11 @@ module.exports =
 
         });
       });
-    }
+    };
 
     function userSubmittedStory(user, currentUser) {
       if (gameModel.isSameUser(user, currentUser)) {
-        user.done = true
+        user.done = true;
         user.finishMessageToShow.message = "You have submitted the story. Waiting for the other player to approve.";
         user.isTheirTurn = false;
       } else {
@@ -309,7 +309,7 @@ module.exports =
           });
         }
       });
-    }
+    };
 
     gameModel.logWords = function(gameId, currentGame, sentence) {
       var gameRef = gameModel.getRef(gameId);
@@ -343,7 +343,7 @@ module.exports =
           wordsUsed.$add(word);
         });
       });
-    }
+    };
 
     gameModel.flagSentenceForReview = function(gameId, currentUser, sentence, cb) {
       cb();

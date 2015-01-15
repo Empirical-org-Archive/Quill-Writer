@@ -25,4 +25,4 @@ function($state, $scope, Lobby, uuid4) {
     lobby.message = "Thanks " + lobby.localStudent.name + ". You will be joined by your partner soon.";
   }
   return lobby;
-}
+};

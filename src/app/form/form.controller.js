@@ -33,22 +33,22 @@ function($state, Form, Empirical) {
       } else {
         form.link = "https://quill-writer.firebaseapp.com/#/myactivity/" + refName;
         if (!$state.data) {
-          $state.data = {}
+          $state.data = {};
         }
         $state.data.link = form.link;
         $state.transitionTo('quill-writer.form.link');
       }
     });
-  }
+  };
 
   form.addNewWord = function() {
-    form.currentForm.wordList.push({})
-  }
+    form.currentForm.wordList.push({});
+  };
 
   form.removeWord = function(wordTup) {
     var index = form.currentForm.wordList.indexOf(wordTup);
     form.currentForm.wordList.splice(index, 1);
-  }
+  };
 
   Empirical.getGroupedByPublicPromptsAndSubject().then(function(prompts) {
     form.subjects = _.keys(prompts);

@@ -13,4 +13,4 @@ function($state, User, Empirical){
     // FIXME: userName field appears to be unused in LinkCtrl.
     $state.go('quill-writer.link', {id: id, name: myactivity.activity.name, userName: un});
   };
-}
+};

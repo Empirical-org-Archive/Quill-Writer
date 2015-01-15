@@ -13,7 +13,7 @@ function($state) {
   formLink.getLink = function() {
     console.log("Going to copy %s", formLink.link);
     return formLink.link;
-  }
+  };
   formLink.fallback = function(copy) {
     window.prompt('Press cmd+c(Mac) or ctrl-c(Windows) to copy the text below.', copy);
   };

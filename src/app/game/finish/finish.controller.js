@@ -10,15 +10,15 @@ function(_, Game, $state, User) {
       }
     });
     return wordUsed;
-  }
+  };
 
   finish.isYou = function(user) {
     return user.name === User.localUser;
-  }
+  };
 
   finish.useColor1 = function(user) {
     return user.leader;
-  }
+  };
 
   /**
    * Init
