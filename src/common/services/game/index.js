@@ -3,7 +3,7 @@ module.exports =
   /*
    * The Game is service is responsible for initializing games
    */
-  function Game($firebase, firebaseUrl, Empirical, _, $analytics, ConceptTagResult, TypingSpeed, User, ActivitySession) {
+  function Game($firebase, firebaseUrl, Empirical, _, $analytics, ConceptTagResult, TypingSpeed, User, ActivitySession, $q) {
     var gameModel = this;
 
     var gamesRef = new Firebase(firebaseUrl + "/games");
@@ -116,14 +116,18 @@ module.exports =
     };
 
     gameModel.closeGame = function(gameId, currentUser) {
+
       if (currentUser.leader) {
         $analytics.eventTrack('Quill-Writer Submit Story to Teacher');
       }
 
       if (!User.isAnonymous) {
-        finishActivitySession().catch(function(error) {
-          console.log('failed to save the activity session', error);
-        });
+
+        finishActivitySession().then(function() {
+            console.log('successfully finished the activity session');
+          }).catch(function(error) {
+            console.log('failed to save the activity session', error);
+          });
       }
     };
 
@@ -188,23 +192,26 @@ module.exports =
       var game = gameModel.getRef(gameId);
       var users = $firebase(game.child("users")).$asArray();
       watchForFinishedGame(game, onDone);
+      var savePromises = [];
       users.$loaded().then(function(){
         angular.forEach(users, function(user) {
           userSubmittedStory(user, currentUser);
-          users.$save(user).then(function() {
-            users.$loaded().then(function() {
-              var allDone = _.every(_.pluck(users, 'done')); // Done flag is set in userSubmittedStory().
-              if (allDone) {
-                angular.forEach(users, function(user) {
-                  user.finishMessageToShow.message = "You have completed this story!";
-                  users.$save(user);
-                  setGameIsDone(game);
-                });
-                gameModel.closeGame(gameId, currentUser);
-              }
-            });
-          });
+          savePromises.push(users.$save(user));
+        });
 
+        // Only run this block after all the users have been saved.
+        $q.all(savePromises).then(function() {
+          users.$loaded().then(function() {
+            var allDone = _.every(_.pluck(users, 'done')); // Done flag is set in userSubmittedStory().
+            if (allDone) {
+              angular.forEach(users, function(user) {
+                user.finishMessageToShow.message = "You have completed this story!";
+                users.$save(user);
+                setGameIsDone(game);
+              });
+              gameModel.closeGame(gameId, currentUser);
+            }
+          });
         });
       });
     };
