@@ -131,7 +131,7 @@ module.exports =
     // player who wrote the sentence.
     gameModel.saveWordsPerMinute = function(sessionId) {
       return ConceptTagResult.save(sessionId, {
-        concept_tag_category: 'Typing Speeds',
+        concept_class: 'Typing Speed',
         concept_tag: 'Typing Speed',
         wpm: TypingSpeed.wordsPerMinute
       }).then(function() {
