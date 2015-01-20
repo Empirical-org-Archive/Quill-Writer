@@ -40,7 +40,6 @@ function($state, User, Link, Partner, Empirical, _){
   } else if ($state.params.form === "true") {
     goToAdminForm();
   } else {
-    // FIXME: This home page should be unreachable for now.
     runActivityLoader();
   }
 
