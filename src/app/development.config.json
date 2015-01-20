@@ -1,5 +1,5 @@
 {
   "environment": "development",
-  "firebaseUrl": "https://quill-writer.firebaseio.com/",
+  "firebaseUrl": "https://quillwriterstaging.firebaseio.com/",
   "empiricalBaseURL": "http://localhost:3000/api/v1"
 }

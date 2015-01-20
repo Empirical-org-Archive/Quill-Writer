@@ -1,6 +1,6 @@
 {
-  "firebase":"quill-writer",
-  "public": "dist",
+  "firebase":"quillwriterstaging",
+  "public": "build",
   "ignore": [
     "firebase.json",
     ".*",
