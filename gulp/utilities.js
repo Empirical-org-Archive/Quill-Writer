@@ -18,10 +18,13 @@ module.exports = {
   },
   env: {
     isDev: function() {
-      return env === 'development'
+      return env === 'development';
     },
     isProd: function() {
-      return env === 'production'
+      return env === 'production';
+    },
+    isStaging: function() {
+      return env === 'staging';
     },
     getEnv: function() {
       return env;

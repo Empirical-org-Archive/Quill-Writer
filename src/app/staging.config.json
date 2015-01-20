@@ -1,0 +1,5 @@
+{
+  "environment": "staging",
+  "firebaseUrl": "https://quillwriterstaging.firebaseio.com/",
+  "empiricalBaseURL": "https://staging.quill.org/api/v1"
+}

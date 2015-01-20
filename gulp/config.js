@@ -28,7 +28,16 @@ var tmp = './.tmp';
   var tmp_templates_module = 'quill-writer.templates';
   var tmp_templates_output = 'templates.js';
 
-var dest = utilities.env.isDev() ? build : dist;
+var dest;
+switch(utilities.env.getEnv()) {
+  case 'development':
+  case 'staging':
+    dest = build;
+    break;
+  case 'production':
+    dest = dist;
+    break;
+}
 
 // Configuration for each task
 var configuration = {

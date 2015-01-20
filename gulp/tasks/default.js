@@ -14,7 +14,7 @@ gulp.task('default', function () {
       ['watch'],
       ['serve']
     );
-  } else if (env.isProd()) {
+  } else if (env.isProd() || env.isStaging()) {
     runSequence(
       ['clean'],
       ['assets', 'config', 'lint', 'styles', 'templates'],

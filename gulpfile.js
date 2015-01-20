@@ -6,7 +6,7 @@ var gutil = require('gulp-util');
 var requireDir = require('require-dir');
 
 // Detect the environment
-var allowedEnvs = ['development', 'production'];
+var allowedEnvs = ['development', 'staging', 'production'];
 global.env = args.env || 'development';
 global.env = global.env.toLowerCase();
 if (allowedEnvs.indexOf(global.env) === -1) {
