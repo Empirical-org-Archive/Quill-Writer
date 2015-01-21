@@ -94,7 +94,9 @@ module.exports =
 
     //This returns a finished game for the summary page.
     gameModel.getFinishedGame = function(gameId) {
-      var game = gameModel.get(gameId).$asObject();
+      // game should be a POJO, not a FirebaseObject, because otherwise
+      // assigning FirebaseArrays as child objects sets up a race condition.
+      var game = {};
       var gameRef = gameModel.getRef(gameId);
       var wordsUsed = $firebase(gameRef.child("wordsUsed")).$asArray();
       var sentences = $firebase(gameRef.child("sentences")).$asArray();
