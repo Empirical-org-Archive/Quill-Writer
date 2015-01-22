@@ -22,6 +22,7 @@ var src = './src';
     var styles_output = 'app';
 var build = './build';
 var dist = './dist';
+var karmaConfigFile = './karma.conf.js';
 var tmp = './.tmp';
   var tmp_config_module = 'quill-writer.config';
   var tmp_config_output = 'config';
@@ -133,6 +134,9 @@ var configuration = {
       }
     },
     dest: tmp
+  },
+  test: {
+    configFile: path.resolve(karmaConfigFile)
   },
   watch: {
     lint: path.join(src, scripts, scripts_app, '**/*.js'),

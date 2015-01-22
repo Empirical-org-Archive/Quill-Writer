@@ -12,7 +12,8 @@ gulp.task('default', function () {
       ['browserify:app', 'browserify:vendors'],
       ['index'],
       ['watch'],
-      ['serve']
+      ['serve'],
+      ['tdd']
     );
   } else if (env.isProd() || env.isStaging()) {
     runSequence(
