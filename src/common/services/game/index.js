@@ -200,21 +200,19 @@ module.exports =
           userSubmittedStory(user, currentUser);
           savePromises.push(users.$save(user));
         });
-
-        // Only run this block after all the users have been saved.
-        $q.all(savePromises).then(function() {
-          users.$loaded().then(function() {
-            var allDone = _.every(_.pluck(users, 'done')); // Done flag is set in userSubmittedStory().
-            if (allDone) {
-              angular.forEach(users, function(user) {
-                user.finishMessageToShow.message = "You have completed this story!";
-                users.$save(user);
-                setGameIsDone(game);
-              });
-              gameModel.closeGame(gameId, currentUser);
-            }
+        return $q.all(savePromises);
+      }).then(function() { // Only run this block after all the users have been saved.
+        return users.$loaded();
+      }).then(function() {
+        var allDone = _.every(_.pluck(users, 'done')); // Done flag is set in userSubmittedStory().
+        if (allDone) {
+          angular.forEach(users, function(user) {
+            user.finishMessageToShow.message = "You have completed this story!";
+            users.$save(user);
+            setGameIsDone(game);
           });
-        });
+          gameModel.closeGame(gameId, currentUser);
+        }
       });
     };
 
