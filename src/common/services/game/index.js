@@ -146,6 +146,23 @@ module.exports =
       });
     };
 
+    gameModel.saveStoryConceptTag = function(sessionId) {
+      var allSentences = $firebase(gameModel.getRef(sessionId).child('sentences')).$asArray();
+      return allSentences.$loaded().then(function() {
+        // Reduce the list of sentence objects into a space-delimited string.
+        var story = _.map(allSentences, function(sentenceObj) {
+          return sentenceObj.entry;
+        }).join(' ');
+        return ConceptTagResult.save(sessionId, {
+          concept_class: 'Two Player Student Writing',
+          concept_tag: 'Quill Writer Story',
+          story: story
+        }).then(function() {
+          console.log('successfully saved concept tag for story', sessionId, story);
+        });
+      });
+    };
+
     gameModel.sendSentence = function(gameId, currentGame, sentence, currentUser) {
       sentence = gameModel.highlightWords(gameId, currentGame, sentence);
       sentence = gameModel.appendExtraSpaceIfNeccessary(sentence);
@@ -211,7 +228,9 @@ module.exports =
             users.$save(user);
             setGameIsDone(game);
           });
-          gameModel.closeGame(gameId, currentUser);
+          gameModel.saveStoryConceptTag(gameId).then(function() {
+            gameModel.closeGame(gameId, currentUser);
+          });
         }
       });
     };
