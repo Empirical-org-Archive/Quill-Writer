@@ -146,6 +146,23 @@ module.exports =
       });
     };
 
+    gameModel.saveStoryConceptTag = function(sessionId) {
+      var allSentences = $firebase(gameModel.getRef(sessionId).child('sentences')).$asArray();
+      return allSentences.$loaded().then(function() {
+        // Reduce the list of sentence objects into a space-delimited string.
+        var story = _.map(allSentences, function(sentenceObj) {
+          return sentenceObj.entry;
+        }).join(' ');
+        return ConceptTagResult.save(sessionId, {
+          concept_class: 'Two Player Student Writing',
+          concept_tag: 'Quill Writer Story',
+          story: story
+        }).then(function() {
+          console.log('successfully saved concept tag for story', sessionId, story);
+        });
+      });
+    };
+
     gameModel.sendSentence = function(gameId, currentGame, sentence, currentUser) {
       sentence = gameModel.highlightWords(gameId, currentGame, sentence);
       sentence = gameModel.appendExtraSpaceIfNeccessary(sentence);
@@ -200,21 +217,21 @@ module.exports =
           userSubmittedStory(user, currentUser);
           savePromises.push(users.$save(user));
         });
-
-        // Only run this block after all the users have been saved.
-        $q.all(savePromises).then(function() {
-          users.$loaded().then(function() {
-            var allDone = _.every(_.pluck(users, 'done')); // Done flag is set in userSubmittedStory().
-            if (allDone) {
-              angular.forEach(users, function(user) {
-                user.finishMessageToShow.message = "You have completed this story!";
-                users.$save(user);
-                setGameIsDone(game);
-              });
-              gameModel.closeGame(gameId, currentUser);
-            }
+        return $q.all(savePromises);
+      }).then(function() { // Only run this block after all the users have been saved.
+        return users.$loaded();
+      }).then(function() {
+        var allDone = _.every(_.pluck(users, 'done')); // Done flag is set in userSubmittedStory().
+        if (allDone) {
+          angular.forEach(users, function(user) {
+            user.finishMessageToShow.message = "You have completed this story!";
+            users.$save(user);
+            setGameIsDone(game);
           });
-        });
+          gameModel.saveStoryConceptTag(gameId).then(function() {
+            gameModel.closeGame(gameId, currentUser);
+          });
+        }
       });
     };
 
