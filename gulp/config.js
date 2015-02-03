@@ -3,93 +3,71 @@
 var path = require('path');
 var utilities = require('./utilities');
 
-// Folders & files names
-var src = './src';
-  var assets = 'assets';
-    var assets_images = 'images';
-  var scripts = 'app';
-    var scripts_app = '';
-      var scripts_app_entry = 'app.js';
-      var scripts_app_vendors = 'vendors.js';
-    var scripts_config = utilities.config.getFile() || (utilities.env.getEnv() + '.config.json');
-    var scripts_index = 'index.jade';
-    var scripts_app_output = 'app.js';
-    var scripts_app_output_partial = 'app*';
-    var scripts_vendors_output = 'vendors.js';
-    var scripts_vendors_output_partial = 'vendors*';
-  var styles = 'styles';
-    var styles_main = 'main.scss';
-    var styles_output = 'app';
-var build = './build';
-var dist = './dist';
-var tmp = './.tmp';
-  var tmp_config_module = 'quill-writer.config';
-  var tmp_config_output = 'config';
-  var tmp_templates_module = 'quill-writer.templates';
-  var tmp_templates_output = 'templates.js';
+var paths = require('./paths');
+
 
 var dest;
 switch(utilities.env.getEnv()) {
   case 'development':
   case 'staging':
-    dest = build;
+    dest = paths.build;
     break;
   case 'production':
-    dest = dist;
+    dest = paths.dist;
     break;
 }
 
 // Configuration for each task
 var configuration = {
   assets: {
-    src: path.join(src, assets, '**/*'),
-    imagesFilter: path.join(assets_images, '**/*'),
+    src: path.join(paths.src, paths.assets, '**/*'),
+    imagesFilter: path.join(paths.assets_images, '**/*'),
     imagemin: { optimizationLevel: 5, progressive: true, interlaced: true },
-    dest: path.join(dest, assets)
+    dest: path.join(dest, paths.assets)
   },
   browserify: {
     app: {
       browserify: {
         cache: {}, packageCache: {}, fullPaths: true,
-        entries: ['./' + path.join(src, scripts, scripts_app, scripts_app_entry)],
+        entries: ['./' + path.join(paths.src, paths.scripts, paths.scripts_app, paths.scripts_app_entry)],
         debug: true
       },
-      output: scripts_app_output,
+      output: paths.scripts_app_output,
       dest: dest
     },
 
     vendors: {
       browserify: {
         cache: {}, packageCache: {}, fullPaths: true,
-        entries: ['./' + path.join(src, scripts, scripts_app, scripts_app_vendors)]
+        entries: ['./' + path.join(paths.src, paths.scripts, paths.scripts_app, paths.scripts_app_vendors)]
       },
-      output: scripts_vendors_output,
+      output: paths.scripts_vendors_output,
       dest: dest
     }
   },
   clean: {
     src: [
       path.join(dest, '**/*'),
-      path.join(tmp, '**/*')
+      path.join(paths.tmp, '**/*')
     ]
   },
   config: {
-    src: path.join(src, scripts, scripts_config),
+    src: path.join(paths.src, paths.scripts, paths.scripts_config),
     rename: {
-      basename: tmp_config_output
+      basename: paths.tmp_config_output
     },
     ngConstant: {
-      name: tmp_config_module,
+      name: paths.tmp_config_module,
       constants: utilities.config.getConstants(),
       wrap: 'commonjs'
     },
-    dest: tmp
+    dest: paths.tmp
   },
   index: {
-    src: path.join(src, scripts, scripts_index),
+    src: path.join(paths.src, paths.scripts, paths.scripts_index),
       injectSrc: [
-      path.join(dest, scripts_vendors_output_partial + '.js'),
-      path.join(dest, scripts_app_output_partial + '.{css,js}')
+      path.join(dest, paths.scripts_vendors_output_partial + '.js'),
+      path.join(dest, paths.scripts_app_output_partial + '.{css,js}')
     ],
       inject: {
       ignorePath: path.join(dest),
@@ -99,7 +77,7 @@ var configuration = {
     dest: dest
   },
   lint: {
-    src: path.join(src, '**/*.js')
+    src: path.join(paths.src, '**/*.js')
   },
   serve: {
     browserSync: {
@@ -109,8 +87,8 @@ var configuration = {
     }
   },
   styles: {
-    src: path.join(src, styles, styles_main),
-    basename: styles_output,
+    src: path.join(paths.src, paths.styles, paths.styles_main),
+    basename: paths.styles_output,
     autoprefixer: {browsers: ['last 2 versions']},
     sass: {
       sourcemap: utilities.env.isDev(),
@@ -119,30 +97,30 @@ var configuration = {
     dest: dest
   },
   templates: {
-    src: [path.join(src, scripts, '**/**/*.jade'), path.join(src, scripts, '**/**/*.html')],
+    src: [path.join(paths.src, paths.scripts, '**/**/*.jade'), path.join(paths.src, paths.scripts, '**/**/*.html')],
     jade: {},
     templateCache: {
-      filename: tmp_templates_output,
+      filename: paths.tmp_templates_output,
         options: {
         moduleSystem: 'Browserify',
           standalone: true,
-          module: tmp_templates_module,
+          module: paths.tmp_templates_module,
           base: function (file) {
           return path.basename(file.relative);
         }
       }
     },
-    dest: tmp
+    dest: paths.tmp
   },
   watch: {
-    lint: path.join(src, scripts, scripts_app, '**/*.js'),
-    index: path.join(src, scripts, scripts_index),
-    config: path.join(src, scripts, scripts_config),
-    templates: [path.join(src, scripts, '**/*.jade'), path.join(src, scripts, '**/**/*.html')],
-    styles: path.join(src, styles, '**/*.scss'),
-    styles_output: styles_output + '.min.css',
+    lint: path.join(paths.src, paths.scripts, paths.scripts_app, '**/*.js'),
+    index: path.join(paths.src, paths.scripts, paths.scripts_index),
+    config: path.join(paths.src, paths.scripts, paths.scripts_config),
+    templates: [path.join(paths.src, paths.scripts, '**/*.jade'), path.join(paths.src, paths.scripts, '**/**/*.html')],
+    styles: path.join(paths.src, paths.styles, '**/*.scss'),
+    styles_output: paths.styles_output + '.min.css',
     reload: path.join(dest, '**/*.{js,html}'),
-    assets: path.join(src, assets, '**/**/*')
+    assets: path.join(paths.src, paths.assets, '**/**/*')
   }
 };
 
