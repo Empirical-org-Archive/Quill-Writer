@@ -137,3 +137,9 @@ p.story {
 .beta h1 {
   font-size: 400%;
 }
+
+.beta button {
+  width: 150px;
+  height: 50px;
+  font-size: 150%;
+}
