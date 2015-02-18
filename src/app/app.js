@@ -1,3 +1,4 @@
+var sfBeta = require('./beta/');
 var sfHome = require('./home/')
 var sfGame = require('./game/')
 var sfGameFinish = require('./game/finish/');
@@ -13,6 +14,7 @@ var sfConstants = require('./../common/constants');
 angular.module('stories-with-friends', [
 
     // features
+    sfBeta,
     sfHome,
     sfGame,
     sfGameFinish,
