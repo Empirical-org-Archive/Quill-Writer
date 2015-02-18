@@ -130,3 +130,10 @@ p.story {
   margin-right: -40px;
   margin-left: -40px;
 }
+
+.beta p {
+  font-size: 150%;
+}
+.beta h1 {
+  font-size: 400%;
+}
