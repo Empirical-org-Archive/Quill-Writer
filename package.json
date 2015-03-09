@@ -5,7 +5,7 @@
   "scripts": {},
   "dependencies": {},
   "devDependencies": {
-    "empirical-angular": "0.0.x",
+    "empirical-angular": "^0.1.1",
     "gulp": "^3.8.10"
   },
   "engines": {
