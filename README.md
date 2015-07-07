@@ -49,7 +49,7 @@ definition pairs, and the number of words used to finish the story.
 * Install development dependencies `npm install`
 * Install gulp globally `npm install gulp -g`
 * Run `gulp`
-* Open a browser window to `http://localhost:4000/`
+* Open a browser window to `http://localhost:3000/`
 
 ## Developing
 
